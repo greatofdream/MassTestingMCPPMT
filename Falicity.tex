@@ -1,11 +1,17 @@
 \section{Experimental setup and testing procedure}
 \label{SetUp}
+\subsection{Reference PMT}
+CR365-01\cite{BJBS} and R5912\cite{JPBS} from HAMAMATSU are used as reference PMT.
+\subsection{Experimental setup}
 % Facility
+The schema of experimentail facility is shown in Fig~\ref{fig:facility}
+\begin{figure}
+    % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
+    \caption{The schema of facility}
+    \label{fig:facility}
+\end{figure}
 Light source is a picosecond laser flashing system (PiL040XSM) from Advanced Laser Systems(A.L.S)\cite{NTKLaser}, which can produce short light pulses with a wavelenght of \SI{405}{nm} and a width of \SI{34}{ps}. The light is attenuated by a laser attenuator with 0.5-30db. A fiber splitter with the standard G.657.A1 distributes attenuated light into 4 channels, which face directly to the top of PMT.
 
-The other end of the optical fibers were positioned in front of the PMT, illuminating the full cath-
-ode. In order to yield SPE events as signal the laser intensity was adjusted to a level where only
-about one out of 10 trigger signals led to a PMT signal. The average signal-to-trigger ratio was
-RT = 9.95 % ± 2.98 %, while the error was derived from the variation in the ratios of all PMTs. It
-was not possible to adjust the light intensity at each PMT individually, as 30 PMTs were illumi-
-nated by the same laser beam
+A black plastic box acts as darkroom splitted into 4 grids. Each grid holds a PMT and is equipped with an end of splitter channel. CAEN V1751 digitizer with 1GHz sample rates is used for data taking\cite{CAENV1751}, which controlled by a custom-made data acquisition(DAQ) software based on CAEN library. Wiener EDS 30330p high voltage(HV) module\cite{WIENERHV} supplies a positive voltage for each PMT. Bare PMTs are connected to the HV module and digitizer with a pluggable HV divider with an integrated HV-signal decoupler. The HV divider is soldered to potted PMTs with HV and signal interfaces seperated. 
+
+LEMO line and HV line are go through an \SI{0.5}{cm} hole of the box and direclty connected HV divider with HV module and digitizer. 
