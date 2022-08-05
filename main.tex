@@ -1,9 +1,10 @@
-\documentclass[11pt,a4paer]{article}
+\documentclass[11pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \usepackage{authblk}
 \usepackage{siunitx}
 \usepackage{amsmath}
+\usepackage{subcaption}
 \usepackage{mhchem}
 \usepackage{bm}
 
@@ -28,11 +29,12 @@
 \maketitle
 \input{Abstract}
 \input{Introduction}
-\input{Falicity}
+\input{Facility}
 \input{Result}
 \input{Summary}
 \input{Acknowledgement}
 \bibliographystyle{plain}
-\bibliography{ref,facility}
-
+\bibliography{ref,facility,result}
+\appendix
+\input{Appendix}
 \end{document}
