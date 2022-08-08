@@ -1,20 +1,22 @@
 \section{Experimental setup and testing procedure}
 \label{SetUp}
-\subsection{Reference PMT}
-CR365-01\cite{BJBS} and R5912-100\cite{JPBS} from HAMAMATSU are used as reference PMT.
 \subsection{Experimental setup}
 % Facility
+CR365-01\cite{BJBS} and low background R5912-10WA-10\cite{JPBS} PMTs from HAMAMATSU are used as reference PMT.
+
 The schema of experimentail facility is shown in Fig~\ref{fig:facility}
-\begin{figure}
-    % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/facility/schemaApparatus.pdf}
     \caption{The schema of facility}
     \label{fig:facility}
 \end{figure}
-Light source is a picosecond laser flashing system (PiL040XSM) from Advanced Laser Systems(A.L.S)\cite{NTKLaser}, which can produce short light pulses with a wavelenght of \SI{405}{nm} and a width of \SI{34}{ps}. The light is attenuated by a laser attenuator with 0.5-30db. A fiber splitter with the standard G.657.A1 distributes attenuated light into 4 channels, which face directly to the top of PMT.
 
-A black plastic box acts as darkroom splitted into 4 grids. Each grid holds a PMT and is equipped with an end of splitter channel. CAEN V1751 10-bit digitizer with 1GHz sample rates is used for data taking\cite{CAENV1751}, which controlled by a custom-made data acquisition(DAQ) software based on CAEN library. The offset of digitizer is set to about \SI{0.183}{V} and the dynamic range is from \SI{-0.817}{V} to \SI{0.183}{V}. Wiener EDS 30330p high voltage(HV) module\cite{WIENERHV} supplies a positive voltage for each PMT. Bare PMTs are connected to the HV module and digitizer with a pluggable HV divider with an integrated HV-signal decoupler. The HV divider is soldered to potted PMTs with HV and signal interfaces seperated. 
+Light source is a picosecond laser flashing system (PiL040XSM) from Advanced Laser Systems(A.L.S)\cite{NTKLaser}, which can produce short light pulses with a wavelength of \SI{405}{nm} and a width of \SI{34}{ps}. The light is attenuated by a laser attenuator with 0.5-30db. A fiber splitter with the standard G.657.A1 distributes attenuated light into 4 channels, which face directly to the top of PMT.
 
-LEMO line and HV line are go through an \SI{0.5}{cm} hole of the box and directly connected HV divider with HV module and digitizer. 
+A black plastic box acts as darkroom splitted into 4 grids. Each grid holds a PMT and is equipped with an end of splitter channel. Optical fiber, LEMO line and HV line are go through an \SI{0.5}{cm} hole of the box. CAEN V1751 10-bit digitizer with 1GHz sample rates is used for data taking\cite{CAENV1751}, which controlled by a custom-made data acquisition(DAQ) software based on CAEN library. The offset of digitizer is set to about \SI{0.183}{V} and the dynamic range is from \SI{-0.817}{V} to \SI{0.183}{V}, which can handle the anomalous baseline. Wiener EDS 30330p high voltage(HV) module\cite{WIENERHV} supplies a positive voltage for each PMT. Potted PMTs are connected from a HV divider with an integrated HV-signal decoupler in PMT base to the HV module and digitizer with HV line and LEMO line.
+
 
 \subsection{Testing procedure}
 All PMTs were measured under the HV provided by the vendor(NNVT), which are calibrated at the gain of $1\times10^7$. To stabilize and reduce the influence of the dark noise, all pmts stayed in darkroom  with HV on for 10 hours before DAQ started. DAQ sampling contains two stage: the first stage is noise stage and DAQ works without laser and triggered periodly at 1kHz mainly for DCR calculation; the second stage is laser stage, in which DAQ sample data with laser and triggered by the output of trigger from laser for other characterization.
