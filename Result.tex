@@ -1,15 +1,48 @@
 \section{Testing and characterization}
 \label{Result}
+
 \subsection{Noise stage}
-The window size is \SI{600}{ns}. The maximum peak in each waveform are extracted as the noise pulses candidate. A histogram in the range of 0 to 1000 with binwidth equal to 1 of all amplitudes of sample point is used to find the baseline. Using a gaussian function G$(\mu_b,\sigma_b)$ to fit the histogram and $\mu_b$ is used as the baseline.
+The window size is \SI{600}{ns}. For 20kHz dark noise rate, the expected dark noise pulse number is 0.012, which means the probability of 2 or more pulse is about 0.012 of probability of 1 pulse. The maximum peak in each waveform are extracted as the noise pulse candidates.
+\subsubsection{Baseline}
+Due to the offset mentioned in sec~\ref{sec:setup}, the ADC value of baseline is about 950. To get baseline, the pulse area should be removed. A procedure to determine the baseline is developed, which comprised three steps and shown in Fig~\ref{fig:baseline1}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth,page=1]{figures/result/noisebaseline697_219908_2.pdf}
+        \caption{An example of waveform in noise stage}
+        \label{fig:baseline1}
+    \end{subfigure}
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth,page=3]{figures/result/noisebaseline697_219908_2.pdf}
+        \caption{An example of waveform without baseline in noise stage}
+        \label{fig:baseline2}
+    \end{subfigure}
+\end{figure}
+
+1. An interval in the time window $[-t_s,-10]$ ($t_s\in[-200,-110]$) ns relative to pulse peak $t_p$ is selected. If $t_s<110$ when the peak is close to the start of waveform, another interval $[100,200]$ ns relative to $t_p$ is appended to expand the total interval. Average $\mu_b^0$ and standard deviation $\sigma_b^0$ of amplitudes are calculated.
+
+2. An amplitude filter $[\mu_b^0-\max(\min(5\sigma_b^0,3),1)]$ is used to remove most of signal and reserve the baseline when $\sigma_b^0$ is small.
+
+3. The rest amplitudes are fitted with a gaussian function G$(\mu_b^f,\sigma_b^f)$ using unbinned likelihood. $\mu_b^f$ and $\sigma_b^f$ are accurate at most time. When there exsit a large wave in the time interval selected in step1, a bias will be introduced for $\sigma_b^f$ which can be seen in Fig~\ref{fig:baselineBias2}.
+
+4. Another amplitude filter $[\mu_b^f-\min(5\sigma_b^f,3)]$ is used to reselect the signal area and those areas are padding \SI{10}{ns} to remove rising edge and falling edge. The rest wave are used to estimate baseline $\mu_b$ and standard deviation of baseline $\sigma_b$.
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.7\textwidth}
+        % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
+        \caption{Peak distribution of an example PMT}%PM
+        \label{fig:baselineBias1}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
+        \caption{An example of waveform in noise stage}
+        \label{fig:baselineBias2}
+    \end{subfigure}
+\end{figure}
+
 \subsubsection{Peak and charge spectrum}
 \label{sec:noisepeak}
-The charge of pulses is calculated using integration in a time window $[t_{10}, t_{90}]$ ns($t_{10}, t_{90}$ are the time of 10\% and 90\% amplitude) relative to the peak location of the signal (Fig~\ref{fig:waveform}).
-\begin{figure}
-    % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
-    \caption{An example of waveform in noise stage}
-    \label{fig:waveform}
-\end{figure}
+The charge of pulses is calculated using integration in a time window $[-15, 75]$ ns relative to the peak location $t_p$ of the signal (Fig~\ref{fig:baseline2}) considering the rise time and fall time distribution.
 
 The peak amplitude distribution is shown in Fig~\ref{fig:peak}
 \begin{figure}[!htbp]
@@ -83,7 +116,7 @@ The peak-to-valley ratio is equal to
 \end{equation}
 The P/V show the ability of discrimination between electronic noise and true signal. The results shows P/V of MCP PMTs are better than reference PMT.
 \subsubsection{rise time, fall time and full width at half maximum(FWHM)}
-The definitions of rise time, fall time and FWHM are shown in Fig~\ref{fig:waveform}. Fig~\ref{fig:FWHM} shows the distribution of a PMT.
+The definitions of rise time, fall time and FWHM are shown in Fig~\ref{fig:waveform}($t_{10}, t_{90}$ are the time of 10\% and 90\% amplitude). Fig~\ref{fig:FWHM} shows the distribution of a PMT.
 \begin{figure}
     % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
     \caption{An example of FWHM in noise stage}
