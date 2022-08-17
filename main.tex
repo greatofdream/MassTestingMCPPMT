@@ -1,4 +1,5 @@
-\documentclass[11pt,aps,onecolumn,showpacs,preprintnumbers]{article}
+\documentclass[11pt,a4paper]{article}
+\usepackage{jinstpub}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \usepackage{authblk}
@@ -8,32 +9,28 @@
 \usepackage{subcaption}
 \usepackage{bm}
 
-\providecommand{\keywords}[1]
-{
-  \small	
-  \textbf{\textit{Keywords---}} #1
-}
 
 \title{Mass Testing and Characterization of 8inch MCP-PMTs}
-\author[a,b,c]{A.~Q.~Zhang\thanks{zhangaq19@mails.tsinghua.edu.cn}}
+\author[a,b,c]{A.~Q.~Zhang\note{Corresponding auhor.}}
 \author[a,b,c]{, xxx\thanks{Corresponding author.orv@tsinghua.edu.cn}}
 \author[a,b,c]{, xxx}
 
-\affil[a]{Department of Engineering Physics, Tsinghua University, Beijing, China}
-\affil[b]{Center for High Energy Physics, Tsinghua University, Beijing, China}
-\affil[c]{Key Laboratory of Particle \& Radiation Imaging (Tsinghua University), Ministry of Education, China}
-
+\affiliation[a]{Department of Engineering Physics, Tsinghua University, Beijing, China}
+\affiliation[b]{Center for High Energy Physics, Tsinghua University, Beijing, China}
+\affiliation[c]{Key Laboratory of Particle \& Radiation Imaging (Tsinghua University), Ministry of Education, China}
+\emailAdd{zhangaq19@mails.tsinghua.edu.cn}
+\input{Abstract}
 
 \begin{document}
 
 \maketitle
-\input{Abstract}
+
 \input{Introduction}
 \input{Facility}
 \input{Result}
 \input{Summary}
 \input{Acknowledgement}
-\bibliographystyle{plain}
+\bibliographystyle{JHEP}
 \bibliography{ref,facility,result}
 \appendix
 \input{Appendix}
