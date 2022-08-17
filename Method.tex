@@ -47,25 +47,26 @@ The charge of pulses is calculated using integration in a time window $[-15, 75]
     \label{equ:charge}
     C = \frac{C_{equ}}{50\Omega}
 \end{equation}
-
+Due to the influence of long tail, the mean charge of the output of MCP-PMT cannot use the mean charge of the first peak. Pulses large than \SI{3}{ADC} and charge large than \SI{0.25}{p.e.} is selected and mean $\mu_{select}$ and standard deviation $\sigma_{select}$ of charge are also calculated to represent the characteristics of MCP-PMT.
 
 The peak amplitude distribution is shown in Fig~\ref{fig:peak}
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\textwidth,page=3]{figures/result/peakcharge697.pdf}
+        \includegraphics[width=\textwidth]{figures/result/charge697.pdf}
         \caption{Charge distribution of an example PMT}%PM
         \label{fig:charge}
     \end{subfigure}
     \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\textwidth,page=5]{figures/result/peakcharge697.pdf}
-        \caption{ distribution of an example PMT}%PM
+        \includegraphics[width=\textwidth]{figures/result/peak697.pdf}
+        \caption{Peak distribution of an example PMT}%PM
         \label{fig:peak}
     \end{subfigure}
     \caption{Peak and charge distribution of an example PMT}
 \end{figure}
 \subsubsection{Gain and single PE resolution}
-There exist a long tail in charge distribution as shown in the histogram with \SI{1}{ADCns} in Fig~\ref{fig:charge}. To decrease the influence on the energy resolution, a fit interval $-30, 30$ ADCns relative to the largest count bin of histogram is used. A gaussian function G$(C_1,\sigma_{C_1})$ is used to fit the binned data via modified least-square method to get the peak of single PE. The gain $G$ is calculated as following equation
+\label{sec:noisegain}
+There exist a long tail in charge distribution as shown in the histogram with \SI{1}{ADCns} in Fig~\ref{fig:charge}. To decrease the influence on the energy resolution, a fit interval $-30, 30$ ADCns relative to the largest count bin of histogram is used. A gaussian function G$(C_1,\sigma_{C_1})$ is used to fit the binned data via modified least-square method to capture the peak of single PE. The gain $G$ is calculated as following equation
 \begin{equation}
     G=\frac{C_1}{e}
 \end{equation}
@@ -76,19 +77,17 @@ The single PE resolution is defined as
     G=\frac{\sigma_{C_1}}{C_1}
 \end{equation}
 \subsubsection{Peak-to-valley(P/V) ratio}
-A parabolic function is fitted to the vally interval as shown in Fig~\ref{fig:charge}.
-The local minimum $N_v$ of charge spectrum between pedestal and SPE peak is fitted by a parabolic function. The $N_p$ is the peak fitted with gaussian function described in sec~\ref{sec:triggerpeak}.
-The peak-to-valley ratio is equal to  
+A parabolic function is fitted to the vally interval between pedestal and SPE peak as shown in Fig~\ref{fig:charge}.The local minimum $N_v$ of charge spectrum is calculated as the parabolic function. The $N_p$ is the peak of gaussian function described in sec~\ref{sec:noisegain}. The peak-to-valley ratio is equal to  
 \begin{equation}
     P/V=\frac{N_p}{N_v}
 \end{equation}
-The P/V show the ability of discrimination between electronic noise and true signal. The results shows P/V of MCP PMTs are better than reference PMT.
+The P/V show the ability of discrimination between electronic noise and true signal.
 \subsubsection{rise time, fall time and full width at half maximum(FWHM)}
-The definitions of rise time, fall time and FWHM are shown in Fig~\ref{fig:waveform}($t_{10}, t_{90}$ are the time of 10\% and 90\% amplitude). Fig~\ref{fig:FWHM} shows the distribution of a PMT.
+The definitions of rise time, fall time and FWHM are shown in Fig~\ref{fig:baseline1} ($t_{10}, t_{50}, t_{90}$ are the time of 10\%, 50\% and 90\% amplitude). Fig~\ref{fig:risefallFWHM} shows the rise time, fall time and FWHM distribution of a PMT.
 \begin{figure}
-    % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
+    \includegraphics[width=0.8\textwidth,page=13]{figures/result/peakcharge697.pdf}
     \caption{An example of FWHM in noise stage}
-    \label{fig:FWHM}
+    \label{fig:risefallFWHM}
 \end{figure}
 \subsubsection{Dark count rate}
 A float threshold $V_{t}$ as shown in Fig~\ref{fig:peak} was selected as the vally of histogram of peak distributuion to discriminate the dark noise and fluctuation of baseline. The DCR equals to $\frac{N_{\mathrm{noise}}}{N_{t}}$, in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total number of waveforms.
