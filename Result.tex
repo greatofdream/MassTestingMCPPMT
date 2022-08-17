@@ -5,7 +5,7 @@
 The window size is \SI{600}{ns}. For 20kHz dark noise rate, the expected dark noise pulse number is 0.012, which means the probability of 2 or more pulse is about 0.012 of probability of 1 pulse. The maximum peak in each waveform are extracted as the noise pulse candidates.
 \subsubsection{Baseline}
 Due to the offset mentioned in sec~\ref{sec:setup}, the ADC value of baseline is about 950. To get baseline, the pulse area should be removed. A procedure to determine the baseline is developed, which comprised three steps and shown in Fig~\ref{fig:baseline1}
-\begin{figure}
+\begin{figure}[!htbp]
     \centering
     \begin{subfigure}[b]{\textwidth}
         \includegraphics[width=\textwidth,page=1]{figures/result/noisebaseline697_219908_2.pdf}
@@ -26,7 +26,7 @@ Due to the offset mentioned in sec~\ref{sec:setup}, the ADC value of baseline is
 3. The rest amplitudes are fitted with a gaussian function G$(\mu_b^f,\sigma_b^f)$ using unbinned likelihood. $\mu_b^f$ and $\sigma_b^f$ are accurate at most time. When there exsit a large wave in the time interval selected in step1, a bias will be introduced for $\sigma_b^f$ which can be seen in Fig~\ref{fig:baselineBias2}.
 
 4. Another amplitude filter $[\mu_b^f-\min(5\sigma_b^f,3)]$ is used to reselect the signal area and those areas are padding \SI{10}{ns} to remove rising edge and falling edge. The rest wave are used to estimate baseline $\mu_b$ and standard deviation of baseline $\sigma_b$.
-\begin{figure}
+\begin{figure}[!htbp]
     \centering
     \begin{subfigure}[b]{0.7\textwidth}
         % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
@@ -42,25 +42,26 @@ Due to the offset mentioned in sec~\ref{sec:setup}, the ADC value of baseline is
 
 \subsubsection{Peak and charge spectrum}
 \label{sec:noisepeak}
-The charge of pulses is calculated using integration in a time window $[-15, 75]$ ns relative to the peak location $t_p$ of the signal (Fig~\ref{fig:baseline2}) considering the rise time and fall time distribution.
+The charge of pulses is calculated using integration in a time window $[-15, 75]$ ns relative to the peak location $t_p$ of the signal (Fig~\ref{fig:baseline2}) considering the rise time and fall time distribution. There exist a long tail in charge distribution. A gaussian function is used to fit the binned data via modified least-square method to get the peak of single PE. A parabolic function is fitted to the vally interval as shown in Fig~\ref{fig:charge}.
 
 The peak amplitude distribution is shown in Fig~\ref{fig:peak}
 \begin{figure}[!htbp]
     \centering
-    \begin{subfigure}[b]{0.35\textwidth}
-        % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
-        \caption{Peak distribution of an example PMT}%PM
-        \label{fig:peak}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.35\textwidth}
-        % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth,page=3]{figures/result/peakcharge697.pdf}
         \caption{Charge distribution of an example PMT}%PM
         \label{fig:charge}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth,page=5]{figures/result/peakcharge697.pdf}
+        \caption{ distribution of an example PMT}%PM
+        \label{fig:peak}
     \end{subfigure}
     \caption{Peak and charge distribution of an example PMT}
 \end{figure}
 \subsubsection{Dark count rate}
 A float threshold $V_{t}$ as shown in Fig~\ref{fig:peak} was selected as the vally of histogram of peak distributuion to discriminate the dark noise and fluctuation of baseline. The DCR equals to $\frac{N_{\mathrm{noise}}}{N_{t}}$, in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total number of waveforms.
+
 \subsection{Laser stage}
 The window size is \SI{10400}{ns} and the trigger time is at ~\SI{200}{ns} as shown in Fig~\ref{fig:triggerwaveform}. The trigger pulse are mainly centering in the time interval between [250, 350]ns dependent on the length of cable. The maximum peak are found in the window of [0, 600]ns and extract the peak position. A gaussian function G$(\mu_t^0,\sigma_t^0)$ is fit to the distribution of peak location shown in Fig~\ref{peaklocation}. A time cut $[\mu_t^0-3\sigma_t^0, \mu_t^0+3\sigma_t^0]$ is used for the waveforms dataset of each PMTs. All the characterizations are recalculated with the new time cut.
 
