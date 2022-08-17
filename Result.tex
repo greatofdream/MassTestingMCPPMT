@@ -1,5 +1,5 @@
-\section{Testing and characterization}
-\label{Result}
+\section{Testing and characterization method}
+\label{Method}
 
 \subsection{Noise stage}
 The window size is \SI{600}{ns}. For 20kHz dark noise rate, the expected dark noise pulse number is 0.012, which means the probability of 2 or more pulse is about 0.012 of probability of 1 pulse. The maximum peak in each waveform are extracted as the noise pulse candidates.
@@ -42,7 +42,12 @@ Due to the offset mentioned in sec~\ref{sec:setup}, the ADC value of baseline is
 
 \subsubsection{Peak and charge spectrum}
 \label{sec:noisepeak}
-The charge of pulses is calculated using integration in a time window $[-15, 75]$ ns relative to the peak location $t_p$ of the signal (Fig~\ref{fig:baseline2}) considering the rise time and fall time distribution. There exist a long tail in charge distribution. A gaussian function is used to fit the binned data via modified least-square method to get the peak of single PE. A parabolic function is fitted to the vally interval as shown in Fig~\ref{fig:charge}.
+The charge of pulses is calculated using integration in a time window $[-15, 75]$ ns relative to the peak location $t_p$ of the signal (Fig~\ref{fig:baseline2}) considering the rise time and fall time distribution. The equivalent charge $C_{\mathrm{equ}}$ is defined as the summation of the amplitude in the integration interval. Considering the input impedance is \SI{50}{\Omega}, the true charge is calculated as Equ~\eqref{equ:charge} 
+\begin{equation}
+    \label{equ:charge}
+    C = \frac{C_{equ}}{50\Omega}
+\end{equation}
+
 
 The peak amplitude distribution is shown in Fig~\ref{fig:peak}
 \begin{figure}[!htbp]
@@ -58,6 +63,32 @@ The peak amplitude distribution is shown in Fig~\ref{fig:peak}
         \label{fig:peak}
     \end{subfigure}
     \caption{Peak and charge distribution of an example PMT}
+\end{figure}
+\subsubsection{Gain and single PE resolution}
+There exist a long tail in charge distribution as shown in the histogram with \SI{1}{ADCns} in Fig~\ref{fig:charge}. To decrease the influence on the energy resolution, a fit interval $-30, 30$ ADCns relative to the largest count bin of histogram is used. A gaussian function G$(C_1,\sigma_{C_1})$ is used to fit the binned data via modified least-square method to get the peak of single PE. The gain $G$ is calculated as following equation
+\begin{equation}
+    G=\frac{C_1}{e}
+\end{equation}
+in which e is the charge of an electron.
+
+The single PE resolution is defined as
+\begin{equation}
+    G=\frac{\sigma_{C_1}}{C_1}
+\end{equation}
+\subsubsection{Peak-to-valley(P/V) ratio}
+A parabolic function is fitted to the vally interval as shown in Fig~\ref{fig:charge}.
+The local minimum $N_v$ of charge spectrum between pedestal and SPE peak is fitted by a parabolic function. The $N_p$ is the peak fitted with gaussian function described in sec~\ref{sec:triggerpeak}.
+The peak-to-valley ratio is equal to  
+\begin{equation}
+    P/V=\frac{N_p}{N_v}
+\end{equation}
+The P/V show the ability of discrimination between electronic noise and true signal. The results shows P/V of MCP PMTs are better than reference PMT.
+\subsubsection{rise time, fall time and full width at half maximum(FWHM)}
+The definitions of rise time, fall time and FWHM are shown in Fig~\ref{fig:waveform}($t_{10}, t_{90}$ are the time of 10\% and 90\% amplitude). Fig~\ref{fig:FWHM} shows the distribution of a PMT.
+\begin{figure}
+    % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
+    \caption{An example of FWHM in noise stage}
+    \label{fig:FWHM}
 \end{figure}
 \subsubsection{Dark count rate}
 A float threshold $V_{t}$ as shown in Fig~\ref{fig:peak} was selected as the vally of histogram of peak distributuion to discriminate the dark noise and fluctuation of baseline. The DCR equals to $\frac{N_{\mathrm{noise}}}{N_{t}}$, in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total number of waveforms.
