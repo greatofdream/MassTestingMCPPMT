@@ -164,11 +164,25 @@ The transit time spread (TTS) is the spread of photo-electron transit time (TT),
 All the waveform from the the charge cut [] are align with $t_{10}^r$ and average to get the SER.
 \subsubsection{Pre-pulse and after-pulse}
 Pre-pulses generate due to photons hit on the MCP or the first dynode directly rather than the photocathode\cite{JUNOMassTesting}. The amplitude of pre-pulses are smaller than normal signal and appear before the main pulse. This ratio is related to the intensity of light source.
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[t]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{figures/method/triggerTTS.pdf}
+        \caption{pre-pulse}
+        \label{fig:prepulse}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{figures/method/triggerTTS2d.pdf}
+        \caption{after pulse}
+        \label{fig:afterpulse}
+    \end{subfigure}
+\end{figure}
 % waveform analysis
 Afterpulse are generated due to the ionization of gaseous impurities between the cathode and first dynode when photo-electrons go through\cite{Coates_1973}. These ions hit back on the photocathode and generate electrons. $H^+,He^+,O^+$ are the major ions contributing to afterpulse\cite{Coates_1973}. Due to these ions are heavy than electron, the travel time is in the scale of \si{us}\footnote{The velocity of ions is about \SI{1000}{km/s} and size of PMT is about \SI{0.1}{m}, thus the transit time is about \SI{0.1}{us}}. The after pulse is calculated in a window \SIrange{300}{10000}{ns} after the main pulse.
 
 
 Afterpulse is categorized into several kinds. Fig~\ref{fig:afterpulse} indicates serveral typical after-pulse peaks in time around \SI{1000}{ns} with ratio about xx\%. Considering the different mass of ions, these peaks originates from xx, xx.
+
 \subsubsection{relative photon detection efficiency}
 To measure PDE, the intensity of light and light allocation ratio of each channel need to be calibrated. For example JUNO fixed one reference PMT and other reference PMTs are circulated through all channels \cite{Wonsak_2021}. A new method is designed to reduce the number of reference PMT and combine all test runs to do calibration.  
 
@@ -177,14 +191,37 @@ Note $n,j,k$ ($n=0,...,N-1, j=0,...,J-1, k=0,...,K-1$) is the indicator of test 
     \label{equ:pderate}
     R_{njk}=I_n\alpha_j\eta_k
 \end{equation}
-For convenience, 0th PMT is the reference PMT. Note $\alpha_j^0=\frac{\alpha_j}{\alpha_0}$, $\eta_k^0=\frac{\eta_k}{\eta_0}$, $I_n^0=I_n\alpha_0\eta_0$, Equ~\eqref{equ:pderate} can be transfer to Equ~\eqref{equ:pdelograte}
+For convenience, 0th PMT is the reference PMT. Note $\alpha_j^0=\frac{\alpha_j}{\alpha_0}$, $\eta_k^0=\frac{\eta_k}{\eta_0}$, $I_n^0=I_n\alpha_0\eta_0$, $i\equiv njk$. Equ~\eqref{equ:pderate} can be transfer to Equ~\eqref{equ:pdelograte}
 \begin{equation}
     \label{equ:pdelograte}
-    \mathrm{log}(R_{njk})=\mathrm{log}(I_n^0)+\mathrm{log}(\alpha_j^0)+\mathrm{log}(\eta_k^0)
+    \mathrm{log}(R_{i})=\mathrm{log}(I_n^0)+\mathrm{log}(\alpha_j^0)+\mathrm{log}(\eta_k^0)
 \end{equation}
-Equ~\eqref{equ:pdelograte} is a equation set with $NK$ equations. $I_n^0,\alpha_j^0,\eta_k^0$ are the unknown $N+K+J-2$ parameters, which can stacked into an array $X = C(\mathrm{log}(I_n^0), \mathrm{log}(\alpha_j^0),\mathrm{log}(\eta_k^0))$ ($n=0,...,N-1, j=1,...,J-1, k=1,...,K-1$). 
+Equ~\eqref{equ:pdelograte} is a equation set with $NK$ equations. $I_n^0,\alpha_j^0,\eta_k^0$ are the unknown $N+K+J-2$ parameters, which can stacked into an array $X = C(\mathrm{log}(I_n^0), \mathrm{log}(\alpha_j^0),\mathrm{log}(\eta_k^0))^T$ ($n=0,...,N-1, j=1,...,J-1, k=1,...,K-1$). Attention that indicator of j and k are start from 1 due to 0th channel and PMT are used as calibration. 
 \begin{equation}
-    \mathrm{log}(R_{njk})=DX
+    \mathrm{log}(R)=DX
 \end{equation}
-in which $D=[D_I,D_\alpha, D_\eta]$ is a sparse matrix, $D_I[{njk},n]=1,D_\alpha[{njk},j-1]=1, D_\eta[{njk},k-1]=1$. 
-In Appendix~\ref{sec:solution} there exist solution only when the  equation set
+in which $D=[D_I,D_\alpha, D_\eta]$ is a sparse matrix, $D_I[i,n]=1,D_\alpha[{i},j-1]=1(j\geq1), D_\eta[{i},k-1]=1(k\geq1)$. 
+Appendix~\ref{sec:solution} proves that there exist solution only when $(N-2)(J-1)\geq0$ and there exist two same PMTs for any different test run.
+
+Due to $R=\frac{N_{\mathrm{trig}}}{N_t}$, $N_t$ is a fix number while the $N_{\mathrm{trig}}$ obey Bionomial distribution with probability $p=I_n\alpha_j\eta_k$ and $\hat{p}=R$, the variance $\mathrm{Var}[\hat{p}]$ is estimated as $\frac{(1-R)R}{N_t}$ and relative variance $\frac{\mathrm{Var}[\hat{p}]}{E^2[\hat{p}]}$ can be estimated as $\frac{1-R}{N_tR}$. The photons in each channel are seen as irrelevant and the covariance between $R_i$ are omit. The covariance matrix of $R$ can be expressed as
+\begin{equation}
+    \label{equ:variance}
+    \Sigma_{ij}=\begin{cases}
+        0 & i\neq j\\
+        \frac{R(1-R)}{N_t} & i=j
+    \end{cases}
+\end{equation}
+
+Weighted least square (WLS) method theory gives the solution
+\begin{equation}
+    \label{equ:solution}
+    X=(D^T\Sigma^{-1}D)^{-1}D^T\Sigma^{-1}R\equiv BR
+\end{equation}
+in which $B=(D^T\Sigma^{-1}D)^{-1}D^T\Sigma^{-1}$. Variance $U=B\Sigma B^T$\cite{Cowan1998StatisticalDA}\cite{AppliedRegression}. The outlier test use other points without test point to check out the outlier from datasets\cite{AppliedRegression}.
+
+Solution $X$ need to be transformed using $\hat{x}=exp(X)$ and the variance is estimated as $\mathrm{Var}[\hat{x}]=\exp^2(X)\mathrm{Tr}(U)$.
+
+If there contains multiple PMTs, for eample there are 2 PMTs, one PMT is fixed to calibrate light intensity and another is moved to calibrate the channel. For this case, Appendix~\ref{sec:solution} proves that variance $U$ is better than directly calculation.
+
+
+
