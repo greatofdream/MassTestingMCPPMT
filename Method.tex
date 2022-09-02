@@ -2,54 +2,39 @@
 \label{Method}
 
 \subsection{Noise stage}
-The window size is \SI{600}{ns}. For 20kHz dark noise rate, the expected dark noise pulse number is 0.012, which means the probability of 2 or more pulse is about 0.012 of probability of 1 pulse. The maximum peak in each waveform are extracted as the noise pulse candidates.
+The sample window size $T_{\mathrm{wave}}$ is set as \SI{600}{ns}. For \SI{20}{kHz} dark noise rate, the expected dark noise pulse number is 0.012, which means the probability of 2 or more pulse is about 0.012 of probability of 1 pulse. The maximum peak in each waveform is extracted as the noise pulse candidates.
 \subsubsection{Baseline}
-Due to the offset mentioned in sec~\ref{sec:setup}, the ADC value of baseline is about 950. To get baseline, the pulse area should be removed. A procedure to determine the baseline is developed, which comprised three steps and shown in Fig~\ref{fig:baseline1}
+Due to the offset mentioned in sec.~\ref{sec:setup}, the ADC value of baseline is not zero. A procedure to determine the baseline is developed, which comprised three steps and shown in Fig.~\ref{fig:baseline1}
 \begin{figure}[!htbp]
     \centering
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth,page=1]{figures/method/noisebaseline697_219908_2.pdf}
-        \caption{An example of waveform in noise stage}
-        \label{fig:baseline1}
-    \end{subfigure}
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth,page=3]{figures/method/noisebaseline697_219908_2.pdf}
-        \caption{An example of waveform without baseline in noise stage}
-        \label{fig:baseline2}
-    \end{subfigure}
+    \includegraphics[width=\textwidth,page=1]{figures/method/noisebaseline697_219908_2.pdf}
+    \caption{An example of waveform in noise stage. $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ are the time of 10\%, 50\% and 90\% amplitude in the rising edge and $t^{10}_f$, $t^{50}_f$, $t^{90}_f$ are the time of 10\%, 50\% and 90\% amplitude in the falling edge which are acquired via interpolation method.}
+    \label{fig:baseline1}
 \end{figure}
 
-1. An interval in the time window $[-t_s,-10]$ ($t_s\in[-200,-110]$) ns relative to pulse peak $t_p$ is selected. If $t_s<110$ when the peak is close to the start of waveform, another interval $[100,200]$ ns relative to $t_p$ is appended to expand the total interval. Average $\mu_b^0$ and standard deviation $\sigma_b^0$ of amplitudes are calculated.
+1. An interval of the time window $[-t_s,-10]$ ($t_s\in[110,200]$\ ns) relative to pulse peak $t_p$ is selected. If $t_s<110$ due to the peak is close to the start of waveform, another interval $[100,200]$ ns relative to $t_p$ is extened to the total interval. Average $\mu_{\mathrm{b0}}$ and standard deviation $\sigma_{\mathrm{b0}}$ of amplitudes in the interval are calculated.
 
-2. An amplitude filter $[\mu_b^0-\max(\min(5\sigma_b^0,3),1)]$ is used to remove most of signal and reserve the baseline when $\sigma_b^0$ is small.
+2. An baseline threshold filter $[\mu_{\mathrm{b0}}-\max(\min(5\sigma_{\mathrm{b0}},3),1)]$ is used to remove potential signal and reserve the baseline when $\sigma_{\mathrm{b0}}$ is small.
 
-3. The rest amplitudes are fitted with a gaussian function G$(\mu_b^f,\sigma_b^f)$ using unbinned likelihood. $\mu_b^f$ and $\sigma_b^f$ are accurate at most time. When there exsit a large wave in the time interval selected in step1, a bias will be introduced for $\sigma_b^f$ which can be seen in Fig~\ref{fig:baselineBias2}.
+3. The rest amplitudes are fitted with a gaussian function G$(\mu_{\mathrm{bf}},\sigma_{\mathrm{bf}})$ using unbinned likelihood. $\mu_{\mathrm{bf}}$ and $\sigma_{\mathrm{bf}}$ are accurate at most time. However, when there exsit a large wave in the time interval selected in step1, a bias will be introduced for $\sigma_{\mathrm{bf}}$.
 
-4. Another amplitude filter $[\mu_b^f-\min(5\sigma_b^f,3)]$ is used to reselect the signal area and those areas are padding \SI{10}{ns} to remove rising edge and falling edge. The rest wave are used to estimate baseline $\mu_b$ and standard deviation of baseline $\sigma_b$.
-\begin{figure}[!htbp]
-    \centering
-    \begin{subfigure}[b]{0.7\textwidth}
-        % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
-        \caption{Peak distribution of an example PMT}%PM
-        \label{fig:baselineBias1}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
-        % \includegraphics[width=0.8\textwidth]{figure/facility/facility.pdf}
-        \caption{An example of waveform in noise stage}
-        \label{fig:baselineBias2}
-    \end{subfigure}
-\end{figure}
+4. Another amplitude filter $[\mu_{\mathrm{bf}}-\min(5\sigma_{\mathrm{bf}},3)]$ is used to reselect the signal area and those areas are padding \SI{10}{ns} to remove rising edge and falling edge. The rest wave are used to estimate baseline $\mu_b$ and standard deviation of baseline $\sigma_b$.
 
 \subsubsection{Peak and charge spectrum}
 \label{sec:noisepeak}
-The charge of pulses is calculated using integration in a time window $[-15, 75]$ ns relative to the peak location $t_p$ of the signal (Fig~\ref{fig:baseline2}) considering the rise time and fall time distribution. The equivalent charge $C_{\mathrm{equ}}$ is defined as the summation of the amplitude in the integration interval. Considering the input impedance is \SI{50}{\Omega}, the true charge is calculated as Equ~\eqref{equ:charge} 
+\begin{figure}[!htbp]
+    \includegraphics[width=\textwidth,page=3]{figures/method/noisebaseline697_219908_2.pdf}
+    \caption{An example of waveform without baseline in noise stage}
+    \label{fig:baseline2}
+\end{figure}
+The charge of pulses is calculated using integration in a time window $[-15, 75]$ ns relative to the peak location $t_p$ of the signal as shown in Fig.~\ref{fig:baseline2} considering the rise time and fall time distribution. The equivalent charge $C_{\mathrm{equ}}$ is defined as the summation of the amplitudes in the integration interval. Considering the input impedance is \SI{50}{\Omega}, the true charge is calculated as Equ.~\eqref{equ:charge} 
 \begin{equation}
     \label{equ:charge}
-    C = \frac{C_{equ}}{50\Omega}
+    C = \frac{C_{\mathrm{equ}}}{50 \Omega}
 \end{equation}
-Due to the influence of long tail, the mean charge of the output of MCP-PMT cannot use the mean charge of the first peak. Pulses large than \SI{3}{ADC} and charge large than \SI{0.25}{p.e.} is selected and mean $\mu_{select}$ and standard deviation $\sigma_{select}$ of charge are also calculated to represent the characteristics of MCP-PMT.
+Due to the influence of long tail, the mean charge of single PE is larger than the mean charge of the first main peak of charge distribution in Fig.~\ref{fig:charge}. Pulses large than \SI{3}{ADC} and charge large than \SI{0.25}{p.e.} is selected. Mean $\mu{C_{\mathrm{t}}}$ and standard deviation $\sigma_{C_{\mathrm{t}}}$ of charge of selected pulses are calculated to represent the characteristics of MCP-PMT.
 
-The peak amplitude distribution is shown in Fig~\ref{fig:peak} and the binwidth of histogram is 1ADC.
+The peak amplitude distribution is shown in Fig.~\ref{fig:peak} and the binwidth of histogram is 1ADC.
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[t]{0.45\textwidth}
@@ -66,95 +51,103 @@ The peak amplitude distribution is shown in Fig~\ref{fig:peak} and the binwidth 
 \end{figure}
 \subsubsection{Gain and single PE resolution}
 \label{sec:noisegain}
-There exist a long tail in charge distribution as shown in the histogram with \SI{1}{ADCns} in Fig~\ref{fig:charge}. To decrease the influence on the energy resolution, a fit interval $-30, 30$ ADCns relative to the largest count bin of histogram is used. A gaussian function G$(C_1,\sigma_{C_1})$ is used to fit the binned data via modified least-square method to capture the peak of single PE. The gain $G$ is calculated as following equation
+There exist a long tail in charge distribution as shown in the histogram with \SI{1}{ADCns} in Fig.~\ref{fig:charge}. To describe the energy resolution of the first peak of the charge distribution, a fit interval $[-30, 30]$ ADCns relative to the largest count bin of histogram is used. A gaussian function G$(\mu_{C_1},\sigma_{C_1})$ is used to fit the binned data via modified least-square method to capture the peak of single PE. The gain $G$ is calculated as following equation
 \begin{equation}
-    G=\frac{C_1}{e}
+    G=\frac{\mu_{C_1}}{e\times 50\Omega}
 \end{equation}
 in which e is the charge of an electron.
 
 The single PE resolution is defined as
 \begin{equation}
-    G=\frac{\sigma_{C_1}}{C_1}
+    \mathrm{Res}=\frac{\sigma_{C_1}}{C_1}
 \end{equation}
 \subsubsection{Peak-to-valley(P/V) ratio}
-A parabolic function is fitted to the vally interval ($-15, 30$) ADCns relative to the least count bin of histogram) between pedestal and SPE peak as shown in Fig~\ref{fig:charge}. The local minimum $N_v$ of charge spectrum is calculated as the parabolic function. The $N_p$ is the peak of gaussian function described in sec~\ref{sec:noisegain}. The peak-to-valley ratio is equal to  
+A parabolic function is fitted to the vally interval ($-15, 30$) ADCns relative to the least count bin of histogram between pedestal and SPE peak as shown in Fig.~\ref{fig:charge}. The local minimum $N_v$ of charge spectrum is calculated as the minima of parabolic function. The $N_p$ is the peak of gaussian function described in sec.~\ref{sec:noisegain}. The peak-to-valley ratio is equal to  
 \begin{equation}
-    P/V=\frac{N_p}{N_v}
+    \mathrm{P/V}=\frac{N_p}{N_v}
 \end{equation}
 The P/V show the ability of discrimination between electronic noise and true signal.
-\subsubsection{rise time, fall time and full width at half maximum(FWHM)}
+\subsubsection{rise time, fall time and full width at half maximum (FWHM)}
 \begin{figure}[!htbp]
     \centering
-    \begin{subfigure}{0.47\textwidth}
-        \includegraphics[width=0.8\textwidth]{figures/method/FWHM697.pdf}
-        \caption{An example of FWHM in noise stage}
+    \begin{subfigure}[t]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{figures/method/FWHM697.pdf}
+        \caption{An example of time characteristics in noise stage}
         \label{fig:risefallFWHM}
     \end{subfigure}
-    \begin{subfigure}[]{0.47\textwidth}
-        \includegraphics[width=0.8\textwidth]{figures/method/triggerFWHM.pdf}
-        \caption{An example of FWHM in trigger stage}
+    \begin{subfigure}[t]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{figures/method/triggerFWHM.pdf}
+        \caption{An example of time characteristics in trigger stage}
         \label{fig:triggerFWHM}
     \end{subfigure}
+    \caption{Time characteristics of noise stage and laser stage}
 \end{figure}
-The definitions of rise time, fall time and FWHM are shown in Fig~\ref{fig:baseline1} ($t^r_{10}, t^r_{50}, t^r_{90}$ are the time of 10\%, 50\% and 90\% amplitude). Due to some pulse are close to the edge of waveform, the rising or falling edge are cut by the window. Therefore only peak positions of those pulses in $[15, L_w-75]$ ns window are selected. Fig~\ref{fig:risefallFWHM} shows the rise time, fall time and FWHM distribution of an example PMT. The mean and standard deviation are calculated in condtion of a amplitude threshold $V_{t}>3\mathrm{ADC}$ and charge threshold \SI{0.25}{p.e.}.
+The definitions of rise time, fall time and FWHM are shown in Fig.~\ref{fig:baseline1}. 
 
-\subsubsection{Dark count rate}
-A amplitude threshold $V_{t}>3\mathrm{ADC}$ and charge threshold \SI{0.25}{p.e.} as shown in Fig~\ref{fig:peak} are selected as the vally of histogram of peak distributuion to discriminate the dark noise and fluctuation of baseline. The DCR equals to $\frac{N_{\mathrm{noise}}}{N_{t}}$, in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total number of waveforms.
+\begin{align}
+    t_r &= t^{90}_r - t^{10}_r\\
+    t_f &= t^{10}_f - t^{90}_f\\
+    \mathrm{FWHM} &= t^{50}_f - t^{50}_r
+\end{align}
+
+Due to some pulse are close to the edge of waveform, the rising or falling edge are cut by the window. Therefore only peak positions of those pulses in $[15, T_{\mathrm{wave}}-75]$\ ns are selected. Fig.~\ref{fig:risefallFWHM} shows the rise time, fall time and FWHM distribution of an example PMT. The mean and standard deviation are calculated in condtion of a amplitude threshold $V_{t}>3\mathrm{ADC}$ and charge threshold \SI{0.25}{p.e.}.
+
+\subsubsection{Dark count rate (DCR)}
+A amplitude threshold $V_{t}>3\mathrm{ADC}$ and charge threshold \SI{0.25}{p.e.} as shown in Fig.~\ref{fig:peak} are selected to discriminate the dark noise with fluctuation of baseline. The DCR equals to following equation
+\begin{equation}
+    \mathrm{DCR/kHz} = \frac{N_{\mathrm{noise}}}{N_{t}}\frac{1}{T_{\mathrm{wave}}}\times 10^{6}
+\end{equation}
+    in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total number of waveforms.
 
 \subsection{Laser stage}
-In order to yield SPE events as signal the laser intensity was adjusted to a level where only
-about one out of 20 trigger signals led to a PMT signal.
+In order to yield SPE events, the laser intensity was adjusted to a level only
+about one out of 20 trigger signals lead to a PMT signal.
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=\textwidth]{figures/method/triggerwave.pdf}
+    \includegraphics[width=0.8\textwidth]{figures/method/triggerwave.pdf}
     \caption{An example of waveform in laser stage}
     \label{fig:triggertime}
 \end{figure}
-The window size is \SI{10400}{ns} and the trigger time is at ~\SI{200}{ns}. The trigger is an step wave, the vertical center is interpolated to get the trigger time as shown in Fig~\ref{fig:triggertime}. The trigger pulse are mainly centering in the time interval between [250, 600] ns dependent on the length of cable. The maximum peak are found in the window of [0, 600] ns and extract the peak position. A gaussian function G$(\mu_t^0,\sigma_t^0)$ is unbinned fit to the distribution of peak location of pulses whose peak large than \SI{5}{ADC} for each PMT as shown in Fig~\ref{fig:peaklocation}. A time interval $[\mu_t^0-3\sigma_t^0, \mu_t^0+3\sigma_t^0]$ is used for the waveforms dataset of each PMTs, in which peaks of the trigger wave candidates fall. All the characterizations are recalculated with the new time cut which reduce impact of dark noise as illustracted in \ref{fig:peakselected}.
+The window size $T_{\mathrm{wave}}$ is set \SI{10400}{ns} and the trigger time is at about \SI{200}{ns}. The trigger from laser system is an step wave. The vertical center of rising edge is interpolated to get the trigger time $t_{\mathrm{trig}}$ as shown in Fig.~\ref{fig:triggertime}.
+
+The trigger pulse are mainly centering in the time interval between [250, 600]\ ns dependent on the length of cable. The maximum peak are found in the window of [0, 600] ns to extract the peak position. A gaussian function G$(\mu_t^0,\sigma_t^0)$ is unbinned fit to the distribution of peak location of pulses whose peak large than \SI{5}{ADC} for each PMT as shown in Fig.~\ref{fig:peaklocation}. A time interval $[\mu_{t0}-3\sigma_{t0}, \mu_{t0}+3\sigma_{t0}]$ is used for the waveforms dataset of each PMTs, in which peaks of the trigger wave candidates fall. All the characterizations are recalculated  again with the new time cut which reduces impact of dark noise.
+
 \begin{figure}[!htbp]
     \centering
-    \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{figures/method/triggerpeakpos.pdf}
-        \caption{Peak location distribution of an example PMT}%PM
-        \label{fig:peaklocation}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.45\textwidth}
-        % \includegraphics[width=\textwidth]{figures/method/peak697.pdf}
-        \caption{Peak distribution of an example PMT}%PM
-        \label{fig:peakselected}
-    \end{subfigure}
-    \caption{Peak and charge distribution of an example PMT}
+    \includegraphics[width=0.45\textwidth]{figures/method/triggerpeakpos.pdf}
+    \caption{Peak location distribution of an example PMT}%PM
+    \label{fig:peaklocation}
 \end{figure}
 
 \subsubsection{Peak and charge spectrum, Gain and single PE resolution, Peak-to-valley(P/V) ratio}
 \label{sec:triggerpeak}
-The minimum of the trigger area is selected as pulse candidate. The peak, charge, gain, single PE resolution and P/V ratio calculation method are same as above in sec~\ref{sec:noisepeak}. Due to the statistics is far larger than noise mode and the ratio of none signal is smaller, the P/V ratio is better than noise mode.
+The minimum of the trigger area is selected as pulse candidate. The peak, charge, gain, single PE resolution and P/V ratio calculation method are same as above in sec.~\ref{sec:noisepeak}. Due to the statistics is far larger than noise mode and the ratio of dark noise signal is smaller, the P/V ratio is better than noise mode.
 
-The peak amplitude distribution is shown in Fig~\ref{fig:triggerpeak}. The charge distribution with amplitude cut is shown in Fig~\ref{fig:triggercharge}.
+The charge distribution with amplitude cut is shown in Fig.~\ref{fig:triggercharge}. The peak amplitude distribution is shown in Fig.~\ref{fig:triggerpeak}. 
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=\textwidth]{figures/method/triggercharge.pdf}
         \caption{Charge distribution of an example PMT}%PM
-        \label{fig:triggerpeak}
+        \label{fig:triggercharge}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=\textwidth]{figures/method/triggerpeak.pdf}
         \caption{Peak distribution of an example PMT}%PM
-        \label{fig:triggercharge}
+        \label{fig:triggerpeak}
     \end{subfigure}
     \caption{Peak and charge distribution of an example PMT}
 \end{figure}
 
-\subsubsection{rise time, fall time and full width at half maximum(FWHM)}
+\subsubsection{Rise time, fall time and full width at half maximum(FWHM)}
 \label{sec:triggerFWHM}
-The definitions of rise time, fall time and FWHM are consist with noise mode. Fig~\ref{fig:triggerFWHM} shows the distribution of a PMT. A amplitude threshold $V_{t}>3\mathrm{ADC}$ and charge threshold \SI{0.25}{p.e.} is used to decide whether a pulse is generated in the target time interval.
+The definitions of rise time, fall time and FWHM are consist with noise mode. Fig.~\ref{fig:triggerFWHM} shows the distribution of a PMT. A amplitude threshold $V_{t}>3\mathrm{ADC}$ and charge threshold \SI{0.25}{p.e.} is used to decide whether a pulse is generated in the target time interval.
 \begin{figure}[!htbp]
     \centering
     
 \end{figure}
 \subsubsection{Transit time spread (TTS)}
-The transit time spread (TTS) is the spread of photo-electron transit time (TT), which represents resolution of timing. The transit time cannot be measured directly, while the trigger time of laser and time of pulse can be measured. A relative transit time ($\mathrm{TT}_r$) is definited as the time between trigger time $t_{\mathrm{trig}}$ and $t_{10}^r$. A gaussian fuction G$(\mu_t,\sigma_{\mathrm{TTS}}^2)$ is unbinned fitted to the distribution of $\mathrm{TT}_r$ of those triggered wave using above criteria in sec~\ref{sec:triggerFWHM}. $\mathrm{TTS}=2\sqrt{2\ln(2)}\sigma_{\mathrm{TTS}}$
+The transit time spread (TTS) is the spread of photo-electron transit time (TT), which represents resolution of timing. The transit time cannot be measured directly, while the trigger time of laser and time of pulse can be measured. A relative transit time ($\mathrm{TT}_r$) is definited as the time between trigger time $t_{\mathrm{trig}}$ and $t_r^{10}$. A gaussian fuction G$(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ is unbinned fitted to the distribution of $\mathrm{TT}_r$ of those triggered wave using above criteria in sec.~\ref{sec:triggerFWHM}. $\mathrm{TTS}=2\sqrt{2\ln(2)}\sigma_{\mathrm{TT}}$
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[t]{0.47\textwidth}
@@ -171,11 +164,11 @@ The transit time spread (TTS) is the spread of photo-electron transit time (TT),
 \subsubsection{Single electron response (SER)}
 The pulses are selected by dedicated cuts:
 \begin{itemize}
-    \item[1] The amplitude and charge of pulse candidate has to be fulfill the criteria in sec~\ref{sec:triggerFWHM}.
+    \item[1] The amplitude and charge of pulse candidate has to be fulfill the criteria in sec.~\ref{sec:triggerFWHM}.
     \item[2] The FWHM of candidate pulse should exceed \SI{5}{ns} to avoid suspected noise.
     \item[3] To increase the ratio of single PE, an upper charge threshold should set. Besides, pulse with small charge is influenced by noise. A charge filter $[C_1-\sigma_{C_1},C_1+\sigma_{C_1}]$ is used for reliable results.
 \end{itemize}
-All the selected waveform are align with $t_{10}^r$ and average to get the SER. A gaussian convoluted with an exponential function Equ~\eqref{equ:ser} is used to fit the SER which is shown in Fig~\ref{fig:triggerser}
+All the selected waveform are align with $t_{10}^r$ and average to get the SER. A gaussian convoluted with an exponential function Equ~\eqref{equ:ser} is used to fit the SER which is shown in Fig.~\ref{fig:triggerser}
 \begin{equation}
     \label{equ:ser}
     Gaus(0,\sigma_t^2)\otimes\theta(t-\mu_t)\frac{1}{\tau}e^{-\frac{t-\mu_t}{\tau}}
@@ -195,7 +188,7 @@ All the selected waveform are align with $t_{10}^r$ and average to get the SER. 
     \end{subfigure}
 \end{figure}
 \subsubsection{Pre-pulse and after-pulse}
-Pre-pulses generate due to photons hit on the MCP or the first dynode directly rather than the photocathode\cite{JUNOMassTesting}. The amplitude of pre-pulses are smaller than normal signal and appear before the main pulse. This ratio is related to the intensity of light source.
+Pre-pulses generate due to photons hit on the MCP or the first dynode directly rather than the photocathode \cite{JUNOMassTesting}. The amplitude of pre-pulses are smaller than normal signal and appear before the main pulse. This ratio is related to the intensity of light source.
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/method/triggerAfterpulseSchema.pdf}
@@ -203,7 +196,7 @@ Pre-pulses generate due to photons hit on the MCP or the first dynode directly r
     \label{fig:afterpulseSchema}
 \end{figure}
 
-Afterpulse are generated due to the ionization of gaseous impurities between the cathode and first dynode when photo-electrons go through\cite{Coates_1973}. These ions hit back on the photocathode and generate electrons. $H^+,He^+,O^+$ are the major ions contributing to afterpulse\cite{Coates_1973}. Due to these ions are heavy than electron, the travel time is in the scale of \si{us}\footnote{The velocity of ions is about \SI{1000}{km/s} and size of PMT is about \SI{0.1}{m}, thus the transit time is about \SI{0.1}{us}}. The after pulse is calculated in a window \SIrange{300}{10000}{ns} after the main pulse as shown in Fig~\ref{fig:afterpulseSchema}. The $t$ and $Q$ are calculated as the max peak and integrated in the $[t_r,t_f]$ window as shown in Fig~\ref{fig:afterpulseSchema}
+Afterpulse are generated due to the ionization of gaseous impurities between the cathode and first dynode when photo-electrons go through \cite{Coates_1973}. These ions hit back on the photocathode and generate electrons. $H^+,He^+,O^+$ are the major ions contributing to afterpulse \cite{Coates_1973}. Due to these ions are heavy than electron, the travel time is in the scale of \si{us}\footnote{The velocity of ions is about \SI{1000}{km/s} and size of PMT is about \SI{0.1}{m}, thus the transit time is about \SI{0.1}{us}}. The after pulse is searched in a window \SIrange{300}{10000}{ns} after the main pulse as shown in Fig.~\ref{fig:afterpulseSchema}. The $t$ and $Q$ are calculated as the max peak and integrated in the $[-15,75]$ ns window relative to peak position as shown violet area in Fig.~\ref{fig:afterpulseSchema}
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[t]{0.8\textwidth}
@@ -219,7 +212,7 @@ Afterpulse are generated due to the ionization of gaseous impurities between the
 \end{figure}
 % waveform analysis
 
-Afterpulse is categorized into several kinds. Fig~\ref{fig:afterpulse1d} indicates serveral typical after-pulse peaks in time around \SI{1000}{ns} with ratio about xx\%. Considering the different mass of ions, these peaks originates from xx, xx.
+Afterpulse is categorized into several kinds. Fig.~\ref{fig:afterpulse1d} indicates serveral typical after-pulse peaks in time around \SI{1000}{ns} with ratio about xx\%. Considering the different mass of ions, these peaks originates from xx, xx.
 
 \subsubsection{relative photon detection efficiency}
 The DCR is omit in PDE calculation.
@@ -257,7 +250,7 @@ Weighted least square (WLS) method theory gives the solution
     \label{equ:solution}
     X=(D^T\Sigma^{-1}D)^{-1}D^T\Sigma^{-1}R\equiv BR
 \end{equation}
-in which $B=(D^T\Sigma^{-1}D)^{-1}D^T\Sigma^{-1}$. Variance $U=B\Sigma B^T$\cite{Cowan1998StatisticalDA}\cite{AppliedRegression}. The outlier test use other points without test point to check out the outlier from datasets\cite{AppliedRegression}.
+in which $B=(D^T\Sigma^{-1}D)^{-1}D^T\Sigma^{-1}$. Variance $U=B\Sigma B^T$ \cite{Cowan1998StatisticalDA}\cite{AppliedRegression}. The outlier test use other points without test point to check out the outlier from datasets \cite{AppliedRegression}.
 
 Solution $X$ need to be transformed using $\hat{x}=exp(X)$ and the variance is estimated as $\mathrm{Var}[\hat{x}]=\exp^2(X)\mathrm{Tr}(U)$.
 
