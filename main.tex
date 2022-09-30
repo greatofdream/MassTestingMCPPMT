@@ -1,7 +1,4 @@
-\documentclass[11pt,a4paper]{article}
-% https://jinst.sissa.it/jinst/help/JINST/TeXclass/jinst-author-manual.pdf
-\usepackage{jinstpub}
-\usepackage[utf8]{inputenc}
+\documentclass[preprint,12pt]{elsarticle}
 \usepackage{hyperref}
 \usepackage{siunitx}
 \usepackage{amsmath}
@@ -10,27 +7,41 @@
 \usepackage{subcaption}
 \usepackage{bm}
 
-
-\title{Qualification tests of new type 8-inch MCP-PMTs for JNE}
-\author[a,b,c]{Aiqiang Zhang\note{Corresponding auhor.}}%
-\author[a,b,c]{Benda Xu\note{Corresponding author.orv@tsinghua.edu.cn}}%
-\author[a,b,c]{Jun Weng}
-\author[a,b,c]{Lin Ren}
-\author[a,b,c]{Huiyou Chen}
-\author[a,b,c]{Wenhui Shao}
-\author[a,b,c]{Tong Xu}
-\author[a,b,c]{Zhe Wang}
-\author[a,b,c]{Shaomin Chen}
-
-\affiliation[a]{Department of Engineering Physics, Tsinghua University, Beijing, China}
-\affiliation[b]{Center for High Energy Physics, Tsinghua University, Beijing, China}
-\affiliation[c]{Key Laboratory of Particle \& Radiation Imaging (Tsinghua University), Ministry of Education, China}
-\emailAdd{zhangaq19@mails.tsinghua.edu.cn}
-\input{Abstract}
-
+\journal{NIM-A}
 \begin{document}
+\begin{frontmatter}
+    \title{Qualification tests of new type 8-inch MCP-PMTs for JNE}
 
-\maketitle
+    \author[a,b,c]{Aiqiang Zhang\corref{cor1}}%
+    \ead{greatofdream@gmail.com}
+
+    \author[a,b,c]{Benda Xu}%
+    \ead{orv@tsinghua.edu.cn}
+
+    \author[a,b,c]{Jun Weng}
+    \author[a,b,c]{Lin Ren}
+    \author[a,b,c]{Huiyou Chen}
+    \author[a,b,c]{Wenhui Shao}
+    \author[a,b,c]{Tong Xu}
+    \author[a,b,c]{Zhe Wang}
+    \author[a,b,c]{Shaomin Chen}
+
+    \cortext[cor1]{Corresponding author}
+    \affiliation[a]{
+        organization={Department of Engineering Physics},
+        addressline={Tsinghua University}, 
+        city={Beijing},
+        country={China}}
+    \affiliation[b]{
+        organization={Center for High Energy Physics},
+        addressline={Tsinghua University}, 
+        city={Beijing},
+        country={China}}
+    \affiliation[c]{
+        organization={Key Laboratory of Particle \& Radiation Imaging (Tsinghua University), Ministry of Education},
+        country={China}}
+    \input{Abstract}
+\end{frontmatter}
 
 \input{Introduction}
 \input{Facility}
@@ -38,7 +49,7 @@
 \input{Result}
 \input{Summary}
 \input{Acknowledgement}
-\bibliographystyle{JHEP}
+\bibliographystyle{elsarticle-num-names}
 \bibliography{ref,facility,result}
 \appendix
 \input{Appendix}
