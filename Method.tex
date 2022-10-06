@@ -24,13 +24,13 @@ Due to the offset mentioned in sec.~\ref{sec:setup}, the ADC value of baseline i
 \subsubsection{Peak and charge spectrum}
 \label{sec:noisepeak}
 
-The charge of pulses is calculated using integration in a time window $[-15, 75]$\,ns relative to the peak location $t_p$ of the signal as shown in Fig.~\ref{fig:baseline1} considering the rise time and fall time distribution. The equivalent charge $C_{\mathrm{equ}}$ is defined as the summation of the amplitudes in the integration interval. Considering the input impedance is \SI{50}{\Omega}, the true charge follows Equ.~\eqref{equ:charge} 
+The peak $V_p$ of a pulse is the difference between the baseline and minimum of pulse. The charge of pulses is calculated using integration in a time window $[-15, 75]$\,ns relative to the peak location $t_p$ of the signal as shown in Fig.~\ref{fig:baseline1} considering the rise time and fall time distribution. The equivalent charge $C_{\mathrm{equ}}$ is defined as the summation of the amplitudes in the integration interval. Considering the input impedance is \SI{50}{\Omega}, the true charge follows Equ.~\eqref{equ:charge} 
 \begin{equation}
     \label{equ:charge}
     C = \frac{C_{\mathrm{equ}}}{50 \Omega}
 \end{equation}
 
-Due to the influence of long tail, the mean charge of single PE is larger than the mean charge of the first main peak of charge distribution in Fig.~\ref{fig:charge}. Peaks large than \SI{3}{ADC} and charge large than \SI{0.25}{p.e.} is selected. Mean $\mu_{C_{\mathrm{t}}}$ and standard deviation $\sigma_{C_{\mathrm{t}}}$ of charge of selected pulses are calculated to represent the characteristics of total charge distribution of MCP-PMT.
+Due to the influence of long tail, the mean charge of single PE is larger than the mean charge of the first main peak of charge distribution in Fig.~\ref{fig:charge}. Peaks large than \SI{3}{ADC} and charge large than 0.25\,p.e. is selected. Mean $\mu_{C_{\mathrm{t}}}$ and standard deviation $\sigma_{C_{\mathrm{t}}}$ of charge of selected pulses are calculated to represent the characteristics of total charge distribution of MCP-PMT.
 
 The peak amplitude distribution is shown in Fig.~\ref{fig:peak} and the bin width of histogram is 1ADC.
 \begin{figure}[!htbp]
@@ -87,12 +87,12 @@ As shown in Fig.~\ref{fig:baseline1}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ are the
     \mathrm{FWHM} &= t^{50}_f - t^{50}_r
 \end{align}
 
-Due to some pulse are close to the edge of waveform, the rising or falling edge of those pulses are cut by the window. Therefore only pulses of which peak positions in $[15, T_{\mathrm{wave}}-75]$\,ns are selected. Fig.~\ref{fig:risefallFWHM} shows the rise time, fall time and FWHM distribution of an example PMT. The mean and standard deviation are calculated in condtion of a amplitude threshold $V_{t}>3\mathrm{ADC}$ and charge threshold \SI{0.25}{p.e.}.
+Due to some pulse are close to the edge of waveform, the rising or falling edge of those pulses are cut by the time window. Therefore only pulses of which peak positions in $[15, T_{\mathrm{wave}}-75]$\,ns are selected. Fig.~\ref{fig:risefallFWHM} shows the distribution of rise time, fall time and FWHM of an example PMT. The mean and standard deviation are calculated in condtion of a amplitude threshold $V_{t}>3\mathrm{ADC}$ and charge threshold 0.25\,p.e..
 
 \subsubsection{Dark count rate (DCR)}
-An amplitude threshold $V_{t}>3\mathrm{ADC}$ and charge threshold \SI{0.25}{p.e.} as shown in Fig.~\ref{fig:peak} are selected to discriminate the dark noise with fluctuation of baseline. The DCR equals to the following equation
+An amplitude threshold $V_{p}>3\mathrm{ADC}$ and charge threshold 0.25\,p.e. as shown in Fig.~\ref{fig:peak} are selected to discriminate the dark noise with fluctuation of baseline. The DCR equals to the following equation
 \begin{equation}
-    \mathrm{DCR/kHz} = \frac{N_{\mathrm{noise}}}{N_{t}}\frac{1}{T_{\mathrm{wave}}}\times 10^{6}
+    \mathrm{DCR/kHz} = \frac{N_{\mathrm{noise}}}{N_{t}}\frac{1}{T_{\mathrm{wave}/\mathrm{ns}}}\times 10^{6}
 \end{equation}
 in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total number of waveforms.
 
@@ -102,163 +102,150 @@ in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total numbe
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/method/triggerwave.pdf}
-    \caption{An example of waveform in laser stage. The orange line is the trigger waveform. Green cross point is the interpolation for trigger time. The zoom in axes shows the PMT waveform with a signal.}
+    \caption{An example of waveform in laser stage. The orange line is the trigger waveform. Two blue horizonal dash line are the upper and lower values of step wave. Green cross point is the interpolation for trigger time. The magnified axes shows the PMT waveform with a signal. Red and green vertical dash line are the time of 10\% of rising edge and pulse peak.}
     \label{fig:triggertime}
 \end{figure}
 
-To yield SPE events, the laser intensity was adjusted to a level only about one out of 20 trigger signals lead to a signal. The window size $T_{\mathrm{wave}}$ is set \SI{10400}{ns} and the trigger time is at about \SI{200}{ns}. The trigger from the laser system is a step wave. The vertical center of rising edge is interpolated to get the trigger time $t_{\mathrm{trig}}$ as shown in Fig.~\ref{fig:triggertime}.
+To yield SPE events, the laser intensity was adjusted to a level only about one out of 20 trigger signals lead to a signal. The window size $T_{\mathrm{wave}}$ is set to \SI{10400}{ns} and the rising edge of trigger waveform is at about \SI{200}{ns}. The trigger from the laser system is a step wave. The vertical center of rising edge is interpolated to get the trigger time $t_{\mathrm{trig}}$ as shown in Fig.~\ref{fig:triggertime}.
 
-The triggered pulse is mainly centered in the time interval between [250, 600]\,ns dependent on the length of cable. The maximum peak is found in the window of $[t_{\mathrm{trig}}, 600]$\,ns to extract the peak position.
+The triggered pulse is mainly centered in the time interval between $[t_{\mathrm{trig}}, 600]$\,ns dependent on the length of cable. The maximum peak is found in the window of $[t_{\mathrm{trig}}, 600]$\,ns to roughly extract the peak position. A gaussian function G$(\mu_t^0,\sigma_t^0)$ is unbinned fit to the distribution of peak location of pulses whose peak large than \SI{5}{ADC} for each PMT as shown in Fig.~\ref{fig:peaklocation}.
 
-A gaussian function G$(\mu_t^0,\sigma_t^0)$ is unbinned fit to the distribution of peak location of pulses whose peak large than \SI{5}{ADC} for each PMT as shown in Fig.~\ref{fig:peaklocation}. A time interval $[\mu_{t0}-3\sigma_{t0}, \mu_{t0}+3\sigma_{t0}]$ is used for selecting a waveform dataset for each PMT, in which peaks of the triggered wave candidates fall. All the characterizations are recalculated again with the new time cut which reduces the impact of dark noise.
+A time interval $[\mu_{t0}-3\sigma_{t0}, \mu_{t0}+3\sigma_{t0}]$ is used for selecting a waveform dataset for each PMT, in which peaks of the triggered wave candidates fall. All the characterizations are recalculated again with the new time cut which reduces the impact of dark noise.
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.45\textwidth]{figures/method/triggerpeakpos.pdf}
-    \caption{Peak location distribution of an example PMT}%PM
+    \caption{Peak location distribution of an example PMT. A gaussian function is fit to the distribution to acquire an optimized time cut.}%PM
     \label{fig:peaklocation}
 \end{figure}
 
-\subsubsection{Peak and charge spectrum, Gain and single PE resolution, Peak-to-valley(P/V) ratio}
+\subsubsection{Peak and charge spectrum, Gain and single PE resolution, Peak-to-valley (P/V) ratio}
 \label{sec:triggerpeak}
-The minimum of the waveform in $[\mu_{t0}-3\sigma_{t0}, \mu_{t0}+3\sigma_{t0}]$ is selected as pulse candidate. The peak, charge, gain, single PE resolution and P/V ratio calculation method are same as above in sec.~\ref{sec:noisepeak}. Due to the statistics is far larger than noise mode and the ratio of dark noise signal is smaller, the P/V ratio is better than noise mode.
-
-The charge distribution with amplitude cut is shown in Fig.~\ref{fig:triggercharge}. The peak amplitude distribution is shown in Fig.~\ref{fig:triggerpeak}. 
+The peak, charge, gain, single PE resolution and P/V ratio calculation method are same as above in sec.~\ref{sec:noisepeak}. The charge distribution with amplitude cut is shown in Fig.~\ref{fig:triggercharge}. The peak amplitude distribution is shown in Fig.~\ref{fig:triggerpeak}. Due to the statistics is far larger than noise mode and the ratio of dark noise signal is smaller, the P/V ratio is better than noise mode.
 \begin{figure}[!htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
         \includegraphics[width=\textwidth]{figures/method/triggercharge.pdf}
         \caption{}%PM
         \label{fig:triggercharge}
     \end{subfigure}
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
         \includegraphics[width=\textwidth]{figures/method/triggerpeak.pdf}
         \caption{}%PM
         \label{fig:triggerpeak}
     \end{subfigure}
-    \caption{(a) Charge distribution of an example PMT. (b) Peak distribution of an example PMT. The selection and fit method is consist with noise stage.}
+    \caption{(a) Charge distribution of an example PMT in trigger stage. (b) Peak distribution of an example PMT in trigger stage. The selection and fit method is consist with noise stage.}
 \end{figure}
 
-\subsubsection{Rise time, fall time and full width at half maximum(FWHM)}
+\subsubsection{Rise time, fall time and full width at half maximum (FWHM)}
 \label{sec:triggerFWHM}
-The definitions of rise time, fall time and FWHM are consist with noise mode. Fig.~\ref{fig:triggerFWHM} shows the distribution of a PMT. A amplitude threshold $V_{t}>3\mathrm{ADC}$ and charge threshold \SI{0.25}{p.e.} is used to decide whether a pulse is generated in the target time interval.
-\begin{figure}[!htbp]
-    \centering
-    
-\end{figure}
+The definitions of rise time, fall time and FWHM are consist with noise mode. Fig.~\ref{fig:triggerFWHM} shows the distribution of a PMT. A amplitude threshold $V_{p}>3\mathrm{ADC}$ and charge threshold 0.25\,p.e. is used to decide whether a pulse is generated in the target time interval.
+
 \subsubsection{Transit time spread (TTS)}
-The TTS is the spread of photo-electron transit time (TT), which represents resolution of timing. The transit time cannot be measured directly, while the trigger time of laser and time of pulse can be measured. A relative transit time ($\mathrm{TT}_r$) is definited as the time between trigger time $t_{\mathrm{trig}}$ and $t_r^{10}$. A gaussian fuction G$(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ is unbinned fitted to the distribution of $\mathrm{TT}_r$ of those triggered wave using above criteria in sec.~\ref{sec:triggerFWHM} as shown in Fig~\ref{fig:triggerTTS}. TTS is defined as
+The TTS is the spread of photo-electron transit time (TT), which represents resolution of timing. The transit time cannot be measured directly, while the trigger time of laser and time of pulse can be measured. A relative transit time ($\mathrm{TT}_r$) is definited as the time between trigger time $t_{\mathrm{trig}}$ and $t_r^{10}$. The $\mathrm{TT}_r$ distribution using above criteria in sec.~\ref{sec:triggerFWHM} is histogramed with \SI{0.2}{ns} bin width. A gaussian fuction G$(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ is binned fitted to the histogram with interval $[-2,+2]$\, ns relative to the maximum bin as shown in Fig.~\ref{fig:triggerTTS}. Due to the time precision of FADC is \SI{1}{ns}, the TT distribution contains two peak when bin width is smaller than \SI{1}{ns}. TTS is defined as
 \begin{equation}
     \mathrm{TTS}=2\sqrt{2\ln(2)}\sigma_{\mathrm{TT}}
 \end{equation}
-Fig~\ref{fig:triggerTTS2d} indicates a long tail in charge distribution and a small time-charge dependence.
+Fig~\ref{fig:triggerTTS2d} indicates a long tail in charge distribution.
 \begin{figure}[!htbp]
     \centering
-    \begin{subfigure}[t]{0.47\textwidth}
+    \begin{subfigure}[t]{0.49\textwidth}
         \includegraphics[width=\textwidth]{figures/method/triggerTTS.pdf}
         \caption{}
         \label{fig:triggerTTS}
     \end{subfigure}
-    \begin{subfigure}[t]{0.47\textwidth}
+    \begin{subfigure}[t]{0.49\textwidth}
         \includegraphics[width=\textwidth]{figures/method/triggerTTS2d.pdf}
         \caption{}
         \label{fig:triggerTTS2d}
     \end{subfigure}
-    \caption{(a) An example of TTS in trigger stage. (b) 2d histogram of TTS and charge in trigger stage}
+    \caption{(a) TT distribution of an example PMT in trigger stage. (b) 2d histogram of TTS and charge in trigger stage}
 \end{figure}
 
 \subsubsection{Single electron response (SER)}
 The pulses are selected by dedicated cuts:
 \begin{itemize}
     \item[1] The amplitude and charge of pulse candidate has to be fulfill the criteria in sec.~\ref{sec:triggerFWHM}.
-    \item[2] The FWHM of candidate pulse should exceed \SI{5}{ns} to avoid suspected noise.
-    \item[3] To increase the ratio of single PE, an upper charge threshold should set. Besides, pulse with small charge is influenced by noise. A charge filter $[C_1-\sigma_{C_1},C_1+\sigma_{C_1}]$ is used for reliable results.
+    \item[2] The FWHM of candidate pulse should exceed \SI{5}{ns} to avoid noise.
+    \item[3] To focus on the pulse in the main peak of charge distribution, an upper charge threshold should set. Besides, pulse with small charge is influenced by noise. A charge filter $[0.5C_1, 1000]$ is used for reliable results.
 \end{itemize}
-All the selected waveform are align with $t_{10}^r$ and average to get the SER. A gaussian convoluted with an exponential function Equ~\eqref{equ:ser} is used to fit the SER which is shown in Fig.~\ref{fig:triggerser}
-\begin{equation}
-    \label{equ:ser}
-    Gaus(0,\sigma_t^2)\otimes\theta(t-\mu_t)\frac{1}{\tau}e^{-\frac{t-\mu_t}{\tau}}
-\end{equation}
 
 \begin{figure}
     \centering
     \begin{subfigure}[t]{0.47\textwidth}
         \includegraphics[width=\textwidth]{figures/method/triggerSER.pdf}
-        \caption{An example pulse in trigger stage}
+        \caption{}
         \label{fig:triggerser}
     \end{subfigure}
     \begin{subfigure}[t]{0.47\textwidth}
         \includegraphics[width=\textwidth]{figures/method/triggerSER2d.pdf}
-        \caption{Paratemter distribution  for an example PMT}
+        \caption{}
         \label{fig:triggerser2d}
     \end{subfigure}
+    \caption{(a) An example pulse and fit result in trigger stage. (b) Paratemter distribution for an example PMT.}
 \end{figure}
+
+A gaussian convoluted with an exponential function Equ~\eqref{equ:ser} is used to fit the SER which is shown in Fig.~\ref{fig:triggerser}
+\begin{equation}
+    \label{equ:ser}
+    Gaus(0,\sigma_t^2)\otimes\theta(t-\mu_t)\frac{1}{\tau}e^{-\frac{t-\mu_t}{\tau}}
+\end{equation}
+The average of $\sigma$ and $\tau$ canbe used to simulate the SER. 
 \subsubsection{Pre-pulse and after-pulse}
-Pre-pulses generate due to photons hit on the MCP or the first dynode directly rather than the photocathode \cite{JUNOMassTesting}. The amplitude of pre-pulses are smaller than normal signal and appear before the main pulse. This ratio is related to the intensity of light source.
+The generation of pre-pulses is due to photons hit on the MCP or the first dynode directly rather than the photocathode \cite{JUNOMassTesting}. The amplitude of pre-pulses are smaller than normal signal and appear before the main pulse. This ratio is related to the intensity of light source.
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/method/triggerAfterpulseSchema.pdf}
-    \caption{search for after pulse}
+    \includegraphics[width=\textwidth]{figures/method/triggerAfterpulseSchema.pdf}
+    \caption{An example waveform. Green and red vertical dash line is the rising edge of trigger waveform and 10\% of rising edge of main pulse.}
     \label{fig:afterpulseSchema}
 \end{figure}
 
-Afterpulse are generated due to the ionization of gaseous impurities between the cathode and first dynode when photo-electrons go through \cite{Coates_1973}. These ions hit back on the photocathode and generate electrons. \ce{H^+}, \ce{He^+}, \ce{O^+} are the major ions contributing to afterpulse and the relation between time and ions (\ce{^Z_MX}) is $\sqrt{\frac{M}{Z}}$\cite{Coates_1973}. Due to these ions are heavy than electron, the travel time is in the scale of \si{us}\footnote{The velocity of ions is about \SI{1000}{km/s} and size of PMT is about \SI{0.1}{m}, thus the transit time is about \SI{0.1}{us}}. The after pulse is searched in a window \SIrange{250}{10000}{ns} after the main pulse as shown in Fig.~\ref{fig:afterpulseSchema}. The $t$ and $Q$ are calculated as the max peak and integrated in the $[-15,75]$ ns window relative to peak position as shown violet area in Fig.~\ref{fig:afterpulseSchema}
+Afterpulse are generated due to the ionization of gaseous impurities between the cathode and first dynode when photo-electrons go through \cite{Coates_1973}. These ions hit back on the photocathode and generate electrons. \ce{H^+}, \ce{He^+}, \ce{O^+} are the major ions contributing to afterpulse and the relation between time and ions (\ce{^Z_MX}) is $\sqrt{\frac{M}{Z}}$\cite{Coates_1973}. Due to these ions are heavier than electron, the travel time is in the scale of \si{us}\footnote{The velocity of ions is about \SI{1000}{km/s} and size of PMT is about \SI{0.1}{m}, thus the transit time is about \SI{0.1}{us}}. The after pulse is searched in a window \SIrange{250}{10000}{ns} after the main pulse as shown in Fig.~\ref{fig:afterpulseSchema}. The $t$ and $Q$ are calculated as the max peak and integrated in the $[-15,75]$ ns window relative to peak position as shown violet area in Fig.~\ref{fig:afterpulseSchema}
 \begin{figure}[!htbp]
     \centering
-    \begin{subfigure}[t]{0.8\textwidth}
-        \includegraphics[width=\textwidth]{figures/method/triggerAfterpulse1d.pdf}
-        \caption{after pulse}
-        \label{fig:afterpulse1d}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.8\textwidth}
-        \includegraphics[width=\textwidth]{figures/method/triggerAfterpulse2d.pdf}
-        \caption{after pulse}
-        \label{fig:afterpulse2d}
-    \end{subfigure}
+    \includegraphics[width=\textwidth]{figures/method/triggerAfterpulse1d.pdf}
+    \caption{Time distribution of after pulse. The orange and blue histogram are pre-pulse and after-pulse. The green line is the fit result for after pulse. The blank area around the \SI{0}{ns} is the main pulse which is not shown in this figure.}
+    \label{fig:afterpulse1d}
 \end{figure}
 % waveform analysis
 
-Afterpulse is categorized into several kinds. Fig.~\ref{fig:afterpulse1d} indicates serveral typical after-pulse peaks in time around \SI{300}{ns},  \SI{500}{ns},  \SI{1200}{ns} and  \SI{1700}{ns}. Considering the different mass of ions, these peaks may originates from \ce{H^+}, \ce{He^{2+}}, \ce{O^+} and \ce{Al_2O^{2+}}.
+Afterpulse is categorized into several kinds. Fig.~\ref{fig:afterpulse1d} indicates several typical after-pulse peaks in time around \SI{300}{ns}, \SI{500}{ns}, \SI{1200}{ns} and \SI{1700}{ns}. Considering the different mass of ions, these peaks may originates from \ce{H^+}, \ce{He^{2+}}, \ce{O^+}, and \ce{O_2^+} or unknown ions.
+The ratio of prepulse $R_{pre}$ is calculated in time interval [-250,-50]\,ns and after pulse $R_{after}$ is calculated in time interval [-300,-10000]\,ns. 
 
+The time distribution and ratio of afterpulse are parameterized using 4 gaussian function to model the four peak as show in Fig.~\ref{fig:afterpulse1d} and the fit equation is as following
+\begin{equation}
+    N_{\mathrm{trig}}(A_1G(t_1,\sigma_1^2)+A_2G(t_2,\sigma_2^2)+A_3G(t_3,\sigma_3^2)+A_4G(t_4,\sigma_4^2))
+\end{equation}
+in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each peak of after pulse.
+\begin{figure}[!htbp]
+    \includegraphics[width=\textwidth]{figures/method/triggerAfterpulse2d.pdf}
+    \caption{time and charge distribution of after pulse}
+    \label{fig:afterpulse2d}
+\end{figure}
+Fig.\ref*{fig:afterpulse2d} indicates that the after pulse contains some very large signal.
 \subsubsection{relative photon detection efficiency}
-The DCR is omit in PDE calculation. To measure PDE, the intensity of light and light allocation ratio of each channel need to be calibrated. For example JUNO fixed one reference PMT and other reference PMTs are circulated through all channels \cite{Wonsak_2021}. A new method is designed to reduce the number of reference PMT and combine all test runs to do calibration.  
+The DCR is omit in PDE calculation. To measure PDE, the intensity of light and light allocation ratio of each channel need to be calibrated. For example JUNO fixed one reference PMT and other reference PMTs are circulated through all channels \cite{Wonsak_2021}. A new method is designed to reduce the number of reference PMT and combine all test runs to do calibration.
 
-Note $n,j,k$ ($n=0,...,N-1, j=0,...,J-1, k=0,...,K-1$) is the indicator of test run, channel of splitter and PMT. Intensity of light is $I_n$, light allocation ratio is $\alpha_j$ and photon detection efficiency is $\eta_k$. Assume $\alpha_j$s are stable among different test runs. The trigger rate of nth run, kth PMT in jth channel is
+Note $n,j,k$ ($n=0,...,N-1, j=0,...,J-1, k=0,...,K-1$) is the indicator of test run, channel of splitter and PMT. Intensity of light is $I_n$, light allocation ratio is $\alpha_j$ and photon detection efficiency is $\eta_k$. Assume $\alpha_j$s are stable among different test runs. $N_t$ is the total number of waveforms. The photon numbers in each waveform obey Poisson distribution $\pi(p_{njk})$, in which $p_{njk}=I_n\alpha_j\eta_k$. The trigger rate of nth run, kth PMT in jth channel is
 \begin{equation}
     \label{equ:pderate}
-    R_{njk}=I_n\alpha_j\eta_k
+    R_{njk}=1-e^{-p_{njk}}
 \end{equation}
-For convenience, 0th PMT is the reference PMT. Note $\alpha_j^0=\frac{\alpha_j}{\alpha_0}$, $\eta_k^0=\frac{\eta_k}{\eta_0}$, $I_n^0=I_n\alpha_0\eta_0$, $i\equiv njk$. Equ~\eqref{equ:pderate} can be transfer to Equ~\eqref{equ:pdelograte}
+
+The trigger number of kth PMT in nth run with jth splitter obey Binomial distribution $B(R_{njk},N_t)$. The observed variable is trigger number $N_{\mathrm{trig}}$ and total number $N_{t}$ of waveform. For convenience, 0th PMT is the reference PMT. Note $\alpha_j^0=\frac{\alpha_j}{\alpha_0}$, $\eta_k^0=\frac{\eta_k}{\eta_0}$, $I_n^0=I_n\alpha_0\eta_0$, $i\equiv njk$. $p_{njk}$ can be transfer to Equ~\eqref{equ:pdelograte}
 \begin{equation}
     \label{equ:pdelograte}
-    \mathrm{log}(R_{i})=\mathrm{log}(I_n^0)+\mathrm{log}(\alpha_j^0)+\mathrm{log}(\eta_k^0)
+    \mathrm{log}(p_{njk})=\mathrm{log}(I_0\alpha_0\eta_0)+\mathrm{log}(I_n^0)+\mathrm{log}(\alpha_j^0)+\mathrm{log}(\eta_k^0)
 \end{equation}
-Equ~\eqref{equ:pdelograte} is a equation set with $NK$ equations. $I_n^0,\alpha_j^0,\eta_k^0$ are the unknown $N+K+J-2$ parameters, which can stacked into an array $X = C(\mathrm{log}(I_n^0), \mathrm{log}(\alpha_j^0),\mathrm{log}(\eta_k^0))^T$ ($n=0,...,N-1, j=1,...,J-1, k=1,...,K-1$). Attention that indicator of j and k are start from 1 due to 0th channel and PMT are used as calibration. 
+The relationship between $R_{njk}$ and parameters is
 \begin{equation}
-    \mathrm{log}(R)=DX
+    \label{equ:linkfunction}
+    R_{njk}=1-e^{-e^{\mathrm{log}(I_0\alpha_0\eta_0)+\mathrm{log}(I_n^0)+\mathrm{log}(\alpha_j^0)+\mathrm{log}(\eta_k^0)}}
 \end{equation}
-in which $D=[D_I,D_\alpha, D_\eta]$ is a sparse matrix, $D_I[i,n]=1,D_\alpha[{i},j-1]=1(j\geq1), D_\eta[{i},k-1]=1(k\geq1)$. 
-Appendix~\ref{sec:solution} proves that there exist solution only when $(N-2)(J-1)\geq0$ and there exist two same PMTs for any different test run.
-
-Due to $R=\frac{N_{\mathrm{trig}}}{N_t}$, $N_t$ is a fix number while the $N_{\mathrm{trig}}$ obey Bionomial distribution with probability $p=I_n\alpha_j\eta_k$ and $\hat{p}=R$, the variance $\mathrm{Var}[\hat{p}]$ is estimated as $\frac{(1-R)R}{N_t}$ and relative variance $\frac{\mathrm{Var}[\hat{p}]}{E^2[\hat{p}]}$ can be estimated as $\frac{1-R}{N_tR}$. The photons in each channel are seen as irrelevant and the covariance between $R_i$ are omit. The covariance matrix of $R$ can be expressed as
+To fit the parameters, a likelihood is constructed as following
 \begin{equation}
-    \label{equ:variance}
-    \Sigma_{ij}=\begin{cases}
-        0 & i\neq j\\
-        \frac{R(1-R)}{N_t} & i=j
-    \end{cases}
+    \label{equ:likelihood}
+    \mathcal{L}=\prod_{njk}{R_{njk}^{N_{\mathrm{trig}_{njk}}}(1-R_{njk})^{N_{t_{njk}}-N_{\mathrm{trig}_{njk}}}}
 \end{equation}
 
-Weighted least square (WLS) method theory gives the solution
-\begin{equation}
-    \label{equ:solution}
-    X=(D^T\Sigma^{-1}D)^{-1}D^T\Sigma^{-1}R\equiv BR
-\end{equation}
-in which $B=(D^T\Sigma^{-1}D)^{-1}D^T\Sigma^{-1}$. Variance $U=B\Sigma B^T$ \cite{Cowan1998StatisticalDA}\cite{AppliedRegression}. The outlier test use other points without test point to check out the outlier from datasets \cite{AppliedRegression}.
-
-Solution $X$ need to be transformed using $\hat{x}=exp(X)$ and the variance is estimated as $\mathrm{Var}[\hat{x}]=\exp^2(X)\mathrm{Tr}(U)$.
-
-If there contains multiple PMTs, for eample there are 2 PMTs, one PMT is fixed to calibrate light intensity and another is moved to calibrate the channel. For this case, Appendix~\ref{sec:solution} proves that variance $U$ is better than directly calculation.
-
-
-
+The relationship in Equ.~\eqref{equ:linkfunction} matchs GLM of Binomial exponential family distribution with Cloglog link function\cite{glm}. The GLM is used to maximize the likelihood in Equ.~\eqref{equ:likelihood} and estimate splitter ratio and relative photon detection efficiency.
