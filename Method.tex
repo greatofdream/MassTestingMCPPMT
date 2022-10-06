@@ -49,15 +49,20 @@ The peak amplitude distribution is shown in Fig.~\ref{fig:peak} and the bin widt
 \end{figure}
 \subsubsection{Gain and single PE resolution}
 \label{sec:noisegain}
-There exist a long tail in charge distribution as shown in the histogram with \SI{1}{ADCns} in Fig.~\ref{fig:charge}. To describe the energy resolution of the first peak of the charge distribution, a fit interval $[-30, 30]$\,ADCns relative to the largest count bin of histogram is used. A gaussian function G$(\mu_{C_1},\sigma_{C_1})$ is used to fit the binned data via the modified least-square method to capture the main peak of charge distribution of single PE. The gain $G$ is calculated as the following equation
-\begin{equation}
-    G=\frac{\mu_{C_1}}{e\times 50\Omega}
-\end{equation}
+There exist a long tail in charge distribution as shown in the histogram with \SI{1}{ADCns} in Fig.~\ref{fig:charge}. To describe the energy resolution of the first peak of the charge distribution, a fit interval $[-30, 30]$\,ADCns relative to the largest count bin of histogram is used. A gaussian function G$(\mu_{C_1},\sigma_{C_1})$ is used to fit the binned data via the modified least-square method to capture the main peak of charge distribution of single PE. The gain of main peak $G_1$ and gain of single PE are calculated as the following equation
+\begin{align}
+    G_1&=\frac{\mu_{C_1}}{e\times 50\Omega} \\
+    G &= \frac{\mu_{C_t}}{e\times 50\Omega}
+\end{align}
 in which e is the charge of an electron.
 
-The single PE resolution is defined as
+The main peak resolution is defined as
 \begin{equation}
-    \mathrm{Res}=\frac{\sigma_{C_1}}{C_1}
+    \mathrm{Res}_1=\frac{\sigma_{C_1}}{\mu_{C_1}}
+\end{equation}
+Similarly, the single PE resolution is defined as
+\begin{equation}
+    \mathrm{Res}=\frac{\sigma_{C_t}}{\mu_{C_t}}
 \end{equation}
 \subsubsection{Peak-to-valley (P/V) ratio}
 A parabolic function is fitted to the vally interval $[-15, 30]$\,ADCns relative to the least count bin of histogram between pedestal and SPE peak as shown in Fig.~\ref{fig:charge}. The local minimum $N_v$ of charge spectrum is calculated as the minima of parabolic function. The $N_p$ is the peak of gaussian function described in sec.~\ref{sec:noisegain}. The peak-to-valley ratio is equal to  
@@ -146,7 +151,7 @@ The TTS is the spread of photo-electron transit time (TT), which represents reso
 \begin{equation}
     \mathrm{TTS}=2\sqrt{2\ln(2)}\sigma_{\mathrm{TT}}
 \end{equation}
-Fig~\ref{fig:triggerTTS2d} indicates a long tail in charge distribution.
+Fig.~\ref{fig:triggerTTS2d} indicates a long tail in charge distribution.
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[t]{0.49\textwidth}
