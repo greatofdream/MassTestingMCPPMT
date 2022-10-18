@@ -12,6 +12,7 @@ The setup of the noise stage is discussed in sec.~\ref{sec:noisestage}. The diff
 
 The sample window size $T_{\mathrm{wave}}$ is set as \SI{600}{ns}. For \SI{20}{kHz} dark noise rate, the dark noise pulse number in each waveform obeys Poisson distribution $\mathrm{\pi}(\nu=0.012)$, which means the probability of 2 or more pulses is about 0.006 times of probability of 1 pulse\footnote{The probability of n dark noise pulses is $P(n)=e^{-\nu}\frac{\nu^n}{n!}$, $P(n=1)=0.012$ and $P(n>1)=7.14\times10^{-5}$}. Considering the pulse width is far shorter than \SI{600}{ns}, the probability of pulses overlapping with each other is less than 0.006. The peak time $t_p$ is the position of minimum in each waveform as shown in Fig.~\ref{fig:baseline1} and single dark noise pulse events dominate the dataset\footnote{Because the maximum pulse is selected in each waveform, the expected charge distribution is the distribution of $\max_n^N(C_n)$, in which $C_n$ is the charge of single PE and $N$ is the number of pulses in a waveform. The charge bias caused by multi-pulse is omit because of small ratio of multi-pulse cases.}.
 
+Due to the offset mentioned in sec.~\ref{sec:setup}, the value of baseline is not zero. The baseline is calculated from an interval of the time window $[-t_s,-10]$\,ns ($t_s\leq200$) relative to pulse peak $t_p$. If the peak is close to the start of waveform and therefore $t_p < 110$, another interval $[t_p+100,t_p+200]$\,ns is append to the total interval. Average $\mu_{\mathrm{b0}}$ and standard deviation $\sigma_{\mathrm{b0}}$ of amplitudes in the interval are calculated. An baseline threshold filter $[\mu_{\mathrm{b0}}-\max(\min(5\sigma_{\mathrm{b0}},3),1)]$ is used to remove potential signal and reserves the baseline when $\sigma_{\mathrm{b0}}$ is small as shown in Fig.~\ref{fig:baseline1}. The selected areas are padding \SI{10}{ns} at both ends to remove rising edge and falling edge of potential pulses. The rest waveform is used to estimate baseline $\mu_b$ and the standard deviation of baseline $\sigma_b$.
 
 \subsection{Laser stage}
 \label{sec:laserstage}
@@ -27,7 +28,7 @@ To yield single photon electron (SPE) events, the laser intensity was adjusted t
 
 The triggered pulse is mainly centered in the time interval between $[t_{\mathrm{trig}}, 600]$\,ns dependent on the length of the cable. The maximum peak is found in the window of $[t_{\mathrm{trig}}, 600]$\,ns to roughly extract the peak position $t_p$. A gaussian function G$(\mu_{t0},\sigma_{t0})$ is unbinned fitted to the distribution of peak location of pulses whose peak is larger than \SI{5}{ADC} for each PMT.% as shown in Fig.~\ref{fig:peaklocation}.
 % A time interval  is used for selecting a waveform dataset for each PMT, in which peaks of the triggered wave candidates fall. 
-All the characterizations are calculated with the new time cut $[\mu_{t0}-3\sigma_{t0}, \mu_{t0}+3\sigma_{t0}]$, which reduces the impact of dark noise.
+ All the characterizations are calculated with the new time cut $[\mu_{t0}-3\sigma_{t0}, \mu_{t0}+3\sigma_{t0}]$, which reduces the impact of dark noise.
 
 % \begin{figure}[!htbp]
 %     \centering
@@ -35,17 +36,18 @@ All the characterizations are calculated with the new time cut $[\mu_{t0}-3\sigm
 %     \caption{Peak location distribution of an example MCP-PMT. A gaussian function is fit to the distribution to acquire an optimized time cut.}%PM
 %     \label{fig:peaklocation}
 % \end{figure}
-\subsection{Baseline}
-Due to the offset mentioned in sec.~\ref{sec:setup}, the value of baseline is not zero. A procedure to determine the baseline is developed, which comprised 4 steps as follows
 
-1. An interval of the time window $[-t_s,-10]$\,ns ($t_s\in[110,200]$) relative to pulse peak $t_p$ is selected for calculation of baseline. If the peak is close to the start of waveform and therefore $t_s < 110$, another interval $[t_p+100,t_p+200]$\,ns is append to the total interval, as shown in Fig.~\ref{fig:baseline1}. Average $\mu_{\mathrm{b0}}$ and standard deviation $\sigma_{\mathrm{b0}}$ of amplitudes in the interval are calculated.
+% \subsection{Baseline}
+% Due to the offset mentioned in sec.~\ref{sec:setup}, the value of baseline is not zero. A procedure to determine the baseline is developed, which comprised 4 steps as follows
 
-2. An baseline threshold filter $[\mu_{\mathrm{b0}}-\max(\min(5\sigma_{\mathrm{b0}},3),1)]$ is used to remove potential signal and reserves the baseline when $\sigma_{\mathrm{b0}}$ is small.
+% 1. An interval of the time window $[-t_s,-10]$\,ns ($t_s\in[110,200]$) relative to pulse peak $t_p$ is selected for calculation of baseline. If the peak is close to the start of waveform and therefore $t_s < 110$, another interval $[t_p+100,t_p+200]$\,ns is append to the total interval, as shown in Fig.~\ref{fig:baseline1}. Average $\mu_{\mathrm{b0}}$ and standard deviation $\sigma_{\mathrm{b0}}$ of amplitudes in the interval are calculated.
 
-3. The rest amplitudes are fitted with a gaussian function G$(\mu_{\mathrm{bf}},\sigma_{\mathrm{bf}})$ using unbinned likelihood.
+% 2. An baseline threshold filter $[\mu_{\mathrm{b0}}-\max(\min(5\sigma_{\mathrm{b0}},3),1)]$ is used to remove potential signal and reserves the baseline when $\sigma_{\mathrm{b0}}$ is small.
+
+% 3. The rest amplitudes are fitted with a gaussian function G$(\mu_{\mathrm{bf}},\sigma_{\mathrm{bf}})$ using unbinned likelihood.
 %  $\mu_{\mathrm{bf}}$ and $\sigma_{\mathrm{bf}}$ are accurate at most time. However, when there exists a large wave in the time interval selected in step 1, a bias will be introduced for $\sigma_{\mathrm{bf}}$.
 
-4. Another amplitude filter $[\mu_{\mathrm{bf}}-\min(5\sigma_{\mathrm{bf}},3)]$ is used to reselect the signal area and those areas are padding \SI{10}{ns} at both ends to remove rising edge and falling edge. The rest wave is used to estimate baseline $\mu_b$ and the standard deviation of baseline $\sigma_b$.
+% 4. Another amplitude filter $[\mu_{\mathrm{bf}}-\min(5\sigma_{\mathrm{bf}},3)]$ is used to reselect the signal area and those areas are padding \SI{10}{ns} at both ends to remove rising edge and falling edge. The rest wave is used to estimate baseline $\mu_b$ and the standard deviation of baseline $\sigma_b$.
 
 \subsection{Peak and charge spectrum}
 \label{sec:noisepeak}
@@ -63,9 +65,9 @@ The peak $V_p$ of a pulse is the difference between the baseline and minimum of 
     \label{fig:charge}
 \end{figure}
 
-Fig.~\ref{fig:charge} shows the distribution of equivalent charge of an MCP-PMT in the noise stage. The pedestal is a set of waveform with no signal, of which the charge is the summation of baseline and obeys Gaussian distribution $G(0, T_s\sigma_b^2)$. The charge of the main peak in charge distribution is $\mu_{C_1}$ which is fitted in sec.\ref{sec:noisegain}. To remove the influence of pedestal, pulses of which peaks larger than \SI{3}{ADC} and charge larger than 0.25$\mu_{C_1}$ are selected. Mean $\mu_{C_{\mathrm{t}}}$ and sample variance $s^2_{C_{\mathrm{t}}}$ of charge of selected pulses are calculated to represent the characteristics of the total charge distribution of MCP-PMTs. Due to the influence of long tail, the $\mu_{C_{\mathrm{t}}}$ is larger than $\mu_{C_1}$. The physical model and solution of long tail in charge distribution will be discussed in future work.
+Fig.~\ref{fig:charge} shows the distribution of equivalent charge of an MCP-PMT in the noise stage. The pedestal is a set of waveform with no signal, of which the equivalent charge is the summation of baseline and obeys Gaussian distribution $G(0, T_s\sigma_b^2)$, in which $\sigma_b$ is the standard deviation of white noise of baseline. The charge of the main peak in charge distribution is $\mu_{C_1}$ which is fitted in sec.\ref{sec:noisegain}. To remove the influence of pedestal, pulses of which peaks are larger than \SI{3}{ADC} and charge are larger than 0.25$\mu_{C_1}$ are selected. Mean $\mu_{C_{\mathrm{t}}}$ and sample variance $s^2_{C_{\mathrm{t}}}$ of charge of selected pulses are calculated to represent the characteristics of the total charge distribution of MCP-PMTs. Due to the influence of long tail, the $\mu_{C_{\mathrm{t}}}$ is larger than $\mu_{C_1}$. The physical model and solution of long tail in charge distribution will be discussed in future work.
 
-The charge distribution in the laser stage is shown in Fig.~\ref{fig:triggercharge}. Because the statistics are far larger than that of noise stage and the ratio of fluctuation noise is smaller, the P/V ratio is better than noise stage and the position of valley is more close to zero. The peak amplitude distribution is shown in Fig.~\ref{fig:triggerpeak} and the bin width of histogram is 1ADC, which shows \SI{3}{ADC} and 0.25$\mu_{C_1}$ threshold are complementary to exclude some noise with small peak height and large charge.
+The charge distribution in the laser stage is shown in Fig.~\ref{fig:triggercharge}. Because the statistics are far larger than that of noise stage and the ratio of fluctuation noise is smaller, the P/V ratio is better than noise stage and the position of valley is more close to zero. The peak amplitude distribution with \SI{1}{ADC} bin width is illustrated in Fig.~\ref{fig:triggerpeak}, which shows \SI{3}{ADC} and 0.25$\mu_{C_1}$ threshold are complementary to exclude some noise with small peak height but large charge.
 
 \begin{figure}[!htbp]
     \centering
@@ -84,7 +86,7 @@ The charge distribution in the laser stage is shown in Fig.~\ref{fig:triggerchar
 
 \subsection{Gain and single PE resolution}
 \label{sec:noisegain}
-There exists a long tail in charge distribution as shown in the histogram with \SI{1}{ADCns} in Fig.~\ref{fig:charge}. To describe the energy resolution of the main peak of the charge distribution, a gaussian function G$(\mu_{C_1},\sigma^2_{C_1})$ is used to fit the binned data via the modified least-square (MLS) method \cite{Cowan1998StatisticalDA} to capture the main peak of charge distribution of the single PE. An interval $[-0.35\mu_{C_1}, 0.35\mu_{C_1}]$ relative to $\mu_{C_1}$ will used to refit the main peak as shown in Fig.~\ref{fig:charge} and Fig.~\ref{fig:triggercharge}. The gain of main peak $G_1$ and gain of total charge $G$ of single PE are calculated as the following equations
+There exists a long tail in charge distribution as shown in the histogram in Fig.~\ref{fig:charge}. To describe the energy resolution of the main peak of the charge distribution, a gaussian function G$(\mu_{C_1},\sigma^2_{C_1})$ is used to fit the binned data via the modified least-square (MLS) method \cite{Cowan1998StatisticalDA} to capture the main peak of charge distribution of the single PE. An interval $[-0.35\mu_{C_1}, 0.35\mu_{C_1}]$ relative to $\mu_{C_1}$ will used to refit the main peak as shown in Fig.~\ref{fig:charge} and Fig.~\ref{fig:triggercharge}. The gain of main peak $G_1$ and gain of total charge $G$ of single PE are calculated as the following equations
 \begin{align}
     G_1&=\frac{\mu_{C_1}}{e\times 50\Omega} \\
     G &= \frac{\mu_{C_t}}{e\times 50\Omega}
@@ -94,7 +96,9 @@ in which $e$ is the charge of an electron. The main peak resolution and the tota
     \mathrm{Res}_1&=\frac{\sigma_{C_1}}{\mu_{C_1}}\\
     \mathrm{Res}&=\frac{\sqrt{s^2_{C_t}}}{\mu_{C_t}}
 \end{align}
-Due that the weight of pedestal in the noise stage is larger than that in the laser stage, the pedestal is more likely to leak into the selected pulses, which has an obvious influence on $\mu_{C_t}$. The variance of resolution and gain in the laser stage is better than that in the noise stage. Fig.~\ref{fig:totalchargeCompare} shows the 2d distribution of gain and resolution\footnote{The errors of $Res$ and $G$ are estimated using point estimation while errors of $Res$ and $G$ are acquired from ROOT fitting.}. The gain of total charge $G$ is about 2 times of gain of main peak $G_1$ for MCP-PMT, which should be considered in reconstruction. Although the resolution of main peak of MCP-PMT is about 0.25, the long tail leads that the resolution of total charge is about 0.69, worse than the reference PMT.
+Due that the weight of pedestal in the noise stage is larger than that in the laser stage, the pedestal is more likely to leak into the selected pulses, which has an obvious influence on $\mu_{C_t}$. The variance of resolution and gain in the laser stage is better than that in the noise stage. Fig.~\ref{fig:totalchargeCompare} shows the 2d distribution of gain and resolution.
+% \footnote{The errors of $Res$ and $G$ are estimated using point estimation while errors of $Res$ and $G$ are acquired from ROOT fitting.}.
+ The gain of total charge $G$ is about 2 times of gain of main peak $G_1$ for MCP-PMT, which should be considered in reconstruction. Although the resolution of main peak of MCP-PMT is about 0.25, the long tail leads that the resolution of total charge is about 0.69, worse than the reference PMT.
 
 \begin{figure}[!htbp]
     \centering
@@ -137,7 +141,8 @@ As shown in Fig.~\ref{fig:baseline1}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ are the
 \end{figure}
 Due to some pulses being close to the edge of waveforms in the noise stage, the rising or falling edge of those pulses are cut by the time window. Therefore only pulses of which peak positions in $[15, T_{\mathrm{wave}}-75]$\,ns are selected in the noise stage, while there is the only time interval described in sec.\ref{sec:laserstage} for the laser stage.
 % Fig.~\ref{fig:triggerFWHM} shows the distribution of rise time, fall time and FWHM of an example MCP-PMT.
-The mean and sample variance are calculated in condition of criteria described in sec.\ref{sec:noisepeak}. The rise time, fall time, and FWHM are consistent between the noise stage and laser stage as shown in Fig.~\ref{fig:RiseCompare}. Estimated rise time, fall time and FWHM are $3.71\pm0.15$\,ns, $15.6\pm1.8$\,ns, and $9.07\pm0.63$\,ns.
+% The mean and sample variance are calculated in condition of criteria described in sec.\ref{sec:noisepeak}.
+ The rise time, fall time, and FWHM are consistent between the noise stage and laser stage as shown in Fig.~\ref{fig:RiseCompare}. Estimated rise time, fall time and FWHM are $3.71\pm0.15$\,ns, $15.6\pm1.8$\,ns, and $9.07\pm0.63$\,ns.
 
 \subsection{Dark count rate (DCR)}
 The dark noise comes from the thermionic electron emitted from the photocathode, which generates a pulse signal similar as a photon electron. To discriminate the dark noise with fluctuation of baseline, pulses reach criteria in sec.\ref{sec:noisepeak} are considered as dark noise. The DCR equals the following equation
@@ -149,7 +154,7 @@ in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total numbe
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.4\textwidth,page=8]{figures/result/compare.pdf}
-    \caption{DCR vs relative PDE}
+    \caption{DCR versus relative PDE}
     \label{fig:DCRCompare}
 \end{figure}
 
@@ -167,7 +172,7 @@ TTS is defined as FWHM\cite{HAMAMATSUManual}
     \mathrm{TTS}=2\sqrt{2\ln(2)}\sigma_{\mathrm{TT}}
 \end{equation}
 % The TTS of different MCP-PMTs are show in Fig.~\ref{fig:TTSCompare}. The mean TTS is \SI{1.78}{ns}.
-The mean and standard deviation of measured TTS of 9 PMTs is $\pm$\,ns.
+% The mean and standard deviation of measured TTS of 9 PMTs is $\pm$\,ns.
 % \begin{figure}[!htbp]
 %     \centering
 %     \includegraphics[width=0.4\textwidth,page=9]{figures/result/compare.pdf}
@@ -178,22 +183,22 @@ The mean and standard deviation of measured TTS of 9 PMTs is $\pm$\,ns.
 \begin{figure}
     \centering
     \includegraphics[width=0.4\textwidth]{figures/method/triggerSER.pdf}
-    \caption{An fitting result of a pulse.}
+    \caption{A fitting result of a pulse.}
     \label{fig:triggerser}
 \end{figure}
-To get a smooth single electron response, the pulses are selected by dedicated cuts:
+To get a smooth single electron response (SER), the pulses are selected by dedicated cuts:
 \begin{itemize}
-    \item[1] The amplitude and charge of pulses should be fulfill the criteria in sec.~\ref{sec:noisegain}.
+    \item[1] The amplitude and charge of pulses should be fulfill the criteria in sec.~\ref{sec:noisepeak}.
     \item[2] The FWHM of candidate pulses should exceed \SI{5}{ns} to avoid noise.
-    \item[3] To focus on the pulse in the main peak of charge distribution and remove the influence of fluctuation, a charge filter $[0.5C_1, 1000\mathrm{ADCns}]$ is used for reliable results.
+    \item[3] To focus on the pulse in the main peak of charge distribution and remove the influence of fluctuation, a charge filter $[0.5\mu_{C_1}, 1000\mathrm{ADC\cdot ns}]$ is used for reliable results.
 \end{itemize}
 
 A gaussian convoluted with an exponential function Equ~\eqref{equ:ser} is used to fit the SER which is shown in Fig.~\ref{fig:triggerser}
 \begin{equation}
     \label{equ:ser}
-    \mathrm{Gaus}(0,\sigma_t^2)\otimes\theta(t-\mu_t)\frac{1}{\tau}e^{-\frac{t-\mu_t}{\tau}}
+    \mathrm{Gaus}(0,\sigma_{\mathrm{ser}}^2)\otimes\theta(t-\mu_{\mathrm{ser}})\frac{1}{\tau_{\mathrm{ser}}}e^{-\frac{t-\mu_{\mathrm{ser}}}{\tau_{\mathrm{ser}}}}
 \end{equation}
-in which $\theta(t)$ is the unit step function, $\mu_t$ is the time offset of pulse, $\sigma_t$ and $\tau_t$ model the shape feature of single electron response. 
+in which $\theta(t)$ is the unit step function, $\mu_{\mathrm{ser}}$ is the time offset of pulse, $\sigma_{\mathrm{ser}}$ and $\tau_{\mathrm{ser}}$ model the shape feature of SER. 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.4\textwidth,page=12]{figures/result/compare.pdf}
@@ -201,14 +206,14 @@ in which $\theta(t)$ is the unit step function, $\mu_t$ is the time offset of pu
     \label{fig:sigmaCompare}
 \end{figure}
 
-The results of $\tau$ and $\sigma$ of 9 MCP-PMTs are shown in Fig.~\ref{fig:sigmaCompare}. $\tau$ and $\sigma$ of SER is \SI{3.20}{ns} and \SI{1.61}{ns}.
+The results of $\tau_{\mathrm{ser}}$ and $\sigma_{\mathrm{ser}}$ of 9 MCP-PMTs are shown in Fig.~\ref{fig:sigmaCompare}.
 
 \subsection{Pre-pulse and after-pulse}
 The generation of pre-pulses is due to photons hitting on the MCP or the first dynode directly rather than the photocathode \cite{JUNOMassTesting}. The amplitudes of pre-pulses are smaller than that of normal signals and  pre-pulses appear before the main pulse. This ratio is related to the intensity of light source.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{figures/method/triggerAfterpulseSchema.pdf}
-    \caption{An example waveform in trigger stage. Green and red vertical dash lines are the rising edge of trigger waveform and 10\% of rising edge of main pulse. The dark region is the interval for searching after-pulse.}
+    \caption{Schema for searching after-pulses. Green and red vertical dash lines are the rising edge of trigger waveform and 10\% of rising edge of main pulse. The dark region is the interval for searching after-pulse.}
     \label{fig:afterpulseSchema}
 \end{figure}
 
@@ -221,18 +226,18 @@ After-pulse is generated due to the ionization of gaseous impurities between the
 \end{figure}
 % waveform analysis
 
-After-pulse is categorized into several kinds. Fig.~\ref{fig:afterpulse1d} indicates 4 typical after-pulse peaks in time around \SI{300}{ns}, \SI{500}{ns}, \SI{1200}{ns} and \SI{1700}{ns}, of which ratio is about $1:\sqrt{3}:\sqrt{16}:\sqrt{32}$. Besides, the peak at about \SI{100}{ns} is influenced by the main pulse.Considering the different mass of ions, these peaks may originate from \ce{H^+}, \ce{He^{+}} or other unknown inons, \ce{O^+}, and \ce{O_2^+} or other unknown ions. More works need too be done for an advanced model.
+After-pulse is categorized into several kinds. Fig.~\ref{fig:afterpulse1d} indicates 4 typical after-pulse peaks in time around \SI{300}{ns}, \SI{500}{ns}, \SI{1200}{ns} and \SI{1700}{ns}, of which ratio is about $1:\sqrt{3}:\sqrt{16}:\sqrt{32}$. Besides, the peak at about \SI{100}{ns} is influenced by the main pulse. Considering the different mass of ions, these peaks may originate from \ce{H^+}, \ce{He^{+}} or other unknown inons, \ce{O^+}, and \ce{O_2^+} or other unknown ions. More works need too be done for an advanced model.
 
 The time distribution and ratio of diferent peaks in afterpulse distribution are parameterized using 4 gaussian functions to model the four peaks as show in Fig.~\ref{fig:afterpulse1d} and the fit equation is as following
 \begin{equation}
     \label{equ:afterpulse}
     N_{\mathrm{trig}}\sum_{i=1}^{4}{A_iG(t_i,\sigma_i^2)}
 \end{equation}
-in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each peak of after pulse. The fit results are shown in Fig.~\ref{fig:afterpulsePeak} and the ratios of 4 peaks vary greatly for different MCP-PMTs. Besides, there exist some after-pulses cannot be well modeled with Equ.\eqref{equ:afterpulse}, for example the pulses between the first and second peaks. The mean and standard deviation of fit results are summarized in Table.~\ref{tab:afterpulse}. Due to after-pulses around the second peak, the standard deviation of $\sigma_2$ is very large.
+in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each peak of after pulse. The fit results are shown in Fig.~\ref{fig:afterpulsePeak} and the ratios of 4 peaks vary greatly for different MCP-PMTs. Besides, there exist some after-pulses cannot be well modeled with Equ.\eqref{equ:afterpulse}, for example the pulses between the first and second peaks of after-pulse distribution. The mean and standard deviation of fit results are summarized in Table.~\ref{tab:afterpulse}. Due to after-pulses around the second peak, the standard deviation of $\sigma_2$ is very large. The fitting results for after-pulse is shown in Table~\ref{tab:afterpulse}
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.4\textwidth,page=13]{figures/result/compare.pdf}
-    \caption{Time and ratio of peaks of after pulse ratio.}
+    \caption{Time and ratio of peaks of after pulse ratio of 9 MCP-PMTs.}
     \label{fig:afterpulsePeak}
 \end{figure}
 % \begin{figure}[!htbp]
@@ -242,13 +247,25 @@ in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each pea
 %     \label{fig:afterpulse2d}
 % \end{figure}
 % Fig.\ref{fig:afterpulse2d} indicates that the after pulse contains some very large signal in the specific peaks, which is different from the distribution of single PE.
-
+\begin{table}
+    \centering
+    \caption{Parameters of after-pulse}
+    \label{tab:afterpulse}
+    \begin{tabular}{c|c|c|c|c}
+        \hline
+        &1st peak&2nd peak&3rd peak&4th peak\\
+        $t_i$/ns&307$\pm$7&535$\pm$40&1194$\pm$34&1724$\pm$27\\
+        $A_i/A_1$&0.53$\pm$0.22&0.96$\pm$0.44&1.9$\pm$&1.2\\
+        $\sigma_i$/ns&11$\pm$4&66$\pm$40&50$\pm$30&69$\pm$28\\
+        \hline
+    \end{tabular}
+\end{table}
 The ratio of prepulse $R_{\mathrm{pre}}$ is calculated in time interval [-250,-50]\,ns and after pulse $R_{\mathrm{after}}$ is calculated in time interval [200,-10000]\,ns as following equations
 \begin{align}
     R_{\mathrm{pre}} = \frac{N_{\mathrm{pre}}}{N_t} - \mathrm{DCR}\cdot T_{\mathrm{pre}}\times10^{-6}\\
     R_{\mathrm{after}} = \frac{N_{\mathrm{after}}}{N_t} - \mathrm{DCR}\cdot T_{\mathrm{after}}\times10^{-6}
 \end{align}
-in which $T_{\mathrm{pre}}=200$\,ns, $T_{\mathrm{after}}=9900$\,ns, $N_{\mathrm{pre}}$ and $N_{\mathrm{after}}$ are the number of pre-pulses and after-pulses. Due to the ratio of pre-pulse is too small, some measured values are smaller than zero as shown in Fig.~\ref{fig:prepulseCompare}.
+in which $T_{\mathrm{pre}}=200$\,ns, $T_{\mathrm{after}}=9800$\,ns, $N_{\mathrm{pre}}$ and $N_{\mathrm{after}}$ are the number of pre-pulses and after-pulses. Due to the ratio of pre-pulse is too small, some measured values are smaller than zero after deducting DCR as shown in Fig.~\ref{fig:prepulseCompare}.
 
 \begin{figure}[!htbp]
     \centering
@@ -257,28 +274,51 @@ in which $T_{\mathrm{pre}}=200$\,ns, $T_{\mathrm{after}}=9900$\,ns, $N_{\mathrm{
     \label{fig:prepulseCompare}
 \end{figure}
 
-\subsection{Relative photon detection efficiency}
-The DCR is omitted in PDE calculation due to the small ratio of dark noise. To measure PDE, the intensity of light and light allocation ratio of each channel need to be calibrated. For example, JUNO fixed one reference PMT and other reference PMTs are circulated through all channels \cite{Wonsak_2021}. A new method is designed to reduce the number of reference PMT and combine all test runs to do the calibration.
+\subsection{Relative photon detection efficiency (PDE)}
+The DCR is omitted in PDE calculation due to the small ratio of dark noise. To measure PDE, the intensity of light and light allocation ratio of each channel of laser splitter need to be calibrated. For example, JUNO fixed one reference PMT to calibrate the light intensity and other reference PMTs are circulated through all channels to calibrate the light allocation ratio \cite{Wonsak_2021}. A new method is designed to reduce the number of reference PMT to 1 PMT and combine all test runs to do the calibration.
 
 Note $n,j,k$ ($n=0,...,N-1, j=0,...,J-1, k=0,...,K-1$) is the indicator of test run, channel of splitter and PMT. Intensity of light is $I_n$, light allocation ratio is $\alpha_j$ and photon detection efficiency is $\eta_k$. Assume $\alpha_j$s are stable among different test runs. $N_t$ is the total number of waveforms. The photon numbers in each waveform obey Poisson distribution $\pi(p_{njk})$, in which $p_{njk}=I_n\alpha_j\eta_k$. The trigger rate of nth run, kth PMT in jth channel is
 \begin{equation}
     \label{equ:pderate}
     R_{njk}=1-e^{-p_{njk}}
 \end{equation}
-For convenience, 0th PMT is the reference PMT. Note $\alpha_j^0=\frac{\alpha_j}{\alpha_0}$, $\eta_k^0=\frac{\eta_k}{\eta_0}$, $I_n^0=I_n\alpha_0\eta_0$, $i\equiv njk$. $p_{njk}$ can be transfer to Equ~\eqref{equ:pdelograte}
+For convenience, 0th PMT is the only one reference PMT. Note $\alpha_j^0=\frac{\alpha_j}{\alpha_0}$, $\eta_k^0=\frac{\eta_k}{\eta_0}$, $I_n^0=I_n\alpha_0\eta_0$, $i\equiv njk$. $p_{njk}$ can be transfer to Equ~\eqref{equ:pdelograte}
 \begin{equation}
     \label{equ:pdelograte}
-    \mathrm{log}(p_{njk})=\mathrm{log}(I_0\alpha_0\eta_0)+\mathrm{log}(I_n^0)+\mathrm{log}(\alpha_j^0)+\mathrm{log}(\eta_k^0)
+    \mathrm{log}(p_{i})=\mathrm{log}(I_0\alpha_0\eta_0)+\mathrm{log}(I_n^0)+\mathrm{log}(\alpha_j^0)+\mathrm{log}(\eta_k^0)
 \end{equation}
-The relationship between $R_{njk}$ and parameters is
+The relationship between $R_{i}$ and parameters is
 \begin{equation}
     \label{equ:linkfunction}
-    R_{njk}=1-e^{-e^{\mathrm{log}(I_0\alpha_0\eta_0)+\mathrm{log}(I_n^0)+\mathrm{log}(\alpha_j^0)+\mathrm{log}(\eta_k^0)}}
+    R_{i}=1-e^{-e^{\mathrm{log}(I_0\alpha_0\eta_0)+\mathrm{log}(I_n^0)+\mathrm{log}(\alpha_j^0)+\mathrm{log}(\eta_k^0)}}
 \end{equation}
-The trigger number $N_{\mathrm{trig}}$ of kth PMT in nth run with jth splitter obey Binomial distribution $B(R_{njk},N_{t_{njk}})$, in which $N_{t_{njk}}$ is total number of waveforms. To fit the parameters, a likelihood is constructed as follows
+The trigger number $N_{\mathrm{trig}}$ of kth PMT in nth run with jth splitter obey Binomial distribution $B(R_{i},N_{t_{i}})$, in which $N_{t_{i}}$ is total number of waveforms. To fit the parameters, a likelihood is constructed as follows
 \begin{equation}
     \label{equ:likelihood}
-    \mathcal{L}=\prod_{njk}{R_{njk}^{N_{\mathrm{trig}_{njk}}}(1-R_{njk})^{N_{t_{njk}}-N_{\mathrm{trig}_{njk}}}}
+    \mathcal{L}=\prod_{i}{R_{i}^{N_{\mathrm{trig}_{i}}}(1-R_{i})^{N_{t_{i}}-N_{\mathrm{trig}_{i}}}}
 \end{equation}
 
 The relationship in Equ.~\eqref{equ:linkfunction} matches GLM of Binomial exponential family distribution with Cloglog link function\cite{glm}. The GLM is used to maximize the likelihood in Equ.~\eqref{equ:likelihood} and calculate the best value of $\mathrm{log}(\eta_k^0)$ and $\mathrm{log}(\alpha_k^0)$, which is used to calibrate relative photon detection efficiencies and splitter ratios. The results of PDE are shown in Fig.~\ref{fig:DCRCompare}. Mean of relative PDE is about $1.71$, which is obvious higher than the reference PMT.
+
+The mean and standard deviation of parameters of 9 MCP-PMTs are summarized in Table~\ref{tab:summary}
+\begin{table}
+    \centering
+    \caption{charge and time characteristic of MCP-PMTs}
+    \label{tab:summary}
+    \begin{tabular}{c| r @{$\pm$} l}
+        Parameter&\multicolumn{2}{c}{$\mu\pm\sigma$}\\
+        \hline
+        $G_1$/1E7&1.17&0.07\\
+        $G$/1E7&2.14&0.16\\
+        $\mathrm{Res}_1$&0.25&0.02\\
+        Res&0.69&0.03\\
+        TTS/ns&1.82&0.09\\
+        DCR/kHz&4.5&1.3\\
+        $\tau_{\mathrm{ser}}$/ns&7.2&1.0\\
+        $\sigma_{\mathrm{ser}}$/ns&1.62&0.06\\
+        relative PDE&1.71&0.06\\
+        $R_{\mathrm{pre}}$&0.0001&0.0002\\
+        $R_{\mathrm{after}}$&0.02&0.01\\
+        \hline
+    \end{tabular}
+\end{table}
