@@ -6,13 +6,13 @@ The setup of the noise stage is discussed in sec.~\ref{sec:noisestage}. The diff
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.5\textwidth,page=1]{figures/method/noisebaseline697_219908_2.pdf}
-    \caption{A very large waveform in the noise stage. The vertical green line indicates the peak position of the pulse candidate. The horizontal blue dash line and horizontal violet dash line are the baseline and amplitude threshold. The rise time and fall time are the width of the pink and green rectangle, of which start and end time are interpolated as 10\% and 90\% of rising and falling edges.}
+    \caption{A very large waveform in the noise stage. The vertical green line indicates the peak position of the pulse candidate. The horizontal blue dash line and horizontal violet dash line are the baseline and amplitude threshold. The rise time and fall time are the width of the pink and green rectangle, of which start and end time are linear interpolated as 10\% and 90\% of rising and falling edges.}
     \label{fig:baseline1}
 \end{figure}
 
-The sample window size $T_{\mathrm{wave}}$ is set as \SI{600}{ns} in the noise stage. For \SI{20}{kHz} dark noise rate, the number of dark noise pulses in each waveform obeys Poisson distribution $\mathrm{\pi}(\nu=0.012)$, which means the probability of 2 or more pulses is about 0.006 times of the probability of 1 pulse\footnote{The probability of n dark noise pulses is $P(n)=e^{-\nu}\frac{\nu^n}{n!}$, $P(n=1)=0.012$ and $P(n>1)=7.14\times10^{-5}$} and single dark noise pulse events dominate the dataset. Considering the pulse width is far shorter than $T_{\mathrm{wave}}$, the probability of pulses overlapping with each other is less than 0.006 and the overlapping cases are omit.
+The sample window size $T_{\mathrm{wave}}$ is set as \SI{600}{ns} in the noise stage. For \SI{20}{kHz} dark noise rate, the number of dark noise pulses in each waveform obeys Poisson distribution $\mathrm{\pi}(\nu=0.012)$, which means the probability of 2 or more pulses is about 0.006 times of the probability of 1 pulse\footnote{The probability of n dark noise pulses is $P(n)=e^{-\nu}\frac{\nu^n}{n!}$, $P(n=1)=0.012$ and $P(n>1)=7.14\times10^{-5}$.} and single dark noise pulse events dominate the dataset. Considering the pulse width is far shorter than $T_{\mathrm{wave}}$, the probability of pulses overlapping with each other is less than 0.006 and the overlapping cases are omit.
 
-The peak time $t_p$ is the position of minimum\footnote{Because the maximum pulse is selected in each waveform, the expected charge distribution is the distribution of $\max_n^N(C_n)$, in which $C_n$ is the charge of nth PE and $N$ is the number of pulses in a waveform. The charge bias caused by multi-pulse is omit because of small ratio of multi-pulse cases.} in each waveform as shown in Fig.~\ref{fig:baseline1}. Due to the offset mentioned in sec.~\ref{sec:setup}, the value of baseline is not zero. The baseline is calculated from an interval of the time window $[-t_s,-10]$\,ns ($t_s\leq200$) relative to pulse peak $t_p$. If the peak is close to the start of waveform and therefore $t_s < 110$, another interval $[t_p+100,t_p+200]$\,ns is append to the total interval to ensure the length of interval is enough. Average $\mu_{\mathrm{b0}}$ and standard deviation $\sigma_{\mathrm{b0}}$ of amplitudes in the interval are calculated. An baseline threshold filter $[\mu_{\mathrm{b0}}-\max(\min(5\sigma_{\mathrm{b0}},3),1)]$ is used to remove potential signals and reserves the baseline when $\sigma_{\mathrm{b0}}$ is small as shown in Fig.~\ref{fig:baseline1}. The selected areas are cut off \SI{10}{ns} at both ends to remove rising edge and falling edge of potential pulses. The baseline $\mu_b$ and fluctuation $\sigma_b$ is estimate as average  and the standard deviation of rest waveform.
+The peak time $t_p$ is the position of minimum\footnote{Because the maximum pulse is selected in each waveform, the expected charge distribution is the distribution of $\max_n^N(C_n)$, in which $C_n$ is the charge of nth PE and $N$ is the number of pulses in a waveform. The charge bias caused by multi-pulse is omit because of small ratio of multi-pulse cases.} in each waveform as shown in Fig.~\ref{fig:baseline1}. Due to the offset mentioned in sec.~\ref{sec:setup}, the value of baseline is not zero. The baseline is calculated from an interval of the time window $[-t_s,-10]$\,ns ($t_s\leq200$) relative to pulse peak $t_p$. If the peak is close to the start of waveform and therefore $t_s < 110$, another interval $[t_p+100,t_p+200]$\,ns is appended to the total interval to ensure the length of interval is enough. Average $\mu_{\mathrm{b0}}$ and standard deviation $\sigma_{\mathrm{b0}}$ of amplitudes in the interval are calculated. An baseline threshold filter $[\mu_{\mathrm{b0}}-\max(\min(5\sigma_{\mathrm{b0}},3),1)]$ is used to remove potential signals and reserves the baseline when $\sigma_{\mathrm{b0}}$ is small as shown in Fig.~\ref{fig:baseline1}. The selected areas are cut off \SI{10}{ns} at both ends to remove rising edge and falling edge of potential pulses. The baseline $\mu_b$ and fluctuation $\sigma_b$ is estimated as average and the standard deviation of the rest waveform.
 
 \subsection{Laser stage}
 \label{sec:laserstage}
@@ -108,11 +108,11 @@ $G$ is about 2 times of $G_1$ for MCP-PMT, which should be considered in wavefor
 \end{figure}
 
 \subsection{Peak-to-valley (P/V) ratio}
-A parabolic function is fitted to the valley based on MLS method in the interval $[-0.15\mu_{C_1}, 0.25\mu_{C_1}]$ relative to the least count bin of histogram between pedestal and SPE peak as shown in Fig.~\ref{fig:charge} and Fig.~\ref{fig:triggercharge}. The local minimum $N_v$ of charge spectrum is calculated as the minima of the parabolic function. The $N_p$ is the peak of the Gaussian function described in sec.~\ref{sec:noisegain}. The peak-to-valley ratio is equal to  
+A parabolic function is fitted to the valley based on MLS method in the interval $[-0.15\mu_{C_1}, 0.25\mu_{C_1}]$ relative to the least count bin of histogram between pedestal and SPE peak as shown in Fig.~\ref{fig:charge} and Fig.~\ref{fig:triggercharge}. The local minimum $N_v$ of charge spectrum is calculated as the minima of the parabolic function. The $N_p$ is the peak of the Gaussian function described in sec.~\ref{sec:noisegain}. The P/V ratio is equal to  
 \begin{equation}
     \mathrm{P/V}=\frac{N_p}{N_v}
 \end{equation}
-The P/V ratio shows the ability of discrimination between electronic noise and true signal. The ratio of the pedestal also lead to the P/V ratio in the laser stage better than that in the noise stage, as shown in Fig.~\ref{fig:PVCompare}. The mean P/V ratio of MCP-PMT is about $5.79$ in the laser stage.
+The P/V ratio shows the ability of discrimination between electronic noise and true signal. The different ratios of the pedestal also lead to the P/V ratio in the laser stage better than that in the noise stage, as shown in Fig.~\ref{fig:PVCompare}. The mean P/V ratio of MCP-PMT is about $5.79$ in the laser stage.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{figures/result/PV.pdf}
@@ -154,7 +154,7 @@ in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total numbe
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{figures/result/DCRPDE.pdf}
-    \caption{DCR versus relative PDE of 9 MCP-PMTs.}
+    \caption{Relative PDE versus DCR of 9 MCP-PMTs.}
     \label{fig:DCRCompare}
 \end{figure}
 
@@ -202,7 +202,7 @@ in which $\theta(t)$ is the unit step function, $\mu_{\mathrm{ser}}$ is the time
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{figures/result/tausigma.pdf}
-    \caption{$\tau$ versus $\sigma$.}
+    \caption{$\tau$ versus $\sigma$ of 9 MCP-PMTs in the laser stage.}
     \label{fig:sigmaCompare}
 \end{figure}
 
