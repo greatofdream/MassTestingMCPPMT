@@ -42,5 +42,17 @@ method/triggerAfterpulse2d.pdf: $(filedir)/ExPMT/PM2106-9145/laser.h5.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=2 $^
 result/gainres.pdf: $(filedir)/ExPMT/PMTSummary.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=4 $^
+result/PV.pdf: $(filedir)/ExPMT/PMTSummary.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=6 $^
+result/FWHM.pdf: $(filedir)/ExPMT/PMTSummary.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=7 $^
+result/DCRPDE.pdf: $(filedir)/ExPMT/PMTSummary.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=8 $^
+result/preafterpulse.pdf: $(filedir)/ExPMT/PMTSummary.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=11 $^
+result/tausigma.pdf: $(filedir)/ExPMT/PMTSummary.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=12 $^
+result/afterpulse.pdf: $(filedir)/ExPMT/PMTSummary.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=13 $^
 result/compare.pdf: $(filedir)/ExPMT/PMTSummary.pdf
 	cp $^ $@

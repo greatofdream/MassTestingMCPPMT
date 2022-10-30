@@ -24,7 +24,7 @@ The peak time $t_p$ is the position of minimum\footnote{Because the maximum puls
     \label{fig:triggertime}
 \end{figure}
 
-To yield single photoelectron (SPE) events, the laser intensity was adjusted to a level only about one out of 20 triggers lead to a signal. The window size $T_{\mathrm{wave}}$ is set to \SI{10400}{ns} and the rising edge of trigger waveform is at about \SI{200}{ns}, which reserves a time interval for pre-pulse analysis. The trigger from the laser system is a step wave, of which the vertical center of rising edge is interpolated to get the trigger time $t_{\mathrm{trig}}$ as shown in Fig.~\ref{fig:triggertime}.
+To yield single photoelectron (SPE) events, the laser intensity was adjusted to a level only about one out of 20 triggers lead to a signal. The window size $T_{\mathrm{wave}}$ is set to \SI{10400}{ns} and the rising edge of trigger waveform is at about \SI{200}{ns}, which reserves a time interval for pre-pulse analysis. The trigger from the laser system is a step wave, of which the vertical center of rising edge is linear interpolated to get the trigger time $t_{\mathrm{trig}}$ as shown in Fig.~\ref{fig:triggertime}.
 
 The triggered pulse is mainly centered in the time interval between $[t_{\mathrm{trig}}, 600]$\,ns dependent on the length of the cable. The maximum peak is found in the window of $[t_{\mathrm{trig}}, 600]$\,ns to roughly extract the peak position $t_p$. A gaussian function G$(\mu_{t0},\sigma_{t0})$ is unbinned fitted to the distribution of peak location of pulses whose peak is larger than \SI{5}{ADC} for each PMT. % as shown in Fig.~\ref{fig:peaklocation}.
 % A time interval  is used for selecting a waveform dataset for each PMT, in which peaks of the triggered wave candidates fall. 
@@ -108,20 +108,20 @@ $G$ is about 2 times of $G_1$ for MCP-PMT, which should be considered in wavefor
 \end{figure}
 
 \subsection{Peak-to-valley (P/V) ratio}
-A parabolic function is fitted to the valley in the interval $[-0.15\mu_{C_1}, 0.25\mu_{C_1}]$ relative to the least count bin of histogram between pedestal and SPE peak as shown in Fig.~\ref{fig:charge} and Fig.~\ref{fig:triggercharge}. The local minimum $N_v$ of charge spectrum is calculated as the minima of the parabolic function. The $N_p$ is the peak of the Gaussian function described in sec.~\ref{sec:noisegain}. The peak-to-valley ratio is equal to  
+A parabolic function is fitted to the valley based on MLS method in the interval $[-0.15\mu_{C_1}, 0.25\mu_{C_1}]$ relative to the least count bin of histogram between pedestal and SPE peak as shown in Fig.~\ref{fig:charge} and Fig.~\ref{fig:triggercharge}. The local minimum $N_v$ of charge spectrum is calculated as the minima of the parabolic function. The $N_p$ is the peak of the Gaussian function described in sec.~\ref{sec:noisegain}. The peak-to-valley ratio is equal to  
 \begin{equation}
     \mathrm{P/V}=\frac{N_p}{N_v}
 \end{equation}
 The P/V ratio shows the ability of discrimination between electronic noise and true signal. The ratio of the pedestal also lead to the P/V ratio in the laser stage better than that in the noise stage, as shown in Fig.~\ref{fig:PVCompare}. The mean P/V ratio of MCP-PMT is about $5.79$ in the laser stage.
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.4\textwidth,page=6]{figures/result/compare.pdf}
+    \includegraphics[width=0.4\textwidth]{figures/result/PV.pdf}
     \caption{P/V ratio in the noise stage and laser stage. Geen point is the reference PMT and red points are MCP-PMTs.} 
     \label{fig:PVCompare}
 \end{figure}
 
 \subsection{Rise time, fall time, and full width at half maximum (FWHM)}
-As shown in Fig.~\ref{fig:baseline1}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ are the time of 10\%, 50\%, and 90\% amplitude in the rising edge and $t^{10}_f$, $t^{50}_f$, $t^{90}_f$ are the time of 10\%, 50\%, and 90\% amplitude in the falling edge which are acquired via interpolation method. The rise time, fall time, and FWHM are calculated as follows:
+As shown in Fig.~\ref{fig:baseline1}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ are the time of 10\%, 50\%, and 90\% $V_p$ in the rising edge and $t^{10}_f$, $t^{50}_f$, $t^{90}_f$ are the time of 10\%, 50\%, and 90\% $V_p$ in the falling edge which are acquired via linear interpolation method. The rise time, fall time, and FWHM are calculated as follows:
 \begin{align}
     t_r &= t^{90}_r - t^{10}_r\\
     t_f &= t^{10}_f - t^{90}_f\\
@@ -135,7 +135,7 @@ As shown in Fig.~\ref{fig:baseline1}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ are the
 % \end{figure}
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.4\textwidth,page=7]{figures/result/compare.pdf}
+    \includegraphics[width=0.4\textwidth]{figures/result/FWHM.pdf}
     \caption{Rise time, Fall time, and FWHM in the noise stage and laser stage. Green points, red points, and black points are results of rise time, fall time, and FWHM.}
     \label{fig:RiseCompare}
 \end{figure}
@@ -149,11 +149,11 @@ The dark noise comes from the thermionic electron emitted from the photocathode,
 \begin{equation}
     \mathrm{DCR/kHz} = \frac{N_{\mathrm{noise}}}{N_{t}}\frac{1}{T_{\mathrm{wave}}/\mathrm{ns}}\times 10^{6}
 \end{equation}
-in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total number of waveforms. The DCRs of MCP-PMTs are illustrated in Fig.~\ref{fig:DCRCompare}
+in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total number of waveforms. The DCRs of MCP-PMTs are illustrated in Fig.~\ref{fig:DCRCompare}.
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.4\textwidth,page=8]{figures/result/compare.pdf}
+    \includegraphics[width=0.4\textwidth]{figures/result/DCRPDE.pdf}
     \caption{DCR versus relative PDE of 9 MCP-PMTs.}
     \label{fig:DCRCompare}
 \end{figure}
@@ -167,7 +167,7 @@ in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total numbe
 \end{figure}
 The TTS is the spread of photo-electron transit time (TT), which represents the resolution of timing. The transit time cannot be measured directly, while the trigger time of laser and time of pulse can be measured. A relative transit time $\mathrm{TT}_r$ is defined as the time difference between trigger time $t_{\mathrm{trig}}$ and $t_r^{10}$. The histogram of $\mathrm{TT}_r$ with \SI{0.5}{ns} bin width is binned fitted using a Gaussian function G$(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ in interval $[-2,+2]$\,ns relative to the maximum bin using MLS method as shown in Fig.~\ref{fig:triggerTTS}.
 % Due to the time precision and voltage precison of FADC are \SI{1}{ns} and \SI{1}{ADC}, the intepolation method TT distribution contains two peak when bin width is smaller than \SI{1}{ns}. 
-TTS is defined as FWHM\cite{HAMAMATSUManual}
+TTS is defined as FWHM\cite{HAMAMATSUManual} in the following equation
 \begin{equation}
     \mathrm{TTS}=2\sqrt{2\ln(2)}\sigma_{\mathrm{TT}}
 \end{equation}
@@ -201,7 +201,7 @@ A gaussian function convoluted with an exponential function Equ~\eqref{equ:ser} 
 in which $\theta(t)$ is the unit step function, $\mu_{\mathrm{ser}}$ is the time offset of pulse, $\sigma_{\mathrm{ser}}$ and $\tau_{\mathrm{ser}}$ model the shape feature of SER. The results of $\tau_{\mathrm{ser}}$ and $\sigma_{\mathrm{ser}}$ of 9 MCP-PMTs are shown in Fig.~\ref{fig:sigmaCompare}.
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.4\textwidth,page=12]{figures/result/compare.pdf}
+    \includegraphics[width=0.4\textwidth]{figures/result/tausigma.pdf}
     \caption{$\tau$ versus $\sigma$.}
     \label{fig:sigmaCompare}
 \end{figure}
@@ -216,28 +216,28 @@ in which $\theta(t)$ is the unit step function, $\mu_{\mathrm{ser}}$ is the time
     \label{fig:afterpulseSchema}
 \end{figure}
 
-The generation of pre-pulses is due to photons hitting on the MCP or the first dynode directly rather than the photocathode \cite{JUNOMassTesting}. The amplitudes of pre-pulses are smaller than that of normal signals and pre-pulses appear before the main pulse about tens of nanoseconds \cite{JUNOMassTesting}. After-pulse is generated due to the ionization of gaseous impurities between the cathode and first dynode\footnote{For MCP-PMT, the surface of micro-channel plate is the first dynode.} when photoelectrons go through \cite{Coates_1973}. These ions hit back on the photocathode and generate electrons. \ce{H^+}, \ce{He^+}, \ce{O^+} are the major ions contributing to afterpulse and the relation between time and ions (\ce{^Z_MX}) is $\sqrt{\frac{M}{Z}}$, in which $M$ and $Z$ are the mass and charge of ions \cite{Coates_1973}. Due to these ions being heavier than the electron, the travel time is in the scale of \si{us}\footnote{The velocity of ions is about \SI{1000}{km/s} and size of PMT is about \SI{0.1}{m}, thus the transit time is in the scale of about \SI{0.1}{us}.}. The after pulse is searched in a window \SIrange{100}{10000}{ns} after the main pulse as shown in Fig.~\ref{fig:afterpulseSchema}. The $t$ and $Q$ are calculated as the max peak and integrated in the $[-15,75]$ ns window relative to peak position as shown violet area in Fig.~\ref{fig:afterpulseSchema}
+The generation of pre-pulses is due to photons hitting on the MCP or the first dynode directly rather than the photocathode \cite{JUNOMassTesting}. The amplitudes of pre-pulses are smaller than that of normal signals and pre-pulses appear before the main pulse about tens of nanoseconds \cite{JUNOMassTesting}. After-pulse is generated due to the ionization of gaseous impurities between the cathode and first dynode\footnote{For MCP-PMT, the surface of micro-channel plate is the first dynode.} when photoelectrons go through \cite{Coates_1973}. These ions hit back on the photocathode and generate electrons. \ce{H^+}, \ce{He^+}, \ce{O^+} are the major ions contributing to after-pulse and the relation between time and ions (\ce{^Z_MX}) is $\sqrt{\frac{M}{Z}}$, in which $M$ and $Z$ are the mass and charge of ions \cite{Coates_1973}. Due to these ions being heavier than the electron, the travel time is in the scale of \si{us}\footnote{The velocity of ions is about \SI{1000}{km/s} and size of PMT is about \SI{0.1}{m}, thus the transit time is in the scale of about \SI{0.1}{us}.}. The after pulse is searched in a window \SIrange{100}{10000}{ns} after the main pulse as shown in Fig.~\ref{fig:afterpulseSchema}. The $t$ and $Q$ are calculated as the max peak and integrated in the $[-15,75]$ ns window relative to peak position as shown violet area in Fig.~\ref{fig:afterpulseSchema}.
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/method/triggerAfterpulse1d.pdf}
-    \caption{Time distribution of after pulse. The orange and blue histogram are pre-pulse and after-pulse. The green line is the fit result for after pulse. The blank area around the \SI{0}{ns} is the main pulse which is not shown in this figure.}
+    \caption{Time distribution of pre-pulse and after-pulse. The orange and blue histogram are pre-pulse and after-pulse. The green line is the fit result for distribution of after-pulse. The blank area around the \SI{0}{ns} is the main pulse which is not shown in this figure.}
     \label{fig:afterpulse1d}
 \end{figure}
 % waveform analysis
 
 After-pulse is categorized into several kinds. Fig.~\ref{fig:afterpulse1d} indicates 4 typical after-pulse peaks in time around \SI{300}{ns}, \SI{500}{ns}, \SI{1200}{ns} and \SI{1700}{ns}, of which ratio is about $1:\sqrt{3}:\sqrt{16}:\sqrt{32}$. Besides, the peak at about \SI{100}{ns} is influenced by the main pulse. Considering the different mass of ions, these peaks may originate from \ce{H^+}, \ce{He^{+}} or other unknown inons, \ce{O^+}, and \ce{O_2^+} or other unknown ions. More works need too be done for an advanced model.
 
-The time distribution and ratio of diferent peaks in afterpulse distribution are parameterized using 4 gaussian functions to model the four peaks as show in Fig.~\ref{fig:afterpulse1d} and the fit equation is as following
+The time distribution and ratio of diferent peaks in after-pulse distribution are parameterized using 4 gaussian functions to model the four peaks as show in Fig.~\ref{fig:afterpulse1d} and the fit equation is as following
 \begin{equation}
     \label{equ:afterpulse}
     N_{\mathrm{trig}}\sum_{i=1}^{4}{A_iG(t_i,\sigma_i^2)}
 \end{equation}
-in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each peak of after pulse. The fit results are shown in Fig.~\ref{fig:afterpulsePeak} and the ratios of 4 peaks vary greatly for different MCP-PMTs. Besides, there exist some after-pulses cannot be well modeled with Equ.\eqref{equ:afterpulse}, for example the pulses between the first and second peaks of after-pulse distribution. The mean and standard deviation of fit results are summarized in Table.~\ref{tab:afterpulse}. Due to after-pulses around the second peak, the standard deviation of $\sigma_2$ is very large.
+in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each peak of after pulse. The fit results are shown in Fig.~\ref{fig:afterpulsePeak} and the ratios of 4 peaks vary greatly for different MCP-PMTs. Besides, there exist some areas cannot be well modeled with Equ.\eqref{equ:afterpulse}, for example the pedestal between the first and second peaks of after-pulse distribution. The mean and standard deviation of fit results are summarized in Table.~\ref{tab:afterpulse}. Due to influence of after-pulses around the second peak, the standard deviation of $\sigma_2$ is very large.
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.4\textwidth,page=13]{figures/result/compare.pdf}
-    \caption{Time and ratio of peaks of after pulse ratio of 9 MCP-PMTs.}
+    \includegraphics[width=0.4\textwidth]{figures/result/afterpulse.pdf}
+    \caption{Time and relative ratio of peaks of after-pulse ratio of 9 MCP-PMTs. 4 peak ratios are plot along the time for each PMT.}
     \label{fig:afterpulsePeak}
 \end{figure}
 % \begin{figure}[!htbp]
@@ -261,7 +261,7 @@ in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each pea
     \end{tabular}
 \end{table}
 
-The ratio of prepulse $R_{\mathrm{pre}}$ is calculated in time interval [-250,-50]\,ns and after pulse $R_{\mathrm{after}}$ is calculated in time interval [200,-10000]\,ns as following equations
+The ratio of pre-pulse $R_{\mathrm{pre}}$ is calculated in time interval [-250,-50]\,ns and after-pulse $R_{\mathrm{after}}$ is calculated in time interval [200,10000]\,ns as following equations
 \begin{align}
     R_{\mathrm{pre}} = \frac{N_{\mathrm{pre}}}{N_t} - \mathrm{DCR}\cdot T_{\mathrm{pre}}\times10^{-6}\\
     R_{\mathrm{after}} = \frac{N_{\mathrm{after}}}{N_t} - \mathrm{DCR}\cdot T_{\mathrm{after}}\times10^{-6}
@@ -270,13 +270,13 @@ in which $T_{\mathrm{pre}}=200$\,ns, $T_{\mathrm{after}}=9800$\,ns, $N_{\mathrm{
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.4\textwidth,page=11]{figures/result/compare.pdf}
+    \includegraphics[width=0.4\textwidth]{figures/result/preafterpulse.pdf}
     \caption{pre-pulse ratio and after-pulse ratio.}
     \label{fig:prepulseCompare}
 \end{figure}
 
 \subsection{Relative photon detection efficiency (PDE)}
-The DCR is omitted in PDE calculation due to the small ratio of dark noise. To measure PDE, the intensity of light and light allocation ratio of each channel of laser splitter need to be calibrated. For example, JUNO fixed one reference PMT to calibrate the light intensity and other reference PMTs are circulated through all channels to calibrate the light allocation ratio \cite{Wonsak_2021}. A new method is designed to reduce the number of reference PMT to 1 PMT and combine all test runs to do the calibration.
+The DCR is omitted in PDE calculation due to the small ratio of dark noise. To measure PDE, the intensity of light and light allocation ratio of each channel of laser splitter need to be calibrated. For example, JUNO fixed one reference PMT to calibrate the light intensity and other reference PMTs are circulated through all channels to calibrate the light allocation ratio \cite{Wonsak_2021}. A new method is designed to reduce the number of reference PMT to 1 PMT and combine all test runs to do the calibration in this work.
 
 Note $n,j,k$ ($n=0,...,N-1, j=0,...,J-1, k=0,...,K-1$) is the indicator of test run, channel of splitter and PMT. Intensity of light is $I_n$, light allocation ratio is $\alpha_j$ and photon detection efficiency is $\eta_k$. Assume $\alpha_j$s are stable among different test runs. $N_t$ is the total number of waveforms. The photon numbers in each waveform obey Poisson distribution $\pi(p_{njk})$, in which $p_{njk}=I_n\alpha_j\eta_k$. The trigger rate of nth run, kth PMT in jth channel is
 \begin{equation}

@@ -1,0 +1,6 @@
+DCRPDE.pdf filter=lfs diff=lfs merge=lfs -text
+FWHM.pdf filter=lfs diff=lfs merge=lfs -text
+PV.pdf filter=lfs diff=lfs merge=lfs -text
+afterpulse.pdf filter=lfs diff=lfs merge=lfs -text
+tausigma.pdf filter=lfs diff=lfs merge=lfs -text
+gainres.pdf filter=lfs diff=lfs merge=lfs -text
