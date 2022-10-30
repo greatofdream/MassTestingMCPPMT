@@ -10,7 +10,7 @@ The setup of the noise stage is discussed in sec.~\ref{sec:noisestage}. The diff
     \label{fig:baseline1}
 \end{figure}
 
-The sample window size $T_{\mathrm{wave}}$ is set as \SI{600}{ns} in the noise stage. For \SI{20}{kHz} dark noise rate, the dark noise pulse number in each waveform obeys Poisson distribution $\mathrm{\pi}(\nu=0.012)$, which means the probability of 2 or more pulses is about 0.006 times of the probability of 1 pulse\footnote{The probability of n dark noise pulses is $P(n)=e^{-\nu}\frac{\nu^n}{n!}$, $P(n=1)=0.012$ and $P(n>1)=7.14\times10^{-5}$} and single dark noise pulse events dominate the dataset. Considering the pulse width is far shorter than \SI{600}{ns}, the probability of pulses overlapping with each other is less than 0.006 and the overlapping cases are omit.
+The sample window size $T_{\mathrm{wave}}$ is set as \SI{600}{ns} in the noise stage. For \SI{20}{kHz} dark noise rate, the number of dark noise pulses in each waveform obeys Poisson distribution $\mathrm{\pi}(\nu=0.012)$, which means the probability of 2 or more pulses is about 0.006 times of the probability of 1 pulse\footnote{The probability of n dark noise pulses is $P(n)=e^{-\nu}\frac{\nu^n}{n!}$, $P(n=1)=0.012$ and $P(n>1)=7.14\times10^{-5}$} and single dark noise pulse events dominate the dataset. Considering the pulse width is far shorter than $T_{\mathrm{wave}}$, the probability of pulses overlapping with each other is less than 0.006 and the overlapping cases are omit.
 
 The peak time $t_p$ is the position of minimum\footnote{Because the maximum pulse is selected in each waveform, the expected charge distribution is the distribution of $\max_n^N(C_n)$, in which $C_n$ is the charge of nth PE and $N$ is the number of pulses in a waveform. The charge bias caused by multi-pulse is omit because of small ratio of multi-pulse cases.} in each waveform as shown in Fig.~\ref{fig:baseline1}. Due to the offset mentioned in sec.~\ref{sec:setup}, the value of baseline is not zero. The baseline is calculated from an interval of the time window $[-t_s,-10]$\,ns ($t_s\leq200$) relative to pulse peak $t_p$. If the peak is close to the start of waveform and therefore $t_s < 110$, another interval $[t_p+100,t_p+200]$\,ns is append to the total interval to ensure the length of interval is enough. Average $\mu_{\mathrm{b0}}$ and standard deviation $\sigma_{\mathrm{b0}}$ of amplitudes in the interval are calculated. An baseline threshold filter $[\mu_{\mathrm{b0}}-\max(\min(5\sigma_{\mathrm{b0}},3),1)]$ is used to remove potential signals and reserves the baseline when $\sigma_{\mathrm{b0}}$ is small as shown in Fig.~\ref{fig:baseline1}. The selected areas are cut off \SI{10}{ns} at both ends to remove rising edge and falling edge of potential pulses. The baseline $\mu_b$ and fluctuation $\sigma_b$ is estimate as average  and the standard deviation of rest waveform.
 
@@ -52,7 +52,7 @@ The triggered pulse is mainly centered in the time interval between $[t_{\mathrm
 \subsection{Peak and charge spectrum}
 \label{sec:noisepeak}
 
-The peak $V_p$ of a pulse is the difference between the baseline and minimum of pulse. Considering the rise time and fall time distribution, the charge of a pulse is calculated using integration in a time window $[-15, 75]$\,ns relative to the peak location $t_p$ of the signal as illustrated in the pink region in Fig.~\ref{fig:triggertime}, with integration window $T_s$ is \SI{90}{ns}. The equivalent charge $C_{\mathrm{equ}}$ is defined as the summation of the amplitudes in the integration interval. Due to the input impedance being \SI{50}{\Omega}, the true charge of the pulse follows Equ.~\eqref{equ:charge} 
+The peak $V_p$ of a pulse is the difference between the baseline and minimum of pulse. Considering the rise time and fall time distribution, the charge of a pulse is calculated using integration in a time window $[-15, 75]$\,ns relative to the peak location $t_p$ of the signal as illustrated in the pink region in Fig.~\ref{fig:triggertime}, with integration window $T_s$ is \SI{90}{ns}. The equivalent charge $C_{\mathrm{equ}}$ is defined as the summation of the amplitudes without baseline in the integration interval. Due to the input impedance being \SI{50}{\Omega}, the true charge of the pulse follows Equ.~\eqref{equ:charge} 
 \begin{equation}
     \label{equ:charge}
     C = \frac{C_{\mathrm{equ}}}{50 \Omega}
@@ -102,7 +102,7 @@ $G$ is about 2 times of $G_1$ for MCP-PMT, which should be considered in wavefor
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.4\textwidth,page=4]{figures/result/compare.pdf}
+    \includegraphics[width=0.4\textwidth]{figures/result/gainres.pdf}
     \caption{Gain and resolution of total charge and main peak in the laser stage. Geen points represent reference PMT and red points represent MCP-PMTs. Cross markers represent $G_1$ and $\mathrm{Res}_1$. Plus markers represent $G$ and $\mathrm{Res}$.}
     \label{fig:totalchargeCompare}
 \end{figure}

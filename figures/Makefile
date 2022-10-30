@@ -40,5 +40,7 @@ method/triggerAfterpulse1d.pdf: $(filedir)/ExPMT/PM2106-9145/laser.h5.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=9 $^
 method/triggerAfterpulse2d.pdf: $(filedir)/ExPMT/PM2106-9145/laser.h5.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=2 $^
+result/gainres.pdf: $(filedir)/ExPMT/PMTSummary.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=4 $^
 result/compare.pdf: $(filedir)/ExPMT/PMTSummary.pdf
 	cp $^ $@
