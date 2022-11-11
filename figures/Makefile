@@ -7,7 +7,7 @@ all: method/noisebaseline697_219908_2.pdf method/peak697.pdf
 all: method/triggerwave.pdf method/triggerpeakpos.pdf method/triggercharge.pdf method/triggerpeak.pdf method/triggerFWHM.pdf method/triggerTTS2d.pdf
 all: method/triggerSER2d.pdf method/triggerSER.pdf
 all: method/triggerAfterpulseSchema.pdf method/triggerAfterpulse1d.pdf method/triggerAfterpulse2d.pdf
-all: result/compare.pdf
+all: result/gainres.pdf result/FWHM.pdf
 method/noisebaseline697_219908_2.pdf: $(filedir)/docscript/noisebaseline697_219908_2.pdf
 	cp $^ $@
 method/charge697.pdf: $(filedir)/ExResult/697/0ns/charge.h5.pdf
@@ -54,5 +54,7 @@ result/tausigma.pdf: $(filedir)/ExPMT/PMTSummary.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=12 $^
 result/afterpulse.pdf: $(filedir)/ExPMT/PMTSummary.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=13 $^
+result/resolution.pdf: $(filedir)/ExPMT/PMTSummary.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=14 $^
 result/compare.pdf: $(filedir)/ExPMT/PMTSummary.pdf
 	cp $^ $@
