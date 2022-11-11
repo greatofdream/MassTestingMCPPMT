@@ -20,7 +20,7 @@ The peak time $t_p$ is the position of minimum\footnote{Because the maximum puls
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/method/triggerwave.pdf}
-    \caption{A waveform and the trigger signal in the laser stage. The orange line is the trigger waveform. Two blue horizontal dash lines are the upper and lower values of the step wave. The green cross point is the interpolation for trigger time. The magnified view shows the PMT waveform with a signal. Red and green vertical dash lines are the time of 10\% of the rising edge and the pulse peak.}
+    \caption{A waveform and the trigger signal in the laser stage. The orange line is the trigger waveform. Two black horizontal dash lines are the upper and lower values of the step wave. The green cross point is the interpolation for trigger time. The blue solid line shows the PMT waveform with a signal and the blue dash line is the baseline. Red and green vertical dash lines are the time of 10\% of the rising edge and the pulse peak.}
     \label{fig:triggertime}
 \end{figure}
 
@@ -261,12 +261,12 @@ in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each pea
     \end{tabular}
 \end{table}
 
-The ratio of pre-pulse $R_{\mathrm{pre}}$ is calculated in time interval [-250,-50]\,ns and after-pulse $R_{\mathrm{after}}$ is calculated in time interval [200,10000]\,ns as following equations
+The ratio of pre-pulse $R_{\mathrm{pre}}$ is calculated in time interval [-250,-50]\,ns and after-pulse $R_{\mathrm{after}}$ is calculated in time interval [200,9800]\,ns as following equations
 \begin{align}
     R_{\mathrm{pre}} = \frac{N_{\mathrm{pre}}}{N_t} - \mathrm{DCR}\cdot T_{\mathrm{pre}}\times10^{-6}\\
     R_{\mathrm{after}} = \frac{N_{\mathrm{after}}}{N_t} - \mathrm{DCR}\cdot T_{\mathrm{after}}\times10^{-6}
 \end{align}
-in which $T_{\mathrm{pre}}=200$\,ns, $T_{\mathrm{after}}=9800$\,ns, $N_{\mathrm{pre}}$ and $N_{\mathrm{after}}$ are the number of pre-pulses and after-pulses. Due to the ratio of pre-pulse is too small, some measured values are smaller than zero after deducting DCR as shown in Fig.~\ref{fig:prepulseCompare}.
+in which $T_{\mathrm{pre}}=200$\,ns, $T_{\mathrm{after}}=9600$\,ns, $N_{\mathrm{pre}}$ and $N_{\mathrm{after}}$ are the number of pre-pulses and after-pulses. Due to the ratio of pre-pulse is too small, some measured values are smaller than zero after deducting DCR as shown in Fig.~\ref{fig:prepulseCompare}.
 
 \begin{figure}[!htbp]
     \centering
@@ -309,8 +309,8 @@ The mean and standard deviation of parameters of 9 MCP-PMTs are summarized in Ta
     \begin{tabular}{c| r @{$\pm$} l}
         Parameter&\multicolumn{2}{c}{$\mu\pm\sigma$}\\
         \hline
-        $G_1$/1E7&1.17&0.07\\
-        $G$/1E7&2.14&0.16\\
+        $G_1$/1E7&1.19&0.07\\
+        $G$/1E7&2.1&0.2\\
         $\mathrm{Res}_1$&0.25&0.02\\
         Res&0.69&0.03\\
         TTS/ns&1.82&0.09\\
