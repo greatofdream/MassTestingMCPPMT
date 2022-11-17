@@ -52,7 +52,8 @@ The triggered pulse is mainly centered in the time interval between $[t_{\mathrm
 \subsection{Peak and charge spectrum}
 \label{sec:noisepeak}
 
-The peak $V_p$ of a pulse is the difference between the baseline and minimum of the pulse. Considering the rise time and fall time distribution, the charge of a pulse is calculated using integration in a time window $[-15, 75]$\,ns relative to the peak location $t_p$ of the signal as illustrated in the pink region in Fig.~\ref{fig:triggertime}, with integration window $T_s$ is \SI{90}{ns}. The equivalent charge $C_{\mathrm{equ}}$ is defined as the summation of the amplitudes without baseline in the integration interval. Due to the input impedance being \SI{50}{\Omega}, the true charge of the pulse follows Equ.~\eqref{equ:charge} 
+The peak $V_p$ of a pulse is the difference between the baseline and minimum of the pulse. Considering the rise time and fall time distribution, the charge of a pulse is calculated using integration in a time window $[-15, 75]$\,ns relative to the peak location $t_p$ of the signal as illustrated in the pink region in Fig.~\ref{fig:triggertime}, with integration window $T_s$ is \SI{90}{ns}. The equivalent charge $C_{\mathrm{equ}}$ is defined as the summation of the amplitudes without baseline in the integration interval. Due to the input impedance being \SI{50}{\Omega}, the true charge of the pulse follows Equ.~\eqref{equ:charge}
+
 \begin{equation}
     \label{equ:charge}
     C = \frac{C_{\mathrm{equ}}}{50 \Omega}
@@ -86,12 +87,15 @@ The charge distribution in the laser stage is shown in Fig.~\ref{fig:triggerchar
 
 \subsection{Gain and single PE resolution}
 \label{sec:noisegain}
+
 There exists a long tail in charge distribution as shown in the histogram in Fig.~\ref{fig:charge}. To describe the energy resolution of the main peak of the charge distribution, a gaussian function G$(\mu_{C_1},\sigma^2_{C_1})$ is used to fit the binned data in an interval $[-0.35\mu_{C_1}, 0.35\mu_{C_1}]$ relative to $\mu_{C_1}$ via the modified least-square (MLS) method \cite{Cowan1998StatisticalDA} to capture the main peak of charge distribution of the single PE as shown in Fig.~\ref{fig:charge} and Fig.~\ref{fig:triggercharge}. The gain of main peak $G_1$ and gain of total charge $G$ of single PE are calculated as the following equations
+
 \begin{align}
     G_1&=\frac{\mu_{C_1}}{e\times 50\Omega} \\
     G &= \frac{\mu_{C_t}}{e\times 50\Omega}
 \end{align}
 in which $e$ is the charge of an electron. The main peak resolution and the total charge resolution are defined as
+
 \begin{align}
     \mathrm{Res}_1&=\frac{\sigma_{C_1}}{\mu_{C_1}}\\
     \mathrm{Res}&=\frac{\sqrt{s^2_{C_t}}}{\mu_{C_t}}
@@ -108,7 +112,8 @@ $G$ is about 2 times $G_1$ for MCP-PMT, which should be considered in waveform a
 \end{figure}
 
 \subsection{Peak-to-valley (P/V) ratio}
-A parabolic function is fitted to the valley based on the MLS method in the interval $[-0.15\mu_{C_1}, 0.25\mu_{C_1}]$ relative to the least count bin of histogram between pedestal and SPE peak as shown in Fig.~\ref{fig:charge} and Fig.~\ref{fig:triggercharge}. The local minimum $N_v$ of the charge spectrum is calculated as the minima of the parabolic function. The $N_p$ is the peak of the Gaussian function described in sec.~\ref{sec:noisegain}. The P/V ratio is equal to  
+A parabolic function is fitted to the valley based on the MLS method in the interval $[-0.15\mu_{C_1}, 0.25\mu_{C_1}]$ relative to the least count bin of histogram between pedestal and SPE peak as shown in Fig.~\ref{fig:charge} and Fig.~\ref{fig:triggercharge}. The local minimum $N_v$ of the charge spectrum is calculated as the minima of the parabolic function. The $N_p$ is the peak of the Gaussian function described in sec.~\ref{sec:noisegain}. The P/V ratio is equal to
+
 \begin{equation}
     \mathrm{P/V}=\frac{N_p}{N_v}
 \end{equation}
@@ -122,6 +127,7 @@ The P/V ratio shows the ability to discriminate between electronic noise and tru
 
 \subsection{Rise time, fall time, and full width at half maximum (FWHM)}
 As shown in Fig.~\ref{fig:baseline1}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ are the time of 10\%, 50\%, and 90\% $V_p$ in the rising edge and $t^{10}_f$, $t^{50}_f$, $t^{90}_f$ are the time of 10\%, 50\%, and 90\% $V_p$ in the falling edge which are acquired via linear interpolation method. The rise time, fall time, and FWHM are calculated as follows:
+
 \begin{align}
     t_r &= t^{90}_r - t^{10}_r\\
     t_f &= t^{10}_f - t^{90}_f\\
@@ -146,6 +152,7 @@ Due to some pulses being close to the edge of waveforms in the noise stage, the 
 
 \subsection{Dark count rate (DCR)}
 The dark noise comes from the thermionic electron emitted from the photocathode, which generates a pulse signal similar to a photon electron. To discriminate the dark noise with fluctuation of baseline, pulses reach criteria in sec.\ref{sec:noisepeak} are considered as dark noise. The DCR equals the following equation
+
 \begin{equation}
     \mathrm{DCR/kHz} = \frac{N_{\mathrm{noise}}}{N_{t}}\frac{1}{T_{\mathrm{wave}}/\mathrm{ns}}\times 10^{6}
 \end{equation}
@@ -168,6 +175,7 @@ in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total numbe
 The TTS is the spread of photo-electron transit time (TT), which represents the resolution of timing. The transit time cannot be measured directly, while the trigger time of the laser and time of pulse can be measured. A relative transit time $\mathrm{TT}_r$ is defined as the time difference between trigger time $t_{\mathrm{trig}}$ and $t_r^{10}$. The histogram of $\mathrm{TT}_r$ with \SI{0.5}{ns} bin width is binned fitted using a Gaussian function G$(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ in the interval $[-2,+2]$\,ns relative to the maximum bin using MLS method as shown in Fig.~\ref{fig:triggerTTS}.
 % Due to the time precision and voltage precison of FADC are \SI{1}{ns} and \SI{1}{ADC}, the intepolation method TT distribution contains two peak when bin width is smaller than \SI{1}{ns}. 
 TTS is defined as FWHM\cite{HAMAMATSUManual} in the following equation
+
 \begin{equation}
     \mathrm{TTS}=2\sqrt{2\ln(2)}\sigma_{\mathrm{TT}}
 \end{equation}
@@ -194,6 +202,7 @@ To get a smooth single electron response (SER), the pulses are selected by dedic
 \end{itemize}
 
 A gaussian function convoluted with an exponential function Equ~\eqref{equ:ser} is used to fit the SER which is shown in Fig.~\ref{fig:triggerser}.
+
 \begin{equation}
     \label{equ:ser}
     \mathrm{Gaus}(0,\sigma_{\mathrm{ser}}^2)\otimes\theta(t-\mu_{\mathrm{ser}})\frac{1}{\tau_{\mathrm{ser}}}e^{-\frac{t-\mu_{\mathrm{ser}}}{\tau_{\mathrm{ser}}}}
@@ -229,6 +238,7 @@ The generation of pre-pulses is due to photons hitting on the MCP or the first d
 After-pulse is categorized into several kinds. Fig.~\ref{fig:afterpulse1d} indicates 4 typical after-pulse peaks in time around \SI{300}{ns}, \SI{500}{ns}, \SI{1200}{ns} and \SI{1700}{ns}, of which ratio is about $1:\sqrt{3}:\sqrt{16}:\sqrt{32}$. Besides, the peak at about \SI{100}{ns} is influenced by the main pulse. Considering the different mass of ions, these peaks may originate from \ce{H^+}, \ce{He^{+}} or other unknown ions, \ce{O^+}, and \ce{O_2^+} or other unknown ions. Another similar work done by JUNO claimed the first peak is \ce{He_2^{+}} for the \SI{20}{inch} PMT \cite{Zhao:2022gks}. More work needs to be done for an advanced model.
 
 The time distribution and ratio of different peaks in after-pulse distribution are parameterized using 4 gaussian functions to model the four peaks as shown in Fig.~\ref{fig:afterpulse1d} and the fit equation is as follows
+
 \begin{equation}
     \label{equ:afterpulse}
     N_{\mathrm{trig}}\sum_{i=1}^{4}{A_iG(t_i,\sigma_i^2)}
@@ -262,6 +272,7 @@ in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each pea
 \end{table}
 
 The ratio of pre-pulse $R_{\mathrm{pre}}$ is calculated in time interval [-250,-50]\,ns and after-pulse $R_{\mathrm{after}}$ is calculated in time interval [200,9800]\,ns as following equations
+
 \begin{align}
     R_{\mathrm{pre}} = \frac{N_{\mathrm{pre}}}{N_t} - \mathrm{DCR}\cdot T_{\mathrm{pre}}\times10^{-6}\\
     R_{\mathrm{after}} = \frac{N_{\mathrm{after}}}{N_t} - \mathrm{DCR}\cdot T_{\mathrm{after}}\times10^{-6}
@@ -279,21 +290,25 @@ in which $T_{\mathrm{pre}}=200$\,ns, $T_{\mathrm{after}}=9600$\,ns, $N_{\mathrm{
 The DCR is omitted in the PDE calculation due to the small ratio of dark noise. To measure PDE, the intensity of light and light allocation ratio of each channel of the laser splitter need to be calibrated. For example, JUNO fixed one reference PMT to calibrate the light intensity and other reference PMTs are circulated through all channels to calibrate the light allocation ratio \cite{Wonsak_2021}. A new method is designed to reduce the number of reference PMT to 1 PMT and combine all test runs to do the calibration in this work.
 
 Note $n,j,k$ ($n=0,...,N-1, j=0,...,J-1, k=0,...,K-1$) is the indicator of the test run, channel of splitter and PMT. The intensity of light is $I_n$, light allocation ratio is $\alpha_j$ and PDE is $\eta_k$. Assume $\alpha_j$s are stable among different test runs. $N_t$ is the total number of waveforms. The photon numbers in each waveform obey Poisson distribution $\pi(p_{njk})$, in which $p_{njk}=I_n\alpha_j\eta_k$. The trigger rate of nth run, kth PMT in jth channel is
+
 \begin{equation}
     \label{equ:pderate}
     R_{njk}=1-e^{-p_{njk}}
 \end{equation}
 For convenience, 0th PMT is the only one reference PMT. Note $\alpha_j^0=\frac{\alpha_j}{\alpha_0}$, $\eta_k^0=\frac{\eta_k}{\eta_0}$, $I_n^0=I_n\alpha_0\eta_0$, $i\equiv njk$. $p_{njk}$ can be transfer to Equ~\eqref{equ:pdelograte}
+
 \begin{equation}
     \label{equ:pdelograte}
     \mathrm{log}(p_{i})=\mathrm{log}(I_0\alpha_0\eta_0)+\mathrm{log}(I_n^0)+\mathrm{log}(\alpha_j^0)+\mathrm{log}(\eta_k^0)
 \end{equation}
 The relationship between $R_{i}$ and parameters is
+
 \begin{equation}
     \label{equ:linkfunction}
     R_{i}=1-e^{-e^{\mathrm{log}(I_0\alpha_0\eta_0)+\mathrm{log}(I_n^0)+\mathrm{log}(\alpha_j^0)+\mathrm{log}(\eta_k^0)}}
 \end{equation}
 The trigger number $N_{\mathrm{trig}}$ of kth PMT in nth run with jth splitter obey Binomial distribution $B(R_{i},N_{t_{i}})$, in which $N_{t_{i}}$ is total number of waveforms. To fit the parameters, a likelihood is constructed as follows
+
 \begin{equation}
     \label{equ:likelihood}
     \mathcal{L}=\prod_{i}{R_{i}^{N_{\mathrm{trig}_{i}}}(1-R_{i})^{N_{t_{i}}-N_{\mathrm{trig}_{i}}}}
