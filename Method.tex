@@ -12,18 +12,16 @@ To yield single photoelectron (SPE) events, the laser intensity was adjusted to 
     \label{fig:triggertime}
 \end{figure}
 
-The preanalysis window is set as $t_{\mathrm{trig}}$ to $T_{\mathrm{wave}}=$\SI{600}{ns}. For \SI{20}{kHz} dark noise rate, the number of dark noise pulses in each waveform obeys Poisson distribution $\mathrm{\pi}(\nu=0.008)$ and laser pulse events dominate the dataset. The peak time $t_p$ is the position of minimum in each waveform as shown in Fig.~\ref{fig:triggertime}. Because the maximum pulse is selected in each waveform, the expected charge distribution is the distribution of $\max_n^N(C_n)$, in which $C_n$ is the charge of nth PE and $N$ is the number of pulses in a waveform. The charge bias caused by multi-pulse is omitted because of the small ratio of multi-pulse cases.
+The preanalysis window is set as $t_{\mathrm{trig}}$ to $T_{\mathrm{wave}}=$\SI{600}{ns}. For \SI{20}{kHz} dark noise rate, the number of dark noise pulses in each waveform obeys Poisson distribution with expectation being about 0.008 while the number of laser pulse events is about 0.05, which dominate the dataset. The peak time $t_p$ is the position of minimum in each waveform as shown in Fig.~\ref{fig:triggertime}. Because the maximum pulse is selected in each waveform, the expected charge distribution is the distribution of $\max_n^N(C_n)$, in which $C_n$ is the charge of nth PE and $N$ is the number of pulses in a waveform. The charge bias caused by multi-pulse is omitted because of the small ratio of multi-pulse cases.
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\LF\textwidth,page=1]{figures/method/noisebaseline697_219908_2.pdf}
-    \caption{A very large waveform in the noise stage. The vertical green line indicates the peak position of the pulse candidate. The horizontal blue dash line and horizontal violet dash line are the baseline and amplitude threshold. The rise time and fall time are the width of the pink and green rectangle, of which start and end time are linearly interpolated as 10\% and 90\% of rising and falling edges.}
+    \caption{A very large waveform example. The vertical green line indicates the peak position of the pulse candidate. The horizontal blue dash line and horizontal violet dash line are the baseline and amplitude threshold. The rise time and fall time are the width of the pink and green rectangle, of which start and end time are linearly interpolated as 10\% and 90\% of rising and falling edges.}
     \label{fig:baseline1}
 \end{figure}
 
-Due to the offset mentioned in sec.~\ref{sec:setup}, the value of the baseline is not zero. An interval of the time window $[-t_s,-10\mathrm{ns}]$($t_s\leq200\mathrm{ns}$) and $[t_p+100\mathrm{ns},t_p+200\mathrm{ns}]$ relative to pulse peak $t_p$ after potential signals removed using a baseline threshold filter as horizonal dash line shown in Fig.~\ref{fig:triggertime}. The selected areas are cut off \SI{10}{ns} at both ends to remove the rising edge and falling edge of potential pulses. The baseline $\mu_b$ and fluctuation $\sigma_b$ are estimated as average and the standard deviation of the rest waveform.
-
-The triggered pulse is mainly centered in the time interval between $[t_{\mathrm{trig}}, T_{\mathrm{wave}}]$ dependent on the length of the cable. A gaussian function G$(\mu_{t0},\sigma_{t0})$ is unbinned fitted to the distribution of $t_p-t_{\mathrm{trig}}$ of pulses whose peak is larger than \SI{5}{ADC} for each PMT. All the characterizations include $t_p$ are calculated with the new shorter interval $[\mu_{t0}-5\sigma_{t0}, \mu_{t0}+5\sigma_{t0}]$, which reduces the impact of dark noise.
+Due to the offset mentioned in sec.~\ref{sec:setup}, the value of the baseline is not zero. Potential signals are removed using a baseline threshold filter, as horizonal dash line shown in Fig.~\ref{fig:triggertime}, from an interval of the time window $[-t_s,-10\mathrm{ns}]$($t_s\leq200\mathrm{ns}$) and $[t_p+100\mathrm{ns},t_p+200\mathrm{ns}]$ relative to pulse peak $t_p$. The selected areas are cut off \SI{10}{ns} at both ends to remove the rising edge and falling edge of potential pulses. The baseline $\mu_b$ and fluctuation $\sigma_b$ are estimated as average and the standard deviation of the rest waveform. A gaussian function G$(\mu_{t0},\sigma_{t0})$ is unbinned fitted to the distribution of $t_p-t_{\mathrm{trig}}$ of pulses whose peak is larger than \SI{5}{ADC} for each PMT. To reduces the impact of dark noise, a shorter window $[\mu_{t0}-5\sigma_{t0}, \mu_{t0}+5\sigma_{t0}]$ is used to calculate all the characterizations include $t_p$.
 
 \subsection{Peak and charge spectrum}
 \label{sec:noisepeak}
@@ -64,15 +62,7 @@ Fig.~\ref{fig:totalchargeCompare} shows the 2d distribution of gain and resoluti
 \end{figure}
 
 \subsection{Peak-to-valley (P/V) ratio}
-A parabolic function is fitted to the valley based on the MLS method in the interval $[-0.15C_1, 0.25C_1]$ relative to the least count bin of histogram between pedestal and SPE peak as shown in Fig.~\ref{fig:charge} and Fig.~\ref{fig:triggercharge}. The local minimum $N_v$ of the charge spectrum is calculated as the minima of the parabolic function. The $N_p$ is the peak of the Gaussian function described in sec.~\ref{sec:noisegain}. The P/V ratio is equal to $\mathrm{P/V}=\frac{N_p}{N_v}$.
-
-The P/V ratio shows the ability to discriminate between electronic noise and true signal. The different ratios of the pedestal also lead to the P/V ratio in the laser stage being better than that in the noise stage, as shown in Fig.~\ref{fig:PVCompare}. The mean P/V ratio of MCP-PMT is about $5.79$ in the laser stage.
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=\MF\textwidth]{figures/result/PV.pdf}
-    \caption{P/V ratio in the noise stage and laser stage. The green point is the reference PMT and red points are MCP-PMTs.} 
-    \label{fig:PVCompare}
-\end{figure}
+A parabolic function is fitted to the valley based on the MLS method in the interval $[-0.15C_1, 0.25C_1]$ relative to the least count bin of histogram between pedestal and SPE peak as shown in Fig.~\ref{fig:charge} and Fig.~\ref{fig:triggercharge}. The local minimum $N_v$ of the charge spectrum is calculated as the minima of the parabolic function. The $N_p$ is the peak of the Gaussian function described in sec.~\ref{sec:noisegain}. The P/V ratio is equal to $\mathrm{P/V}=\frac{N_p}{N_v}$, which shows the ability to discriminate between electronic noise and true signal. The mean P/V ratio of MCP-PMT is about $5.79$ in the laser stage.
 
 \subsection{Rise time, fall time, and full width at half maximum (FWHM)}
 As shown in Fig.~\ref{fig:triggertime}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ are the time of 10\%, 50\%, and 90\% $V_p$ in the rising edge and $t^{10}_f$, $t^{50}_f$, $t^{90}_f$ are the time of 10\%, 50\%, and 90\% $V_p$ in the falling edge which are acquired via linear interpolation method. The rise time, fall time, and FWHM are calculated as follows: $t_r = t^{90}_r - t^{10}_r$, $t_f = t^{10}_f - t^{90}_f$, $\mathrm{FWHM} = t^{50}_f - t^{50}_r$.
@@ -83,21 +73,23 @@ As shown in Fig.~\ref{fig:triggertime}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ are t
 %     \caption{An example of time characteristics in the laser stage.}
 %     \label{fig:triggerFWHM}
 % \end{figure}
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=\MF\textwidth]{figures/result/FWHM.pdf}
-    \caption{Rise time, Fall time, and FWHM in the noise stage and laser stage. Green points, red points, and black points are results of rise time, fall time, and FWHM.}
-    \label{fig:RiseCompare}
-\end{figure}
 
- The rise time, fall time, and FWHM are consistent between the noise stage and laser stage as shown in Fig.~\ref{fig:RiseCompare}. Estimated rise time, fall time, and FWHM are $3.71\pm0.15$\,ns, $15.6\pm1.8$\,ns, and $9.07\pm0.63$\,ns for 9 MCP-PMT in the laser stage.
+ Estimated rise time, fall time, and FWHM are $3.71\pm0.15$\,ns, $15.6\pm1.8$\,ns, and $9.07\pm0.63$\,ns for 9 MCP-PMT in the laser stage.
 
 \subsection{Transit time spread (TTS)}
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=\MF\textwidth]{figures/method/triggerTTS.pdf}
-    \caption{TT distribution and fit result of an example MCP-PMT in the laser stage.}
-    \label{fig:triggerTTS}
+    \begin{subfigure}[b]{\SF\textwidth}
+        \includegraphics[width=\textwidth]{figures/method/MCPelectron.pdf}
+        \caption{}%PM
+        \label{fig:mcpelectron}
+    \end{subfigure}
+    \begin{subfigure}[b]{\SF\textwidth}
+        \includegraphics[width=\textwidth]{figures/method/triggerTTS.pdf}
+        \caption{}%PM
+        \label{fig:triggerTTS}
+    \end{subfigure}
+    \caption{(a) Schema of MCP-PMT. (b) TT distribution and fit result of an example MCP-PMT in the laser stage.}
 \end{figure}
 
 The TTS is the spread of photo-electron transit time (TT), which represents the resolution of timing. The transit time cannot be measured directly, while the trigger time of the laser and time of pulse can be measured. A relative transit time $\mathrm{TT}_r$ is defined as the time difference between trigger time $t_{\mathrm{trig}}$ and $t_r^{10}$. The histogram of $\mathrm{TT}_r$ with \SI{0.5}{ns} bin width is binned fitted using a Gaussian function G$(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ in the interval $[-2,+2]$\,ns relative to the maximum bin using MLS method as shown in Fig.~\ref{fig:triggerTTS}.
