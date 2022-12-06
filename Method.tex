@@ -62,7 +62,7 @@ Fig.~\ref{fig:totalchargeCompare} shows the 2d distribution of gain and resoluti
 \end{figure}
 
 \subsection{Peak-to-valley (P/V) ratio}
-A parabolic function is fitted to the valley based on the MLS method in the interval $[-0.15C_1, 0.25C_1]$ relative to the least count bin of histogram between pedestal and SPE peak as shown in Fig.~\ref{fig:charge} and Fig.~\ref{fig:triggercharge}. The local minimum $N_v$ of the charge spectrum is calculated as the minima of the parabolic function. The $N_p$ is the peak of the Gaussian function described in sec.~\ref{sec:noisegain}. The P/V ratio is equal to $\mathrm{P/V}=\frac{N_p}{N_v}$, which shows the ability to discriminate between electronic noise and true signal. The mean P/V ratio of MCP-PMT is about $5.79$ in the laser stage.
+A parabolic function is fitted to the valley based on the MLS method in the interval $[-0.15C_1, 0.25C_1]$ relative to the least count bin of histogram between pedestal and SPE peak as shown in Fig.~\ref{fig:triggercharge}. The local minimum $N_v$ of the charge spectrum is calculated as the minima of the parabolic function. The $N_p$ is the peak of the Gaussian function described in sec.~\ref{sec:noisegain}. The P/V ratio is equal to $\mathrm{P/V}=\frac{N_p}{N_v}$, which shows the ability to discriminate between electronic noise and true signal. The mean P/V ratio of MCP-PMT is about $5.79$ in the laser stage.
 
 \subsection{Rise time, fall time, and full width at half maximum (FWHM)}
 As shown in Fig.~\ref{fig:triggertime}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ are the time of 10\%, 50\%, and 90\% $V_p$ in the rising edge and $t^{10}_f$, $t^{50}_f$, $t^{90}_f$ are the time of 10\%, 50\%, and 90\% $V_p$ in the falling edge which are acquired via linear interpolation method. The rise time, fall time, and FWHM are calculated as follows: $t_r = t^{90}_r - t^{10}_r$, $t_f = t^{10}_f - t^{90}_f$, $\mathrm{FWHM} = t^{50}_f - t^{50}_r$.
@@ -77,34 +77,61 @@ As shown in Fig.~\ref{fig:triggertime}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ are t
  Estimated rise time, fall time, and FWHM are $3.71\pm0.15$\,ns, $15.6\pm1.8$\,ns, and $9.07\pm0.63$\,ns for 9 MCP-PMT in the laser stage.
 
 \subsection{Transit time spread (TTS)}
+The photoelectrons generated from cathode drift to the MCP in the electric field as shown in Fig.~\ref{fig:mcpelectron}. The drift time is determined by the initial kinetic of photoelectros and the electric field. A simple model consisting of a cathode, a focus dynode, and a MCP with \SI{0}{V}, \SI{480}{V}, and \SI{528}{V} is constructed to simulate the electric field and the electron trajectory. The drift times of the electrons at the top of PMT with \SI{0}{eV} and \SI{3}{eV} are about \SI{21}{ns} and \SI{18}{ns}. The electrons hitting in the channels of MCP are multiplied and generate observable signals, while the electrons hitting on the surface of MCP generate the secondary electrons (incluing elastic scattering electron), which drift in the electric field until rehitting on the MCP \cite{KM3NetTesting}. The transit time (TT) of a PE is composed of drift time and multiplication time.
+
 \begin{figure}[!htbp]
     \centering
-    \begin{subfigure}[b]{\SF\textwidth}
+    \begin{subfigure}[t]{\SF\textwidth}
         \includegraphics[width=\textwidth]{figures/method/MCPelectron.pdf}
         \caption{}%PM
         \label{fig:mcpelectron}
     \end{subfigure}
-    \begin{subfigure}[b]{\SF\textwidth}
+    \begin{subfigure}[t]{\SF\textwidth}
         \includegraphics[width=\textwidth]{figures/method/triggerTTS.pdf}
+        \caption{}%PM
+        \label{fig:triggerTTSLog}
+    \end{subfigure}
+    \caption{(a) The drift of electrons between cathode and MCP. (b) The distribution of TT with y-axis in logarithm sacle.}
+\end{figure}
+
+The TTS is the spread of TT, which represents the resolution of timing. The transit time cannot be measured directly, while the trigger time of the laser and time of pulse can be measured. A relative transit time $\mathrm{TT}_r$ is defined as the time difference between trigger time $t_{\mathrm{trig}}$ and $t_r^{10}$. The distribution of $\mathrm{TT}_r$ contain two slow falling edge in both side of the peak as shown in Fig.~\ref{fig:triggerTTSLog}. The tail before peak of TT distribution is due to large kinetic of photoelectron, which leads to larger charge response as shown in Fig.~\ref{fig:triggerTTS2d}. The tail in the other side is consisted of secondary electrons with a longer drift time, which may contain two pulses due to different drift time of secondary electrons as shown in Fig.~\ref{fig:triggerTT2pulse}. To describe the delayed pulse after main peak, the interval $[20\mathrm{ns},80\mathrm{ns}]$ related to $t_p$ is used to find pulses and the distribution in Fig.~\ref{fig:triggerTTlatepulse} illustrates the elastic scattering electrons gather at about \SI{40}{ns} after main pulse.
+
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[t]{\SF\textwidth}
+        \includegraphics[width=\textwidth]{figures/method/MCPelectron.pdf}
+        \caption{}%PM
+        \label{fig:triggerTT2pulse}
+    \end{subfigure}
+    \begin{subfigure}[t]{\SF\textwidth}
+        \includegraphics[width=\textwidth]{figures/method/triggerTTS.pdf}
+        \caption{}%PM
+        \label{fig:triggerTTlatepulse}
+    \end{subfigure}
+    \caption{(a) Double pulses example. (b) The delayed pulse distribution.}
+\end{figure}
+
+Main pulse and tail before main pulse are modeled with Gaussian function $N_tG(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ and $N_LG(\mu_L,\sigma_L^2)$.Considering the distribution of kinetic energy of secondary electrons \cite{Furman,SecondElectron} and observered data, a phenomenological unphysical function $b_S+N_Se^{-\frac{t}{\tau_S}}$ is used to model the delayed pulse. Besides, to avoid the influence of unphysical function on $G(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$, the function is translated to $\mu_{\mathrm{TT}}+2\sigma_{\mathrm{TT}}$.  As shown in Fig.~\ref{fig:triggerTTSLog} and Fig.~\ref{fig:triggerTTS}, the histogram of $\mathrm{TT}_r$ with \SI{0.5}{ns} bin width is binned fitted using following equation
+\begin{equation}
+    N_tG(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)+N_LG(\mu_L,\sigma_L^2)+H(\mu_{\mathrm{TT}}+2\sigma_{\mathrm{TT}})\left(b_S+N_Se^{-\frac{t-(\mu_{\mathrm{TT}}+2\sigma_{\mathrm{TT}})}{\tau_S}}\right)
+\end{equation}
+in which $H$ is heaviside function to limit the unphysical exponential function.TTS is defined as FWHM $2\sqrt{2\ln(2)}\sigma_{\mathrm{TT}}$ \cite{HAMAMATSUManual}. 
+
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[t]{\SF\textwidth}
+        \includegraphics[width=\textwidth]{figures/method/MCPelectron.pdf}
         \caption{}%PM
         \label{fig:triggerTTS}
     \end{subfigure}
-    \caption{(a) Schema of MCP-PMT. (b) TT distribution and fit result of an example MCP-PMT in the laser stage.}
+    \begin{subfigure}[t]{\SF\textwidth}
+        \includegraphics[width=\textwidth]{figures/method/triggerTTS.pdf}
+        \caption{}%PM
+        \label{fig:triggerTTS2d}
+    \end{subfigure}
+    \caption{(a) The distribution of TT with y-axis in linear sacle. (b) The 2d distribution of TT and equivalent charge.}
 \end{figure}
 
-The TTS is the spread of photo-electron transit time (TT), which represents the resolution of timing. The transit time cannot be measured directly, while the trigger time of the laser and time of pulse can be measured. A relative transit time $\mathrm{TT}_r$ is defined as the time difference between trigger time $t_{\mathrm{trig}}$ and $t_r^{10}$. The histogram of $\mathrm{TT}_r$ with \SI{0.5}{ns} bin width is binned fitted using a Gaussian function G$(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ in the interval $[-2,+2]$\,ns relative to the maximum bin using MLS method as shown in Fig.~\ref{fig:triggerTTS}.
-% Due to the time precision and voltage precison of FADC are \SI{1}{ns} and \SI{1}{ADC}, the intepolation method TT distribution contains two peak when bin width is smaller than \SI{1}{ns}. 
-TTS is defined as FWHM\cite{HAMAMATSUManual} $2\sqrt{2\ln(2)}\sigma_{\mathrm{TT}}$.
-
-% The TTS of different MCP-PMTs are show in Fig.~\ref{fig:TTSCompare}. The mean TTS is \SI{1.78}{ns}.
-% The mean and standard deviation of measured TTS of 9 PMTs is $\pm$\,ns.
-% \begin{figure}[!htbp]
-%     \centering
-%     \includegraphics[width=0.4\textwidth,page=9]{figures/result/compare.pdf}
-%     \caption{TTS versus }
-%     \label{fig:TTSCompare}
-% \end{figure}
-There exist a pedestal around the peak of TTS distribution. The root mean square of TT distribution between
 \subsection{Single electron response (SER)}
 \begin{figure}
     \centering
@@ -153,7 +180,7 @@ The generation of pre-pulses is due to photons hitting on the MCP or the first d
 \end{figure}
 % waveform analysis
 
-After-pulse is categorized into several kinds. Fig.~\ref{fig:afterpulse1d} indicates 4 typical after-pulse peaks in time around \SI{300}{ns}, \SI{500}{ns}, \SI{1200}{ns} and \SI{1700}{ns}, of which ratio is about $1:\sqrt{3}:\sqrt{16}:\sqrt{32}$. Besides, the peak at about \SI{100}{ns} is influenced by the main pulse. Considering the different mass of ions, these peaks may originate from \ce{H^+}, \ce{He^{+}} or other unknown ions, \ce{O^+}, and \ce{O_2^+} or other unknown ions. Another similar work done by JUNO claimed the first peak is \ce{H_2^{+}} for the \SI{20}{inch} PMT \cite{Zhao:2022gks}. More work needs to be done for an advanced model.
+After-pulse is categorized into several kinds. Fig.~\ref{fig:afterpulse1d} indicates 4 typical after-pulse peaks in time around \SI{300}{ns}, \SI{500}{ns}, \SI{1200}{ns} and \SI{1700}{ns}, of which ratio is about $1:\sqrt{3}:\sqrt{16}:\sqrt{32}$. Besides, the peak at about \SI{100}{ns} is influenced by the main pulse. Considering the different mass of ions, these peaks may originate from \ce{H^+}, \ce{He^{+}} or other unknown ions, \ce{O^+}, and \ce{O_2^+} or other unknown ions. Other similar works done by JUNO and KM3Net claimed the first peak is \ce{H_2^{+}} for the \SI{20}{inch} PMT \cite{Zhao:2022gks,KM3NetTesting}. Double Chooz proposed some assumptions including $H$ \cite{Haser_2013}. More work needs to be done for an advanced model.
 
 The time distribution and ratio of different peaks in after-pulse distribution are parameterized using 4 gaussian functions to model the four peaks as shown in Fig.~\ref{fig:afterpulse1d} and the fit equation is as follows
 
@@ -189,7 +216,7 @@ in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each pea
     \end{tabular}
 \end{table}
 
-The ratio of pre-pulse $R_{\mathrm{pre}}$ is calculated in time interval [-250,-50]\,ns and after-pulse $R_{\mathrm{after}}$ is calculated in time interval [200,9800]\,ns as following equations
+The ratio of pre-pulse $R_{\mathrm{pre}}$ is calculated in time interval [-200,-5]\,ns and after-pulse $R_{\mathrm{after}}$ is calculated in time interval [200,9800]\,ns as following equations
 
 \begin{align}
     R_{\mathrm{pre}} = \frac{N_{\mathrm{pre}}}{N_t} - \mathrm{DCR}\cdot T_{\mathrm{pre}}\times10^{-6}\\
@@ -204,7 +231,7 @@ in which $T_{\mathrm{pre}}=200$\,ns, $T_{\mathrm{after}}=9600$\,ns, $N_{\mathrm{
     \label{fig:prepulseCompare}
 \end{figure}
 \subsection{Dark count rate (DCR)}
-The dark noise comes from the thermionic electron emitted from the photocathode, which generates a pulse signal similar to a photon electron. To discriminate the dark noise with fluctuation of baseline, pulses reach criteria in sec.\ref{sec:noisepeak} are considered as dark noise. The DCR equals the following equation
+The dark mainly noise comes from the spontaneous thermionic electron emitted from the photocathode \cite{KM3NetTesting}, which generates a pulse signal similar to a photoelectron. To discriminate the dark noise with fluctuation of baseline, pulses reach criteria in sec.\ref{sec:noisepeak} are considered as dark noise. The DCR equals the following equation
 
 \begin{equation}
     \mathrm{DCR/kHz} = \frac{N_{\mathrm{noise}}}{N_{t}}\frac{1}{T_{\mathrm{wave}}/\mathrm{ns}}\times 10^{6}
