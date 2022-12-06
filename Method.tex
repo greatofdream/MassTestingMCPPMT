@@ -115,7 +115,7 @@ Main pulse and tail before main pulse are modeled with Gaussian function $N_tG(\
 \begin{equation}
     N_tG(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)+N_LG(\mu_L,\sigma_L^2)+H(\mu_{\mathrm{TT}}+2\sigma_{\mathrm{TT}})\left(b_S+N_Se^{-\frac{t-(\mu_{\mathrm{TT}}+2\sigma_{\mathrm{TT}})}{\tau_S}}\right)
 \end{equation}
-in which $H$ is heaviside function to limit the unphysical exponential function.TTS is defined as FWHM $2\sqrt{2\ln(2)}\sigma_{\mathrm{TT}}$ \cite{HAMAMATSUManual}. 
+in which $H$ is heaviside function to limit the unphysical exponential function. TTS is defined as FWHM $2\sqrt{2\ln(2)}\sigma_{\mathrm{TT}}$ \cite{HAMAMATSUManual}. 
 
 \begin{figure}[!htbp]
     \centering
@@ -186,7 +186,7 @@ The time distribution and ratio of different peaks in after-pulse distribution a
 
 \begin{equation}
     \label{equ:afterpulse}
-    N_{\mathrm{trig}}\sum_{i=1}^{4}{A_iG(t_i,\sigma_i^2)}
+    N_{\mathrm{trig}}\sum_{i=1}^{4}{A_iG(t_i,\sigma_i^2)}+N_{\mathrm{DCR}}
 \end{equation}
 in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each peak of after-pulse. The fit results are shown in Fig.~\ref{fig:afterpulsePeak} and the ratios of 4 peaks vary greatly for different MCP-PMTs. Besides, there exist some areas that cannot be well modeled with Equ.\eqref{equ:afterpulse}, for example, the pedestal between the first and second peaks of after-pulse distribution. The mean and standard deviation of fit results are summarized in Table.~\ref{tab:afterpulse}. Due to the influence of after-pulses around the second peak, the standard deviation of $\sigma_2$ is very large.
 \begin{figure}[!htbp]
@@ -195,12 +195,14 @@ in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each pea
     \caption{Time and relative ratio of peaks of after-pulse ratios of 9 MCP-PMTs. 4 peak ratios are plotted along the time for each PMT.}
     \label{fig:afterpulsePeak}
 \end{figure}
-% \begin{figure}[!htbp]
-%     \centering
-%     \includegraphics[width=0.5\textwidth]{figures/method/triggerAfterpulse2d.pdf}
-%     \caption{time and charge distribution of after pulse}
-%     \label{fig:afterpulse2d}
-% \end{figure}
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/method/triggerAfterpulse2d.pdf}
+    \caption{time and charge distribution of after pulse}
+    \label{fig:afterpulse2d}
+\end{figure}
+
 % Fig.\ref{fig:afterpulse2d} indicates that the after pulse contains some very large signal in the specific peaks, which is different from the distribution of single PE.
 \begin{table}
     \centering
@@ -216,13 +218,13 @@ in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each pea
     \end{tabular}
 \end{table}
 
-The ratio of pre-pulse $R_{\mathrm{pre}}$ is calculated in time interval [-200,-5]\,ns and after-pulse $R_{\mathrm{after}}$ is calculated in time interval [200,9800]\,ns as following equations
+The ratio of pre-pulse $R_{\mathrm{pre}}$ is calculated in time interval [-150,-5]\,ns and after-pulse $R_{\mathrm{after}}$ is calculated in time interval [200,9800]\,ns as following equations
 
 \begin{align}
     R_{\mathrm{pre}} = \frac{N_{\mathrm{pre}}}{N_t} - \mathrm{DCR}\cdot T_{\mathrm{pre}}\times10^{-6}\\
     R_{\mathrm{after}} = \frac{N_{\mathrm{after}}}{N_t} - \mathrm{DCR}\cdot T_{\mathrm{after}}\times10^{-6}
 \end{align}
-in which $T_{\mathrm{pre}}=200$\,ns, $T_{\mathrm{after}}=9600$\,ns, $N_{\mathrm{pre}}$ and $N_{\mathrm{after}}$ are the number of pre-pulses and after-pulses. Due to the ratio of pre-pulse is too small, some measured values are smaller than zero after deducting DCR as shown in Fig.~\ref{fig:prepulseCompare}.
+in which $T_{\mathrm{pre}}=145$\,ns, $T_{\mathrm{after}}=9600$\,ns, $N_{\mathrm{pre}}$ and $N_{\mathrm{after}}$ are the number of pre-pulses and after-pulses, DCR is calculated as sec.~\ref{sec:dcr}. Due to the ratio of pre-pulse is too small, some measured values are smaller than zero after deducting DCR as shown in Fig.~\ref{fig:prepulseCompare}.
 
 \begin{figure}[!htbp]
     \centering
@@ -230,13 +232,15 @@ in which $T_{\mathrm{pre}}=200$\,ns, $T_{\mathrm{after}}=9600$\,ns, $N_{\mathrm{
     \caption{pre-pulse ratio versus after-pulse ratio.}
     \label{fig:prepulseCompare}
 \end{figure}
+
 \subsection{Dark count rate (DCR)}
+\label{sec:dcr}
 The dark mainly noise comes from the spontaneous thermionic electron emitted from the photocathode \cite{KM3NetTesting}, which generates a pulse signal similar to a photoelectron. To discriminate the dark noise with fluctuation of baseline, pulses reach criteria in sec.\ref{sec:noisepeak} are considered as dark noise. The DCR equals the following equation
 
 \begin{equation}
-    \mathrm{DCR/kHz} = \frac{N_{\mathrm{noise}}}{N_{t}}\frac{1}{T_{\mathrm{wave}}/\mathrm{ns}}\times 10^{6}
+    \mathrm{DCR/kHz} = \frac{N_{\mathrm{noise}}}{N_{t}}\frac{1}{T_{\mathrm{DCR}}/\mathrm{ns}}\times 10^{6}
 \end{equation}
-in which $N_{\mathrm{noise}}$ is the noise number and $N_{t}$ is the total number of waveforms. The DCRs of MCP-PMTs are illustrated in Fig.~\ref{fig:DCRCompare}.
+in which $N_{\mathrm{noise}}$ is the noise number, $N_{t}$ is the total number of waveforms in the interval of $[-200,-150]$\ ns relative to main pulse, and $T_{\mathrm{DCR}}$ is \SI{50}{ns}. The DCRs of MCP-PMTs are illustrated in Fig.~\ref{fig:DCRCompare}.
 
 \begin{figure}[!htbp]
     \centering
