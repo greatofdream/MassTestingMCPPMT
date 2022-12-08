@@ -87,31 +87,31 @@ The photoelectrons generated from cathode drift to the MCP in the electric field
         \label{fig:mcpelectron}
     \end{subfigure}
     \begin{subfigure}[t]{\SF\textwidth}
-        \includegraphics[width=\textwidth]{figures/method/triggerTTS.pdf}
+        \includegraphics[width=\textwidth]{figures/method/triggerTTSLog.pdf}
         \caption{}%PM
         \label{fig:triggerTTSLog}
     \end{subfigure}
-    \caption{(a) The drift of electrons between cathode and MCP. (b) The distribution of TT with y-axis in logarithm sacle.}
+    \caption{(a) The drift schema of electrons between cathode and MCP. (b) The distribution of TT with y-axis in logarithm sacle. The black dash line are 3 main components with dark noise pedestal.}
 \end{figure}
 
-The TTS is the spread of TT, which represents the resolution of timing. The transit time cannot be measured directly, while the trigger time of the laser and time of pulse can be measured. A relative transit time $\mathrm{TT}_r$ is defined as the time difference between trigger time $t_{\mathrm{trig}}$ and $t_r^{10}$. The distribution of $\mathrm{TT}_r$ contain two slow falling edge in both side of the peak as shown in Fig.~\ref{fig:triggerTTSLog}. The tail before peak of TT distribution is due to large kinetic of photoelectron, which leads to larger charge response as shown in Fig.~\ref{fig:triggerTTS2d}. The tail in the other side is consisted of secondary electrons with a longer drift time, which may contain two pulses due to different drift time of secondary electrons as shown in Fig.~\ref{fig:triggerTT2pulse}. To describe the delayed pulse after main peak, the interval $[20\mathrm{ns},80\mathrm{ns}]$ related to $t_p$ is used to find pulses and the distribution in Fig.~\ref{fig:triggerTTlatepulse} illustrates the elastic scattering electrons gather at about \SI{40}{ns} after main pulse.
+The TTS is the spread of TT, which represents the resolution of timing. The transit time cannot be measured directly, while the trigger time of the laser and time of pulse can be measured. A relative transit time $\mathrm{TT}_r$ is defined as the time difference between trigger time $t_{\mathrm{trig}}$ and $t_r^{10}$. The distribution of $\mathrm{TT}_r$ contain two slow falling edge in both side of the peak as shown in Fig.~\ref{fig:triggerTTSLog} and Fig.~\ref{fig:triggerTTS}. The tail before peak of TT distribution is due to large kinetic of photoelectron, which leads to the shorter TT. The tail in the other side is consisted of secondary electrons with a longer drift time, which may contain two pulses due to different drift time of secondary electrons as shown in Fig.~\ref{fig:triggerTT2pulse}. To describe the delayed pulse after main peak, the interval $[20\mathrm{ns},80\mathrm{ns}]$ related to $t_p$ is used to find pulses and the distribution in Fig.~\ref{fig:triggerTTlatepulse} illustrates the elastic scattering electrons gather at about \SI{40}{ns} after main pulse, which is about twice times of drift time of electrons.
 
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[t]{\SF\textwidth}
-        \includegraphics[width=\textwidth]{figures/method/MCPelectron.pdf}
+        \includegraphics[width=\textwidth]{figures/method/triggerDoublePulse.pdf}
         \caption{}%PM
         \label{fig:triggerTT2pulse}
     \end{subfigure}
     \begin{subfigure}[t]{\SF\textwidth}
-        \includegraphics[width=\textwidth]{figures/method/triggerTTS.pdf}
+        \includegraphics[width=\textwidth]{figures/method/triggerDelayedPulse.pdf}
         \caption{}%PM
         \label{fig:triggerTTlatepulse}
     \end{subfigure}
     \caption{(a) Double pulses example. (b) The delayed pulse distribution.}
 \end{figure}
 
-Main pulse and tail before main pulse are modeled with Gaussian function $N_tG(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ and $N_LG(\mu_L,\sigma_L^2)$.Considering the distribution of kinetic energy of secondary electrons \cite{Furman,SecondElectron} and observered data, a phenomenological unphysical function $b_S+N_Se^{-\frac{t}{\tau_S}}$ is used to model the delayed pulse. Besides, to avoid the influence of unphysical function on $G(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$, the function is translated to $\mu_{\mathrm{TT}}+2\sigma_{\mathrm{TT}}$.  As shown in Fig.~\ref{fig:triggerTTSLog} and Fig.~\ref{fig:triggerTTS}, the histogram of $\mathrm{TT}_r$ with \SI{0.5}{ns} bin width is binned fitted using following equation
+The main pulse and the tail before main pulse are modeled with Gaussian function $N_tG(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ and $N_LG(\mu_L,\sigma_L^2)$.Considering the distribution of kinetic energy of secondary electrons \cite{Furman,SecondElectron} and observered data, a phenomenological unphysical function $b_S+N_Se^{-\frac{t}{\tau_S}}$ is used to model the delayed pulse. Besides, to avoid the influence of unphysical function on $G(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$, the function is translated to $\mu_{\mathrm{TT}}+2\sigma_{\mathrm{TT}}$.  As shown in Fig.~\ref{fig:triggerTTSLog} and Fig.~\ref{fig:triggerTTS}, the histogram of $\mathrm{TT}_r$ with \SI{0.5}{ns} bin width is binned fitted using following equation
 \begin{equation}
     N_tG(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)+N_LG(\mu_L,\sigma_L^2)+H(\mu_{\mathrm{TT}}+2\sigma_{\mathrm{TT}})\left(b_S+N_Se^{-\frac{t-(\mu_{\mathrm{TT}}+2\sigma_{\mathrm{TT}})}{\tau_S}}\right)
 \end{equation}
@@ -120,12 +120,12 @@ in which $H$ is heaviside function to limit the unphysical exponential function.
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[t]{\SF\textwidth}
-        \includegraphics[width=\textwidth]{figures/method/MCPelectron.pdf}
+        \includegraphics[width=\textwidth]{figures/method/triggerTTS.pdf}
         \caption{}%PM
         \label{fig:triggerTTS}
     \end{subfigure}
     \begin{subfigure}[t]{\SF\textwidth}
-        \includegraphics[width=\textwidth]{figures/method/triggerTTS.pdf}
+        \includegraphics[width=\textwidth]{figures/method/triggerTTS2d.pdf}
         \caption{}%PM
         \label{fig:triggerTTS2d}
     \end{subfigure}
@@ -198,7 +198,7 @@ in which $A_i$, $t_i$, and $\sigma_i$ are the ratio, time, and width of each pea
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/method/triggerAfterpulse2d.pdf}
+    \includegraphics[width=\LF\textwidth]{figures/method/triggerAfterpulse2d.pdf}
     \caption{time and charge distribution of after pulse}
     \label{fig:afterpulse2d}
 \end{figure}
