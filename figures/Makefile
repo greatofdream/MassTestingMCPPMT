@@ -26,10 +26,16 @@ method/triggerpeak.pdf: $(filedir)/ExResult/786/600ns/chargeSelect.h5.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=32 $^
 method/triggerFWHM.pdf: $(filedir)/ExResult/786/600ns/chargeSelect.h5.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=35 $^
-method/triggerTTS.pdf: $(filedir)/ExResult/786/600ns/chargeSelect.h5.pdf
-	inkscape --without-gui --export-filename $@ --pdf-page=36 $^
-method/triggerTTS2d.pdf: $(filedir)/ExResult/786/600ns/chargeSelect.h5.pdf
-	inkscape --without-gui --export-filename $@ --pdf-page=40 $^
+method/triggerTTS.pdf: $(filedir)/ExResult/800/600ns/chargeSelect.h5.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=8 $^
+method/triggerTTSLog.pdf: $(filedir)/ExResult/800/600ns/chargeSelect.h5.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=9 $^
+method/triggerTTS2d.pdf: $(filedir)/ExResult/800/600ns/chargeSelect.h5.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=15 $^
+method/triggerDelayedPulse.pdf: $(filedir)/ExResult/800/600ns/laserElastic.h5.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=1 $^
+method/triggerDoublePulse.pdf: $(filedir)/ExResult/800/600ns/TestDelayedPulse.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=1 $^
 method/triggerSER.pdf: $(filedir)/docscript/ser720_ch2_eid.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=1 $^
 method/triggerSER2d.pdf: $(filedir)/ExResult/786/600ns/serMerge.h5.pdf
