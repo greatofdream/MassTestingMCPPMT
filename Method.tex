@@ -8,7 +8,7 @@ To yield single PE events, the laser intensity was adjusted to a level about one
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\LF\textwidth]{figures/method/triggerwave.pdf}
-    \caption{A waveform and the trigger signal in the experiment. The orange line is the trigger waveform. Two black horizontal dash lines are the upper and lower values of the step wave. The green cross point is the interpolation position for trigger time. The blue solid line shows the PMT waveform with a signal and the blue horizontal dash line is the baseline. Red and yellow vertical dash lines are the time of 10\% of the rising edge and the pulse peak.}
+    \caption{A waveform and the trigger signal in the experiment. The orange line is the trigger waveform. Two black horizontal dash lines are the upper and lower values of the step wave. The green cross point is the interpolation position for trigger time. The blue solid line shows the PMT waveform with a signal and the blue horizontal dash line is the baseline. Red and yellow vertical dash lines respectively are at the time of 10\% of the rising edge and at the pulse peak.}
     \label{fig:triggertime}
 \end{figure}
 
@@ -17,7 +17,7 @@ To accelerate calculation, the maximum pulse is searched in a preanalysis window
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\LF\textwidth,page=1]{figures/method/noisebaseline697_219908_2.pdf}
-    \caption{A very large waveform example. The vertical green line indicates the peak position of the pulse candidate. The horizontal blue dash line and horizontal violet dash line are the baseline and amplitude threshold. The rise time and fall time are the width of the pink and green rectangle, of which start and end time are linearly interpolated as 10\% and 90\% of rising and falling edges.}
+    \caption{A very large waveform example. The vertical green ash line indicates the peak position of the pulse candidate. The horizontal blue dash line and horizontal violet dash line are the baseline and amplitude threshold. The rise time and fall time respectively are the width of the pink and green rectangle, of which start and end time are linearly interpolated as 10\% and 90\% of rising and falling edges.}
     \label{fig:baseline1}
 \end{figure}
 
@@ -28,7 +28,7 @@ To reduces the impact of dark noise, a gaussian function G$(\mu_{t0},\sigma_{t0}
 \subsection{Peak and charge spectrum}
 \label{sec:noisepeak}
 
-Considering the rise time and fall time distribution, the equivalent charge $C_{\mathrm{equ}}$ of a pulse is calculated as summation of the amplitudes without baseline in a time window $[-15, 75]$\,ns relative to $t_p$ of the signal as illustrated in the pink region in Fig.~\ref{fig:triggertime}, with integration window $T_s=90\,\mathrm{ns}$. Due to the input impedance being \SI{50}{\Omega} \cite{CAENV1751}, the true charge $C$ of the pulse is $\frac{C_{\mathrm{equ}}}{50 \Omega}$.
+Considering the rise time and fall time distribution, the equivalent charge $C_{\mathrm{equ}}$ of a pulse is calculated as summation of the amplitudes without baseline in a time window $[-10, 75]$\,ns relative to $t_p$ of the signal as illustrated in the pink region in Fig.~\ref{fig:triggertime}, with integration window $T_s=90\,\mathrm{ns}$. Due to the input impedance being \SI{50}{\Omega} \cite{CAENV1751}, the true charge $C$ of the pulse is $\frac{C_{\mathrm{equ}}}{50 \Omega}$.
 
 Fig.~\ref{fig:triggercharge} shows the distribution of $C_{\mathrm{equ}}$ of an MCP-PMT. The pedestal is a set of waveforms with no signal, of which $C_{\mathrm{equ}}$ is the summation of fluctuation and obeys Gaussian distribution $G(0, T_s\sigma_b^2)$, in which $\sigma_b$ is the standard deviation of the white noise of baseline mentioned in sec.\ref{sec:laserstage}. The $C_{\mathrm{equ}}$ of the main peak $C_1$ in charge distribution is fitted in sec.\ref{sec:noisegain}. To remove the influence of the pedestal and describe the long tail in the charge distribution, of which $V_p$ higher than \SI{3}{ADC} and $C_{\mathrm{equ}}$ larger than 0.25$C_1$ are selected. Mean $\mu_{C}$ and sample variance $s^2_{C}$ of $C_{\mathrm{equ}}$ of selected pulses are calculated to represent the characteristics of the total charge distribution of MCP-PMTs. Due to the influence of long tail, the $\mu_{C}$ is larger than $C_1$. The long tail has been referred to in \cite{JUNOMassTesting} and parameterized in \cite{JUNOLongtail} but without dedicated consideration of the multiplication process of the photoelectron. The physical model and solution of the long tail in charge distribution will be discussed in our future work.
 
@@ -134,7 +134,7 @@ in which $H$ is the heaviside function to limit the unphysical exponential funct
     \caption{A fitting result of a pulse.}
     \label{fig:triggerser}
 \end{figure}
-To get a smooth single electron response (SER), the pulses are selected by dedicated cuts: the amplitude and charge of pulses should fulfill the criteria in sec.~\ref{sec:noisepeak}; the FWHM of candidate pulses should exceed \SI{5}{ns} to avoid noise; a charge filter $[0.5C_1, 1000\mathrm{ADC\cdot ns}]$ is used to focus on the pulse in the main peak of charge distribution and remove the influence of fluctuation.
+To get a smooth single electron response (SER), the pulses are selected by dedicated cuts: the amplitude and charge of pulses should fulfill the criteria in sec.~\ref{sec:noisepeak}; the FWHM of candidate pulses should exceed \SI{2}{ns} and less than \SI{15}{ns} to avoid the noise and very large pulses; a charge filter $[0.5C_1, 1000\mathrm{ADC\cdot ns}]$ is used to focus on the pulse in the main peak of charge distribution and remove the influence of fluctuation.
 
 A gaussian function convoluted with an exponential function Equ~\eqref{equ:ser} is used to fit the SER which is shown in Fig.~\ref{fig:triggerser}.
 
