@@ -46,7 +46,7 @@ The peak amplitude distribution with \SI{1}{ADC} bin width is illustrated in Fig
         \caption{}%PM
         \label{fig:triggerpeak}
     \end{subfigure}
-    \caption{(a) Charge distribution of an example MCP-PMT. The vetical blue dash line is the cut for charge. The orange histogram is the selected waveforms with peak cut. The pink area and green area are the fit interval for the peak and vally of charge distribution. (b) Peak distribution of an example MCP-PMT. The vertical green dash line is the cut for the peak. The orange histogram is the selected waveforms with charge cut.}
+    \caption{(a) Charge distribution of an example MCP-PMT. The vetical blue dash line is the cut for charge. The orange histogram is the selected waveforms with peak cut. The pink area and green area are respectively the fit interval for the peak and vally of charge distribution. (b) Peak distribution of an example MCP-PMT. The vertical green dash line is the cut for the peak. The orange histogram is the selected waveforms with charge cut.}
 \end{figure}
 
 \subsection{Gain and single PE resolution}
@@ -89,7 +89,7 @@ The photoelectrons generated from the cathode drift to the MCP in the electric f
 
 The transit time (TT) of a PE is mainly composed of the drift time and multiplication time. The TTS is the spread of TT, which represents the resolution of timing. The transit time cannot be measured directly, while the trigger time of the laser and the time of pulse can be measured. A relative transit time $\mathrm{TT}_r$ is defined as the time difference between trigger time $t_{\mathrm{trig}}$ and $t_r^{10}$. The $\mathrm{TT}_r$ distribution of the MCP-PMTs contain two slow-falling edges on both sides of the peak as shown in Fig.~\ref{fig:triggerTTSLog} and Fig.~\ref{fig:triggerTTS}. The tail before the peak of TT distribution is due to the large kinetic energy of the photoelectron, which leads to a shorter TT. The tail on the other side is consisted of secondary electrons with a longer drift time.
 
-To describe the delayed pulse after the main peak, main pulses are searched in the interval $[\mu_{t0}-5\,\mathrm{ns},\mu_{t0}+5\,\mathrm{ns}]$, while delayed pulses are searched in the interval $[\mu_{t0}+20\,\mathrm{ns},\mu_{t0}+80\,\mathrm{ns}]$. The blue histogram in Fig.~\ref{fig:triggerTTlatepulse} is the distribution of delayed pulses and the filled blue histogram is the distribution of delayed pulses with the existence of main pulses. The sharp difference at about \SI{40}{ns} after the main peak, twice times drift time of electrons from the cathode to the MCP, illustrates the delayed pulses lead by elastic scattering electrons cannot appear with the main pulse at the same time.
+To describe the delayed pulse after the main peak, main pulses are searched in the interval $[\mu_{t0}-5\,\mathrm{ns},\mu_{t0}+5\,\mathrm{ns}]$, while delayed pulses are searched in the interval $[\mu_{t0}+20\,\mathrm{ns},\mu_{t0}+80\,\mathrm{ns}]$. The blue histogram in Fig.~\ref{fig:triggerTTlatepulse} is the distribution of delayed pulses and the filled blue histogram is the distribution of delayed pulses with the existence of main pulses. The sharp difference between them at about \SI{40}{ns} after the main peak, twice times drift time of electrons from the cathode to the MCP, illustrates the delayed pulses lead by elastic scattering electrons cannot appear with the main pulse at the same time.
 
 \begin{figure}[!htbp]
     \centering
@@ -103,7 +103,7 @@ To describe the delayed pulse after the main peak, main pulses are searched in t
         \caption{}%PM
         \label{fig:triggerTTlatepulse}
     \end{subfigure}
-    \caption{(a) The distribution of TT with y-axis in logarithm sacle. The black dash line are 3 main components with a dark noise pedestal. (b) The green and blue histogram are the main pulses and delayed pulses distribution. The filled histogram are waveforms containing main pulses and delayed pulses at the same time.}
+    \caption{(a) The distribution of TT with y-axis in logarithm sacle. The black dash line are 3 main components with a dark noise pedestal. (b) The green and blue histogram are respectively the main pulses distribution and delayed pulses distribution. The filled histogram are waveforms containing main pulses and delayed pulses at the same time.}
 \end{figure}
 
 The main peak and the tail before the main peak are modeled with Gaussian function $N_tG(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ and $N_KG(\mu_K,\sigma_K^2)$. Considering the distribution of kinetic energy of secondary electrons \cite{Furman,SecondElectron} and observed data, a phenomenological unphysical function $b_S+N_Se^{-\frac{t}{\tau_S}}$ is used to model the delayed pulse. Besides, to avoid the influence of unphysical function on $G(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$, the function is translated to $\mu_{\mathrm{TT}}+2\sigma_{\mathrm{TT}}$.  As shown in Fig.~\ref{fig:triggerTTSLog} and Fig.~\ref{fig:triggerTTS}, the histogram of $\mathrm{TT}_r$ with \SI{0.5}{ns} bin width is binned fitted using following equation
@@ -156,7 +156,7 @@ in which $\theta(t)$ is the unit step function, $\mu_{\mathrm{ser}}$ is the time
 \begin{figure}
     \centering
     \includegraphics[width=\LF\textwidth]{figures/method/triggerAfterpulseSchema.pdf}
-    \caption{Schema for searching pre-pulses and after-pulses. Green and red vertical dash lines are the rising edge of trigger waveform and 10\% of rising edge of main pulse. The dark region and orange region are the interval for searching after-pulses and pre-pulses.}
+    \caption{Schema for searching pre-pulses and after-pulses. Green and red vertical dash lines are respectively the rising edge of trigger waveform and 10\% of rising edge of main pulse. The dark region and orange region are respectively the interval for searching after-pulses and pre-pulses.}
     \label{fig:afterpulseSchema}
 \end{figure}
 
@@ -174,7 +174,7 @@ The generation of pre-pulses is due to photons hitting on the MCP or the first d
         \caption{}
         \label{fig:afterpulse2d}
     \end{subfigure}
-    \caption{(a) Time distribution of pre-pulses and after-pulses. The orange and blue histograms are pre-pulses and after-pulses. The green line is the fit result for the distribution of after-pulses. The blank area around the \SI{0}{ns} is the main pulses which are not shown in this figure. (b) Charge vs time distribution of pre-pulses and after-pulses.}
+    \caption{(a) Time distribution of pre-pulses and after-pulses. The orange and blue histograms are respectively ditributions of pre-pulses and after-pulses. The green line is the fit result for the distribution of after-pulses. The blank area around the \SI{0}{ns} is the main pulses which are not shown in this figure. (b) Charge vs time distribution of pre-pulses and after-pulses.}
 \end{figure}
 % waveform analysis
 
