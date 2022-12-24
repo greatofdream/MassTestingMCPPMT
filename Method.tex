@@ -4,35 +4,28 @@
 \subsection{Setup and preanalysis}
 \label{sec:laserstage}
 
-To yield single PE events, the laser intensity was adjusted to a level about one out of 20 triggers lead to a signal. The window size $T_{\mathrm{wave}}$ is \SI{10400}{ns} and the rising edge of trigger waveform is at about \SI{200}{ns}, which reserves a time interval for pre-pulse analysis. The trigger from the laser system is a step wave, of which the vertical center of rising edge is linearly interpolated to get the trigger time $t_{\mathrm{trig}}$ as shown in Fig.~\ref{fig:triggertime}.
+To obtain single PE events, the laser intensity is adjusted to the level of $\frac{1}{20}$ occupancy. The window size $T_{\mathrm{wave}}$ is \SI{10400}{ns} to include all the possible after-pulses (sec.~\ref{sec:afterpulse}). The rising edge of trigger waveform from the laser system is linearly interpolated to get the half-height time $t_{\mathrm{trig}}$ at about \SI{200}{ns} as shown in Fig.~\ref{fig:triggertime}.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\LF\textwidth]{figures/method/triggerwave.pdf}
-    \caption{A waveform and the trigger signal in the experiment. The orange line is the trigger waveform. Two black horizontal dash lines are the upper and lower values of the step wave. The green cross point is the interpolation position for trigger time. The blue solid line shows the PMT waveform with a signal and the blue horizontal dash line is the baseline. Red and yellow vertical dash lines respectively are at the time of 10\% of the rising edge and at the pulse peak.}
+    \caption{An example of waveform and trigger signals. The orange line is the trigger waveform, with its high and low voltages indicated by two black horizontal dashed lines. The green cross is the interpolated trigger time. The blue solid line shows the PMT waveform with a PE pulse. The horizontal violet dotted line is the voltage threshold for calculating the baseline shown by the blue horizontal dashed line. Linearly interpolated 10\% and 90\% of (downward) rising and falling edges are represented by the green and cyan rectangles. Red and yellow vertical dash lines respectively are the 10\% rising edge and the pulse peak.}
     \label{fig:triggertime}
 \end{figure}
 
-To accelerate calculation, the maximum pulse is searched in a preanalysis window $[t_{\mathrm{trig}},T_{\mathrm{wave}}]$ ($T_{\mathrm{wave}}=600\mathrm{ns}$). For \SI{20}{kHz} dark noise rate, the number of dark noise pulses in each waveform obeys Poisson distribution with expectation being about 0.008 while the number of laser pulse events is about 0.05, which dominate the dataset. The peak time $t_p$ is the position of minimum in each waveform as shown in Fig.~\ref{fig:triggertime}. Because the maximum pulse is selected in each waveform, the expected charge distribution is the distribution of $\max(C_n)$ ($n=1,...,N$), in which $C_n$ is the charge of the nth PE and $N$ is the number of PE in a waveform. The charge bias caused by multi-PE cases is omitted because of the small ratio of multi-PE cases.
+To accelerate calculation, the maximum pulse is searched in a preanalysis window $[t_{\mathrm{trig}},600\,\mathrm{ns}]$. The number of dark noise in each waveform obeys Poisson distribution with expectation being about 0.008 for \SI{20}{kHz} DCR, while the expected number of laser pulse is about 0.05, which dominate the dataset. The peak time $t_p$ is the position of minimum in each waveform as shown in Fig.~\ref{fig:triggertime}.
+%Because the maximum pulse is selected in each waveform, the expected charge distribution is the distribution of $\max(C_n)$ ($n=1,...,N$), in which $C_n$ is the charge of the nth PE and $N$ is the number of PE in a waveform.
+Besides, the charge bias caused by the small ratio multi-PE cases is omitted.
 
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=\LF\textwidth,page=1]{figures/method/noisebaseline697_219908_2.pdf}
-    \caption{A very large waveform example. The vertical green dash line indicates the peak position of the pulse candidate. The horizontal blue dash line and horizontal violet dash line are the baseline and amplitude threshold. The rise time and fall time respectively are the width of the pink and green rectangle, of which start and end time are linearly interpolated as 10\% and 90\% of rising and falling edges.}
-    \label{fig:baseline1}
-\end{figure}
+Due to the baseline being not zero, a set of baseline intervals is selected using a voltage threshold, as horizontal violet dotted line shown in Fig.~\ref{fig:triggertime}, to remove potential pulses from the time window $[-200\,\mathrm{ns},-10\,\mathrm{ns}]$ and $[100\,\mathrm{ns},200\,\mathrm{ns}]$ relative to $t_p$. The selected areas are cut off \SI{10}{ns} at both ends to remove the rising edge and falling edge of potential pulses. The baseline $\mu_b$ and fluctuation $\sigma_b$ are estimated as average and the standard deviation of the rest waveform. The peak height $V_p$ of a pulse is the difference between $\mu_b$ and minimum of the pulse.
 
-Due to the baseline being not zero, a set of baseline intervals is selected using a threshold filter, as horizontal violet dash line shown in Fig.~\ref{fig:baseline1}, to remove potential pulses from the time window $[-t_s,-10\,\mathrm{ns}]$($t_s\leq200\,\mathrm{ns}$) and $[t_p+100\,\mathrm{ns},t_p+200\,\mathrm{ns}]$ relative to $t_p$. The selected areas are cut off \SI{10}{ns} at both ends to remove the rising edge and falling edge of potential pulses. The baseline $\mu_b$ and fluctuation $\sigma_b$ are estimated as average and the standard deviation of the rest waveform. Besides, the peak height $V_p$ of a pulse is the difference between the baseline and minimum of the pulse.
-
-To reduces the impact of dark noise, a gaussian function G$(\mu_{t0},\sigma_{t0})$ is unbinned fitted to the distribution of $t_p-t_{\mathrm{trig}}$ of pulses whose $V_p$ exceeds \SI{5}{ADC} in preanalysis and a shorter candidate window $[\mu_{t0}-5\sigma_{t0}, \mu_{t0}+5\sigma_{t0}]$ is used to calculate all the characterizations include $t_p$ and $V_p$.
+To reduce the impact of dark noise, a gaussian function G$(\mu_{t0},\sigma_{t0})$ is unbinned fitted to the distribution of $t_p-t_{\mathrm{trig}}$ of pulses whose $V_p$ exceeds \SI{5}{ADC} in preanalysis and all the characterizations include $t_p$ and $V_p$ are calculated in a shorter candidate window $[\mu_{t0}-5\sigma_{t0}, \mu_{t0}+5\sigma_{t0}]$.
 
 \subsection{Peak and charge spectrum}
 \label{sec:noisepeak}
 
 Considering the rise time and fall time distribution, the equivalent charge $C_{\mathrm{equ}}$ of a pulse is calculated as summation of the amplitudes without baseline in a time window $[-10, 75]$\,ns relative to $t_p$ of the signal as illustrated in the pink region in Fig.~\ref{fig:triggertime}, with an integration window $T_s=85\,\mathrm{ns}$. Due to the input impedance being \SI{50}{\Omega} \cite{CAENV1751}, the true charge $C$ of the pulse is $\frac{C_{\mathrm{equ}}}{50 \Omega}$.
 
-Fig.~\ref{fig:triggercharge} shows the distribution of $C_{\mathrm{equ}}$ of an MCP-PMT. The pedestal is a set of waveforms with no signal, of which $C_{\mathrm{equ}}$ is the summation of fluctuation and obeys Gaussian distribution $G(0, T_s\sigma_b^2)$, in which $\sigma_b$ is the standard deviation of the white noise of baseline mentioned in sec.\ref{sec:laserstage}. The $C_{\mathrm{equ}}$ of the main peak $C_1$ in charge distribution is fitted in sec.\ref{sec:noisegain}. To remove the influence of the pedestal and describe the long tail in the charge distribution, of which $V_p$ higher than \SI{3}{ADC} and $C_{\mathrm{equ}}$ larger than 0.25$C_1$ are selected. Mean $\mu_{C}$ and sample variance $s^2_{C}$ of $C_{\mathrm{equ}}$ of selected pulses are calculated to represent the characteristics of the total charge distribution of MCP-PMTs. Due to the influence of long tail, the $\mu_{C}$ is larger than $C_1$. The long tail has been referred to in \cite{JUNOMassTesting} and parameterized in \cite{JUNOLongtail} but without dedicated consideration of the multiplication process of the photoelectron. The physical model and solution of the long tail in charge distribution will be discussed in our future work.
-
-The peak height distribution with \SI{1}{ADC} bin width is illustrated in Fig.~\ref{fig:triggerpeak}, which shows \SI{3}{ADC} and 0.25$C_1$ threshold are complementary to exclude some noise with small peak height but large charge.
+Fig.~\ref{fig:triggercharge} shows the distribution of $C_{\mathrm{equ}}$ of an MCP-PMT. The pedestal is a set of waveforms with no signal, of which $C_{\mathrm{equ}}$ is the summation of fluctuation and obeys Gaussian distribution $G(0, T_s\sigma_b^2)$, in which $\sigma_b$ is the standard deviation of the white noise of baseline mentioned in sec.\ref{sec:laserstage}. The  main peak $C_1$ in $C_{\mathrm{equ}}$ distribution is fitted in sec.\ref{sec:noisegain}. To remove the influence of the pedestal and describe the long tail in the charge distribution, pulses of which $V_p$ higher than \SI{3}{ADC} and $C_{\mathrm{equ}}$ larger than 0.25$C_1$ are selected to calculate mean $\mu_{C}$ and sample variance $s^2_{C}$ of $C_{\mathrm{equ}}$. Due to the influence of long tail, $\mu_{C}$ is larger than $C_1$. The long tail has been referred to in \cite{JUNOMassTesting} and parameterized in \cite{JUNOLongtail} but without dedicated consideration of the multiplication process of the photoelectron. The physical model and solution of the long tail in charge distribution will be discussed in our future work. The $V_p$ distribution with \SI{1}{ADC} bin width in Fig.~\ref{fig:triggerpeak} illustrates \SI{3}{ADC} and 0.25$C_1$ threshold are complementary to exclude some noise with small $V_p$ but large $C_{\mathrm{equ}}$.
 
 \begin{figure}[!htbp]
     \centering
@@ -152,7 +145,7 @@ in which $\theta(t)$ is the unit step function, $\mu_{\mathrm{ser}}$ is the time
 
 
 \subsection{Pre-pulse and after-pulse}
-
+\label{sec:afterpulse}
 \begin{figure}
     \centering
     \includegraphics[width=\LF\textwidth]{figures/method/triggerAfterpulseSchema.pdf}
