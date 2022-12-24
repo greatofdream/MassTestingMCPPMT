@@ -8,7 +8,7 @@ To obtain single PE events, the laser intensity is adjusted to the level of $\fr
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\LF\textwidth]{figures/method/triggerwave.pdf}
-    \caption{An example of waveform and trigger signals. The orange line is the trigger waveform, with its high and low voltages indicated by two black horizontal dashed lines. The green cross is the interpolated trigger time. The blue solid line shows the PMT waveform with a PE pulse. The horizontal violet dotted line is the voltage threshold for calculating the baseline shown by the blue horizontal dashed line. Linearly interpolated 10\% and 90\% of (downward) rising and falling edges are represented by the green and cyan rectangles. Red and yellow vertical dash lines respectively are the 10\% rising edge and the pulse peak.}
+    \caption{An example of waveform and trigger signals. The orange line is the trigger waveform, with its high and low voltages indicated by two black horizontal dashed lines. The green cross is the interpolated trigger time. The blue solid line shows the PMT waveform with a PE pulse. The horizontal violet dotted line is the voltage threshold for calculating the baseline shown by the blue horizontal dashed line. Linearly interpolated 10\% and 90\% of (downward) rising and falling edges are represented by the green and cyan rectangles. Red and yellow vertical dashed lines respectively are the 10\% rising edge and the pulse peak.}
     \label{fig:triggertime}
 \end{figure}
 
@@ -25,7 +25,7 @@ To reduce the impact of dark noise, a gaussian function G$(\mu_{t0},\sigma_{t0})
 
 Considering the rise time and fall time distribution, the equivalent charge $C_{\mathrm{equ}}$ of a pulse is calculated as summation of the amplitudes without baseline in a time window $[-10, 75]$\,ns relative to $t_p$ of the signal as illustrated in the pink region in Fig.~\ref{fig:triggertime}, with an integration window $T_s=85\,\mathrm{ns}$. Due to the input impedance being \SI{50}{\Omega} \cite{CAENV1751}, the true charge $C$ of the pulse is $\frac{C_{\mathrm{equ}}}{50 \Omega}$.
 
-Fig.~\ref{fig:triggercharge} shows the distribution of $C_{\mathrm{equ}}$ of an MCP-PMT. The pedestal is a set of waveforms with no signal, of which $C_{\mathrm{equ}}$ is the summation of fluctuation and obeys Gaussian distribution $G(0, T_s\sigma_b^2)$, in which $\sigma_b$ is the standard deviation of the white noise of baseline mentioned in sec.\ref{sec:laserstage}. The  main peak $C_1$ in $C_{\mathrm{equ}}$ distribution is fitted in sec.\ref{sec:noisegain}. To remove the influence of the pedestal and describe the long tail in the charge distribution, pulses of which $V_p$ higher than \SI{3}{ADC} and $C_{\mathrm{equ}}$ larger than 0.25$C_1$ are selected to calculate mean $\mu_{C}$ and sample variance $s^2_{C}$ of $C_{\mathrm{equ}}$. Due to the influence of long tail, $\mu_{C}$ is larger than $C_1$. The long tail has been referred to in \cite{JUNOMassTesting} and parameterized in \cite{JUNOLongtail} but without dedicated consideration of the multiplication process of the photoelectron. The physical model and solution of the long tail in charge distribution will be discussed in our future work. The $V_p$ distribution with \SI{1}{ADC} bin width in Fig.~\ref{fig:triggerpeak} illustrates \SI{3}{ADC} and 0.25$C_1$ threshold are complementary to exclude some noise with small $V_p$ but large $C_{\mathrm{equ}}$.
+Fig.~\ref{fig:triggercharge} shows the $C_{\mathrm{equ}}$ distribution of single PE of an MCP-PMT. The pedestal is a set of waveforms with no signal, of which $C_{\mathrm{equ}}$ is the summation of fluctuation and obeys Gaussian distribution $G(0, T_s\sigma_b^2)$, in which $\sigma_b$ is the standard deviation of the white noise of baseline mentioned in sec.\ref{sec:laserstage}. The  main peak $C_1$ in $C_{\mathrm{equ}}$ distribution is fitted in sec.\ref{sec:noisegain}. To remove the influence of the pedestal and describe the long tail in the charge distribution, pulses of which $V_p$ higher than \SI{3}{ADC} and $C_{\mathrm{equ}}$ larger than 0.25$C_1$ are selected to calculate mean $\mu_{C}$ and sample variance $s^2_{C}$ of $C_{\mathrm{equ}}$. Due to the influence of long tail, $\mu_{C}$ is larger than $C_1$. The long tail has been referred to in \cite{JUNOMassTesting} and parameterized in \cite{JUNOLongtail} but without dedicated consideration of the multiplication process of the photoelectron. The physical model and solution of the long tail in charge distribution will be discussed in our future work. The $V_p$ distribution with \SI{1}{ADC} bin width in Fig.~\ref{fig:triggerpeak} illustrates \SI{3}{ADC} and 0.25$C_1$ threshold are complementary to exclude some noise with small $V_p$ but large $C_{\mathrm{equ}}$.
 
 \begin{figure}[!htbp]
     \centering
@@ -39,15 +39,15 @@ Fig.~\ref{fig:triggercharge} shows the distribution of $C_{\mathrm{equ}}$ of an 
         \caption{}%PM
         \label{fig:triggerpeak}
     \end{subfigure}
-    \caption{(a) Charge distribution of an example MCP-PMT. The vetical blue dash line is the cut for charge. The orange histogram is the selected waveforms with peak cut. The pink area and green area are respectively the fit interval for the peak and vally of charge distribution. (b) Peak distribution of an example MCP-PMT. The vertical green dash line is the cut for the peak. The orange histogram is the selected waveforms with charge cut.}
+    \caption{(a) Equivalent charge distribution of an MCP-PMT. The vertical blue dashed line is the cut for charge. The orange histogram is the selected waveforms with peak cut. The pink area and green area are respectively the fit interval for the peak and vally of charge distribution. (b) Peak distribution of an MCP-PMT. The vertical green dashed line is the cut for the peak. The orange histogram is the selected waveforms with charge cut.}
 \end{figure}
 
 \subsection{Gain and single PE resolution}
 \label{sec:noisegain}
 
-There exists a long tail in the charge distribution as shown in the histogram in Fig.~\ref{fig:triggercharge}. To describe the energy resolution of the main peak of the charge distribution, a gaussian function G$(C_1,\sigma^2_{C_1})$ is used to fit the binned data in an interval $[0.65C_1, 1.35C_1]$ via the modified least-square (MLS) method \cite{Cowan1998StatisticalDA} as the red line shown in Fig.~\ref{fig:triggercharge}. The gain of the main peak $G_1$ and the gain of the total charge $G$ of single PE are respectively calculated as $\frac{C_1}{e\times 50\Omega}$ and $G\frac{\mu_{C}}{e\times 50\Omega}$, in which $e$ is the charge of an electron. The main peak resolution $\mathrm{Res}_1$ and the total charge resolution $\mathrm{Res}$ are defined as $\frac{\sigma_{C_1}}{C_1}$ and $\frac{\sqrt{s^2_{C}}}{\mu_{C}}$.
+To describe the energy resolution of the main peak of the $C_{\mathrm{equ}}$ distribution, a gaussian function G$(C_1,\sigma^2_{C_1})$ is used to fit the binned data in an interval $[0.65C_1, 1.35C_1]$ via the modified least-square (MLS) method \cite{Cowan1998StatisticalDA} as the red line shown in Fig.~\ref{fig:triggercharge}. The gain of the main peak $G_1$ and the gain of the total charge $G$ are respectively calculated as $\frac{C_1}{e\times 50\Omega}$ and $G\frac{\mu_{C}}{e\times 50\Omega}$, in which $e$ is the charge of an electron. The main peak resolution $\mathrm{Res}_1$ and the total charge resolution $\mathrm{Res}$ are defined as $\frac{\sigma_{C_1}}{C_1}$ and $\frac{\sqrt{s^2_{C}}}{\mu_{C}}$.
 
-Fig.~\ref{fig:totalchargeCompare} shows the 2d distribution of the gain and resolution. $G$ is about 2 times $G_1$ for the MCP-PMTs. Although mean of $\mathrm{Res}_1$ of MCP-PMTs is about 0.25, the long tail leads that mean of $\mathrm{Res}$ is about 0.69, worse than the reference PMT.
+The 2d distribution of the gain and resolution in Fig.~\ref{fig:totalchargeCompare} shows $G$ is about 2 times $G_1$ for the MCP-PMTs. Although mean of $\mathrm{Res}_1$ of MCP-PMTs is about 0.25, the long tail leads that mean of $\mathrm{Res}$ is about 0.69, worse than the reference PMT.
 
 \begin{figure}[!htbp]
     \centering
@@ -57,7 +57,7 @@ Fig.~\ref{fig:totalchargeCompare} shows the 2d distribution of the gain and reso
 \end{figure}
 
 \subsection{Peak-to-valley (P/V) ratio}
-A parabolic function is fitted to the valley based on the MLS method in the interval $[-0.15C_1, 0.25C_1]$ relative to the least count bin of histogram between pedestal and single PE peak as shown in Fig.~\ref{fig:triggercharge}. The local minimum $N_v$ of the charge spectrum is calculated as the minima of the parabolic function. The $N_p$ is the peak of the Gaussian function described in sec.~\ref{sec:noisegain}. The P/V ratio is $\frac{N_p}{N_v}$ and shows the ability to discriminate between electronic noise and true signal. The mean P/V ratio of MCP-PMTs is about 5.8 while that of the reference PMT is about 2.4.
+A parabolic function is fitted to the valley based on the MLS method in the interval $[-0.15C_1, 0.25C_1]$ relative to the least count bin of histogram between pedestal and main peak as shown in Fig.~\ref{fig:triggercharge}. The local minimum $N_v$ of the charge spectrum is calculated as the minima of the parabolic function and $N_p$ is the peak of the Gaussian function described in sec.~\ref{sec:noisegain}. The P/V ratio $\frac{N_p}{N_v}$ shows the ability to discriminate between electronic noise and true signal. The mean P/V ratio of MCP-PMTs is about 5.8, obviously higher than that (about 2.4) of the reference PMT.
 
 \subsection{Rise time, fall time, and full width at half maximum (FWHM)}
 As shown in Fig.~\ref{fig:triggertime}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ are the time of 10\%, 50\%, and 90\% $V_p$ in the rising edge and $t^{10}_f$, $t^{50}_f$, $t^{90}_f$ are the time of 10\%, 50\%, and 90\% $V_p$ in the falling edge which are acquired via linear interpolation method. The rise time, fall time, and FWHM are calculated as follows: $t_r = t^{90}_r - t^{10}_r$, $t_f = t^{10}_f - t^{90}_f$, $\mathrm{FWHM} = t^{50}_f - t^{50}_r$. Estimated mean and deviation of rise time, fall time, and FWHM are $3.71\pm0.15$\,ns, $15.6\pm1.8$\,ns, and $9.07\pm0.63$\,ns for 9 MCP-PMTs.
@@ -96,7 +96,7 @@ To describe the delayed pulse after the main peak, main pulses are searched in t
         \caption{}%PM
         \label{fig:triggerTTlatepulse}
     \end{subfigure}
-    \caption{(a) The distribution of TT with y-axis in logarithm sacle. The black dash line are 3 main components with a dark noise pedestal. (b) The green and blue histogram are respectively the main pulses distribution and delayed pulses distribution. The filled histogram are waveforms containing main pulses and delayed pulses at the same time.}
+    \caption{(a) The distribution of TT with y-axis in logarithm sacle. The black dashed line are 3 main components with a dark noise pedestal. (b) The green and blue histogram are respectively the main pulses distribution and delayed pulses distribution. The filled histogram are waveforms containing main pulses and delayed pulses at the same time.}
 \end{figure}
 
 The main peak and the tail before the main peak are modeled with Gaussian function $N_tG(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ and $N_KG(\mu_K,\sigma_K^2)$. Considering the distribution of kinetic energy of secondary electrons \cite{Furman,SecondElectron} and observed data, a phenomenological unphysical function $b_S+N_Se^{-\frac{t}{\tau_S}}$ is used to model the delayed pulse. Besides, to avoid the influence of unphysical function on $G(\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$, the function is translated to $\mu_{\mathrm{TT}}+2\sigma_{\mathrm{TT}}$.  As shown in Fig.~\ref{fig:triggerTTSLog} and Fig.~\ref{fig:triggerTTS}, the histogram of $\mathrm{TT}_r$ with \SI{0.5}{ns} bin width is binned fitted using following equation
@@ -149,7 +149,7 @@ in which $\theta(t)$ is the unit step function, $\mu_{\mathrm{ser}}$ is the time
 \begin{figure}
     \centering
     \includegraphics[width=\LF\textwidth]{figures/method/triggerAfterpulseSchema.pdf}
-    \caption{Schema for searching pre-pulses and after-pulses. Green and red vertical dash lines are respectively the rising edge of trigger waveform and 10\% of rising edge of main pulse. The dark region and orange region are respectively the interval for searching after-pulses and pre-pulses.}
+    \caption{Schema for searching pre-pulses and after-pulses. Green and red vertical dashed lines are respectively the rising edge of trigger waveform and 10\% of rising edge of main pulse. The dark region and orange region are respectively the interval for searching after-pulses and pre-pulses.}
     \label{fig:afterpulseSchema}
 \end{figure}
 
