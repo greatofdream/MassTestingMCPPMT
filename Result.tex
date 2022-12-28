@@ -11,10 +11,10 @@ To be convenience, $N$ is estimated as $\hat{N}=\frac{C}{\mu_C}$ and $E$ is esti
     \frac{\sqrt{Var[\hat{E}]}}{E[\hat{E}]}=\frac{\sqrt{\mu_c^2\mu_N+\mu_N\sigma_c^2}}{\mu_N\mu_c}=\frac{\sqrt{1+(\frac{\sigma_c}{\mu_c})^2}}{\sqrt{\mu_N}}=\frac{\sqrt{1+(\frac{\sigma_c}{\mu_c})^2}}{\sqrt{k\eta E}}
 \end{equation}
 
-The energy resolution is dominated by the term $\eta$ and $\frac{\sigma_c}{\mu_c}$, which is estimated as the resolution of the total charge of single PE ($\mathrm{Res}$). Resolution factor $Res_{E}=\frac{\sqrt{1+(\frac{\sigma_c}{\mu_c})^2}}{\sqrt{\eta}}$ is proportional to the energy resolution and is calculated for reference PMT and MCP-PMTs as shown in Fig.~\ref{fig:EnergyResolution}. Although there exists a long tail in the charge distribution of MCP-PMT, the boost of relative PDE of MCP-PMT leads to a better energy resolution with about 0.1 boosts. The advanced waveform analysis method which models the charge distribution and counts PEs may eliminate the impact of long tail effect and gives a better energy resolution.
+The energy resolution is dominated by the term $\eta$ and $\frac{\sigma_c}{\mu_c}$, which is estimated as \emph{sample resolutions} $\nu$. Resolution factor $\nu_{E}=\frac{\sqrt{1+(\frac{\sigma_c}{\mu_c})^2}}{\sqrt{\eta}}$ is proportional to the energy resolution and is calculated for reference PMT and MCP-PMTs as shown in Fig.~\ref{fig:EnergyResolution}. Although there exists a long tail in the charge distribution of MCP-PMT, the boost of relative PDE of MCP-PMT leads to a better energy resolution with about 0.1 boosts. The advanced waveform analysis method which models the charge distribution and counts PEs may eliminate the impact of long tail effect and gives a better energy resolution.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\MF\textwidth]{figures/result/resolution.pdf}
-    \caption{Contour map of $Res_{E}$ as a function of the resolution of total charge and the relative PDE. The relative PDE of reference PMT is 1.}
+    \caption{Contour map of $\nu_{E}$ as a function of the \emph{sample resolution} $\nu$ and the relative PDE. The relative PDE of reference PMT is 1.}
     \label{fig:EnergyResolution}
 \end{figure}
