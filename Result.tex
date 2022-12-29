@@ -1,17 +1,13 @@
 \section{Energy resolution boost}
 \label{Result}
-Assume the number of expected photons $N$ on a PMT obeys Poisson distribution $\pi(\mu_N)$. Energy $E$ of an event is proportional to $N=k\eta E$, in which $k$ is a factor related to light yield and light transportation. The PDE of PMT is $\eta$ and the single PE charge distribution is described using Gaussian distribution $G(\mu_C,\sigma_C^2)$. The output charge distribution $C$ is a hierarchical model and the expectation and variance are
-\begin{align}
-    E[C]&=\mu_N\mu_C\\
-    Var[C]&=\mu_C^2\mu_N+\mu_N\sigma_C^2
-\end{align}
+Assume the number of expected photons $N$ on a PMT obeys Poisson distribution $\pi()$, in which $\mu_N$ is proportional to energy $E$ of an event ($N=k\eta E$) and $k$ is a factor related to light yield and light transportation. The PDE of PMT is $\eta$ and the single PE charge distribution is described using Gaussian distribution $G(\mu_C,\sigma_C^2)$. The output charge distribution $C$ is a hierarchical model and the expectation and variance are $E[C]=\mu_N\mu_C$ and $Var[C]=\mu_C^2\mu_N+\mu_N\sigma_C^2$.
 
 To be convenience, $N$ is estimated as $\hat{N}=\frac{C}{\mu_C}$ and $E$ is estimated as $\hat{E}=\frac{\hat{N}}{k}$. The reconstructed energy resolution is 
 \begin{equation}
     \frac{\sqrt{Var[\hat{E}]}}{E[\hat{E}]}=\frac{\sqrt{\mu_c^2\mu_N+\mu_N\sigma_c^2}}{\mu_N\mu_c}=\frac{\sqrt{1+(\frac{\sigma_c}{\mu_c})^2}}{\sqrt{\mu_N}}=\frac{\sqrt{1+(\frac{\sigma_c}{\mu_c})^2}}{\sqrt{k\eta E}}
 \end{equation}
 
-The energy resolution is dominated by the term $\eta$ and $\frac{\sigma_c}{\mu_c}$, which is estimated as \emph{sample resolutions} $\nu$. Resolution factor $\nu_{E}=\frac{\sqrt{1+(\frac{\sigma_c}{\mu_c})^2}}{\sqrt{\eta}}$ is proportional to the energy resolution and is calculated for reference PMT and MCP-PMTs as shown in Fig.~\ref{fig:EnergyResolution}. Although there exists a long tail in the charge distribution of MCP-PMT, the boost of relative PDE of MCP-PMT leads to a better energy resolution with about 0.1 boosts. The advanced waveform analysis method which models the charge distribution and counts PEs may eliminate the impact of long tail effect and gives a better energy resolution.
+The energy resolution is dominated by the term $\eta$ and $\frac{\sigma_c}{\mu_c}$, which is estimated as \emph{sample resolutions} $\nu$. Resolution factor $\nu_{E}=\frac{\sqrt{1+(\frac{\sigma_c}{\mu_c})^2}}{\sqrt{\eta}}$ is proportional to the energy resolution and expectation $\nu_{E}$ of reference PMT and MCP-PMTs are as shown in Fig.~\ref{fig:EnergyResolution}. Although there exists a long tail in the charge distribution of MCP-PMT, the boost of relative PDE of MCP-PMTs leads to a better $\nu_{E}$ with about 0.1 boosts. The advanced waveform analysis method which models the charge distribution and counts PEs may eliminate the impact of long tail effect and gives a better energy resolution.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\MF\textwidth]{figures/result/resolution.pdf}

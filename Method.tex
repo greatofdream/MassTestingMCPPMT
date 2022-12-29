@@ -68,6 +68,29 @@ A parabolic function is fitted to the valley based on MLS in the interval $[-0.1
 \subsection{Rise time, fall time, and full width at half maximum}
 As shown in Fig.~\ref{fig:triggertime}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ ($t^{10}_f$, $t^{50}_f$, $t^{90}_f$) are the times of interpolated 10\%, 50\%, and 90\% $V_p$ in the rising (falling) edge. The rise time, fall time and full width at half maximum~(FWHM) are defined as $t_r = t^{90}_r - t^{10}_r$, $t_f = t^{10}_f - t^{90}_f$ and $\mathrm{FWHM} = t^{50}_f - t^{50}_r$. Averages and standard deviations of rise time, fall time and FWHM are $3.71\pm0.15$\,ns, $15.6\pm1.8$\,ns and $9.07\pm0.63$\,ns for 9 MCP-PMTs.
 
+\subsection{Single electron response}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\SF\textwidth}
+        \includegraphics[width=\textwidth]{figures/method/triggerSER.pdf}
+        \caption{}%PM
+        \label{fig:triggerser}
+    \end{subfigure}
+    \begin{subfigure}[b]{\SF\textwidth}
+        \includegraphics[width=\textwidth]{figures/result/tausigma.pdf}
+        \caption{}%PM
+        \label{fig:sigmaCompare}
+    \end{subfigure}
+    \caption{(a) A fitting result of a pulse. (b) $\tau$ versus $\sigma$ of 9 MCP-PMTs.}
+\end{figure}
+To get a smooth single electron response (SER), $V_p>\SI{3}{ADC}$, the charge filter $[0.5Q_0, 1000\mathrm{ADC\cdot ns}]$ and the FWHM filter $[2\,\mathrm{ns}, 15\,\mathrm{ns}]$ are used to avoid the noise and very large pulses. A gaussian function convoluted with an exponential function Equ~\eqref{equ:ser} is used to fit the SER as shown in Fig.~\ref{fig:triggerser}.
+
+\begin{equation}
+    \label{equ:ser}
+    G(0,\sigma_{\mathrm{ser}}^2)\otimes H(\mu_{\mathrm{ser}})\frac{1}{\tau_{\mathrm{ser}}}e^{-\frac{t-\mu_{\mathrm{ser}}}{\tau_{\mathrm{ser}}}}
+\end{equation}
+in which $\mu_{\mathrm{ser}}$ is the time offset of the pulse, $\sigma_{\mathrm{ser}}$ and $\tau_{\mathrm{ser}}$ model the shape feature of SER. The results of $\tau_{\mathrm{ser}}$ and $\sigma_{\mathrm{ser}}$ of 9 MCP-PMTs are shown in Fig.~\ref{fig:sigmaCompare}.
+
 \subsection{Transit time spread}
 The PEs from the photocathode drift to the MCP as shown in Fig.~\ref{fig:mcpelectron}. The drifting electric field and the PE trajectory are simulated by a simplified model consisting of a cathode at \SI{0}{V}, a focusing electrode at \SI{480}{V} and an MCP at \SI{528}{V}. The drift times of the PEs from the top of the photocathode with \SI{0}{eV} and \SI{3}{eV} kinetic energies are about \SI{21}{ns} and \SI{18}{ns} respectively. A PE entering an MCP channel is multiplied to be an observable pulse, while that hitting the surface of the MCP gets scattered inelastically into several secondary electrons or elastically into one single electron~\cite{Furman}. The scattered electrons drift in the electric field until entering the MCP channels finally to give delayed pulses~\cite{KM3NetTesting}. Multiple secondary electrons with different kinetic energies may cause two or more pulses due to different drift times of secondary electrons as shown in Fig.~\ref{fig:triggerTT2pulse}.
 
@@ -127,28 +150,6 @@ in which $H$ is the heaviside function to limit definition domain of the delay c
     \caption{(a) The distribution of TT with y-axis in linear sacle. (b) The 2d distribution of TT and equivalent charge. The colorbar is in logarithm scale.}
 \end{figure}
 
-\subsection{Single electron response (SER)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\MF\textwidth]{figures/method/triggerSER.pdf}
-    \caption{A fitting result of a pulse.}
-    \label{fig:triggerser}
-\end{figure}
-To get a smooth single electron response (SER), the pulses are selected by dedicated cuts: the amplitude and charge of pulses should fulfill the criteria in sec.~\ref{sec:noisepeak}; the FWHM filter $[2\,\mathrm{ns}, 15\,\mathrm{ns}]$ and a charge filter $[0.5Q_0, 1000\mathrm{ADC\cdot ns}]$ are used to avoid the noise and very large pulses.
-
-A gaussian function convoluted with an exponential function Equ~\eqref{equ:ser} is used to fit the SER as shown in Fig.~\ref{fig:triggerser}.
-
-\begin{equation}
-    \label{equ:ser}
-    G(0,\sigma_{\mathrm{ser}}^2)\otimes H(\mu_{\mathrm{ser}})\frac{1}{\tau_{\mathrm{ser}}}e^{-\frac{t-\mu_{\mathrm{ser}}}{\tau_{\mathrm{ser}}}}
-\end{equation}
-in which $\mu_{\mathrm{ser}}$ is the time offset of pulse, $\sigma_{\mathrm{ser}}$ and $\tau_{\mathrm{ser}}$ model the shape feature of SER. The results of $\tau_{\mathrm{ser}}$ and $\sigma_{\mathrm{ser}}$ of 9 MCP-PMTs are shown in Fig.~\ref{fig:sigmaCompare}.
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=\MF\textwidth]{figures/result/tausigma.pdf}
-    \caption{$\tau$ versus $\sigma$ of 9 MCP-PMTs.}
-    \label{fig:sigmaCompare}
-\end{figure}
 
 
 \subsection{Pre-pulse and after-pulse}
@@ -160,7 +161,8 @@ in which $\mu_{\mathrm{ser}}$ is the time offset of pulse, $\sigma_{\mathrm{ser}
     \label{fig:afterpulseSchema}
 \end{figure}
 
-Generated from photons hitting the MCP or the first dynode directly rather than the photocathode, pre-pulses appear before the main pulse about tens of nanoseconds and the amplitudes of pre-pulses are smaller than that of normal signals~\cite{JUNOMassTesting}. Ions due to the ionization of gaseous impurities by PEs between the cathode and first dynode or MCP hit the photocathode, generate electrons and further after-pulse~\cite{Coates_1973}. \ce{H^+}, \ce{He^+}, \ce{O^+} are the major ions contributing to after-pulse and the relation between time and ions (\ce{^Z_MX}) is $\sqrt{\frac{M}{Z}}$, in which $M$ and $Z$ are the mass and charge of ions~\cite{Coates_1973,XENON1TTesting}. Considering electric field and $\frac{M}{Z}$ of ions, the travel time is in the scale of \si{us}. The after-pulses are searched from \SI{200}{ns} after the main pulse and pre-pulses are searched from \SI{10}{ns} before the main pulse. The 10\% rise time $t_r^{10}$ and equivalent charge $Q$ of the after-pulse and pre-pulse are calculated in the $[-10,75]$ ns window relative to the peak position as shown violet area in Fig.~\ref{fig:afterpulseSchema}.
+Generated from photons hitting the MCP or the first dynode directly rather than the photocathode, pre-pulses appear before the main pulse about tens of nanoseconds and the amplitudes of pre-pulses are smaller than that of normal signals~\cite{JUNOMassTesting}. Ions due to the ionization of gaseous impurities by PEs between the cathode and first dynode or MCP hit the photocathode, generate electrons and further after-pulses~\cite{Coates_1973}. \ce{H^+}, \ce{He^+}, \ce{O^+} are the major ions contributing to after-pulses and the delay time of after-pulses is $\sqrt{\frac{M}{Z}}$, in which $M$ and $Z$ are the mass and charge of ions (\ce{^Z_MX})~\cite{Coates_1973,XENON1TTesting}. %Considering electric field and $\frac{M}{Z}$ of ions, the travel time is in the scale of \si{us}.
+The after-pulses are searched from \SI{200}{ns} after the main pulse and pre-pulses are searched from \SI{10}{ns} before the main pulse. The 10\% rise time $t_r^{10}$ and equivalent charge $Q$ of the after-pulse and pre-pulse are calculated in the $[-10,75]$ ns window relative to the peak position as shown violet area in Fig.~\ref{fig:afterpulseSchema}.
 
 \begin{figure}[!htbp]
     \centering
@@ -178,23 +180,15 @@ Generated from photons hitting the MCP or the first dynode directly rather than 
 \end{figure}
 % waveform analysis
 
-The relative t is defined as the difference between $t_r^{10}$ of pre/after-pulse and $t_r^{10}$ of main pulse. The distribution of relative t is shown in Fig.~\ref{fig:afterpulse1d}. The histogram with binwidth $T_{\mathrm{bin}}=10\mathrm{ns}$ indicates 4 typical after-pulse peaks in time around \SI{300}{ns}, \SI{550}{ns}, \SI{1200}{ns} and \SI{1700}{ns}, of which ratio is about $1:\sqrt{3}:\sqrt{16}:\sqrt{32}$. Considering the different mass of ions, these peaks may originate from \ce{H^+}, \ce{He^{+}} or other unknown ions, \ce{O^+} or \ce{CH_4^+}, and \ce{O_2^+} or other unknown ions. XENON1T and XMass gave similar assumptions for the first two peaks of after-pulse distribution~\cite{XENON1TTesting, Abe_2020}. Other similar works done by JUNO and KM3NeT claimed the first peak is \ce{H_2^{+}} for the \SI{20}{inch} PMT~\cite{Zhao:2022gks,KM3NetTesting}. Double Chooz proposed an unclear assumption for those peaks for R7081 PMT~\cite{Haser_2013}.
+The relative t is defined as the difference between $t_r^{10}$ of pre/after-pulse and main pulse. The distribution of relative t with binwidth $T_{\mathrm{bin}}=10\mathrm{ns}$ in Fig.~\ref{fig:afterpulse1d} indicates 4 typical after-pulse peaks in time around \SI{300}{ns}, \SI{550}{ns}, \SI{1200}{ns} and \SI{1700}{ns}, ratio being about $1:\sqrt{3}:\sqrt{16}:\sqrt{32}$. These peaks may originate from \ce{H^+}, \ce{He^{+}} or other unknown ions, \ce{O^+} or \ce{CH_4^+}, and \ce{O_2^+} or other unknown ions. XENON1T and XMass gave similar assumptions for the first two peaks of after-pulse distribution~\cite{XENON1TTesting, Abe_2020}. Other similar works done by JUNO and KM3NeT claimed the first peak is \ce{H_2^{+}} for the \SI{20}{inch} PMT~\cite{Zhao:2022gks,KM3NetTesting}. Double Chooz proposed an unclear assumption for those peaks for R7081 PMT~\cite{Haser_2013}.
 
-The time distribution and ratio of different peaks in after-pulse distribution are parameterized using 4 gaussian functions (Equ.~\eqref{equ:afterpulse}) to model the four peaks after substracting dark noise rate $N_{\mathrm{DCR}}$. $N_{\mathrm{DCR}}$ is estimated as $N_{\mathrm{trig}}\cdot \mathrm{DCR}\cdot T_{\mathrm{bin}}$, in which $N_{\mathrm{trig}}$ is the number of triggered waveforms and DCR is calculated as sec.~\ref{sec:dcr}. The fit equation is as follows
+The time and amplitude of different peaks in after-pulse distribution are parameterized using 4 gaussian functions (Equ.~\eqref{equ:afterpulse}) to model the four peaks after substracting dark noise rate $N_{\mathrm{DCR}}$. $N_{\mathrm{DCR}}$ is estimated as $N_{\mathrm{trig}}\cdot \mathrm{DCR}\cdot T_{\mathrm{bin}}$, in which $N_{\mathrm{trig}}$ is the number of triggered waveforms and DCR is calculated as sec.~\ref{sec:dcr}. The fit equation is as follows
 
 \begin{equation}
     \label{equ:afterpulse}
     \sum_{i=1}^{4}{A_iG(t_i,\sigma_i^2)}
 \end{equation}
-in which $A_i$, $t_i$, and $\sigma_i$ are the ratio factor, time, width of each peak of after-pulse. The fit results are shown in Fig.~\ref{fig:afterpulsePeak} and the ratios of the 4 peaks vary greatly for different MCP-PMTs. Besides, there exist some areas that cannot be well modeled with Equ.\eqref{equ:afterpulse}, for example, the pedestal between the first and second peaks of after-pulse distribution. The mean and standard deviation of fit results are summarized in Table.~\ref{tab:afterpulse}. Due to the influence of after-pulses around the second peak, the standard deviation of $\sigma_2$ is very large.
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=\MF\textwidth]{figures/result/afterpulse.pdf}
-    \caption{Time and relative ratio of peaks of after-pulse ratios of 9 MCP-PMTs. 4 peak ratios are plotted along the time for each PMT.}
-    \label{fig:afterpulsePeak}
-\end{figure}
-
-% Fig.\ref{fig:afterpulse2d} indicates that the after pulse contains some very large signal in the specific peaks, which is different from the distribution of single PE.
+in which $A_i$, $t_i$, and $\sigma_i$ are the amplitudes, times, standard deviations of each after-pulse peak. The amplitudes of the 4 peaks vary greatly for different MCP-PMTs in Fig.~\ref{fig:afterpulsePeak}. The mean and standard deviation of fit results are summarized in Table.~\ref{tab:afterpulse}. Besides, there exist some areas, such as exponential component between the first and second peaks, that cannot be well modeled with Equ.\eqref{equ:afterpulse}.%Due to the influence of after-pulses around the second peak, the standard deviation of $\sigma_2$ is very large.
 \begin{table}
     \centering
     \caption{Parameters of after-pulse of 9 MCP-PMTs}
@@ -209,24 +203,34 @@ in which $A_i$, $t_i$, and $\sigma_i$ are the ratio factor, time, width of each 
     \end{tabular}
 \end{table}
 
-The ratio of pre-pulses $R_{\mathrm{pre}}$ is calculated in time interval [-150,-10]\,ns and after-pulses $R_{\mathrm{after}}$ is calculated in time interval [200,9800]\,ns as following equations
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[t]{\SF\textwidth}
+        \includegraphics[width=\textwidth]{figures/result/afterpulse.pdf}
+        \caption{}%PM
+        \label{fig:afterpulsePeak}
+    \end{subfigure}
+    \begin{subfigure}[t]{\SF\textwidth}
+        \includegraphics[width=\textwidth]{figures/result/preafterpulse.pdf}
+        \caption{}
+        \label{fig:prepulseCompare}
+    \end{subfigure}
+    \caption{(a) Time and relative amplitudes of after-pulse peaks of 9 MCP-PMTs. (b) The pre-pulse ratio versus after-pulse ratio.}
+\end{figure}
+
+% Fig.\ref{fig:afterpulse2d} indicates that the after pulse contains some very large signal in the specific peaks, which is different from the distribution of single PE.
+
+The ratio of pre-pulses $R_{\mathrm{pre}}$ and after-pulses $R_{\mathrm{after}}$ are calculated in time interval [-150,-10]\,ns  and [200,9800]\,ns respectively as following equations
 
 \begin{align}
     R_{\mathrm{pre}} = \frac{N_{\mathrm{pre}}}{N_\mathrm{trig}} - \mathrm{DCR}\cdot T_{\mathrm{pre}}\\
     R_{\mathrm{after}} = \frac{N_{\mathrm{after}}}{N_\mathrm{trig}} - \mathrm{DCR}\cdot T_{\mathrm{after}}
 \end{align}
-in which $T_{\mathrm{pre}}=140$\,ns, $T_{\mathrm{after}}=9600$\,ns, $N_{\mathrm{pre}}$ and $N_{\mathrm{after}}$ are the number of pre-pulses and after-pulses, DCR is calculated as sec.~\ref{sec:dcr}. Due to the ratio of pre-pulse is too small, some measured values are smaller than zero after deducting DCR as shown in Fig.~\ref{fig:prepulseCompare}.
+in which $T_{\mathrm{pre}}=140$\,ns, $T_{\mathrm{after}}=9600$\,ns, $N_{\mathrm{pre}}$ and $N_{\mathrm{after}}$ are the number of pre-pulses and after-pulses. Due to the ratio of pre-pulse is too small, some measured values are smaller than zero after deducting DCR as shown in Fig.~\ref{fig:prepulseCompare}.
 
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=\MF\textwidth]{figures/result/preafterpulse.pdf}
-    \caption{pre-pulse ratio versus after-pulse ratio.}
-    \label{fig:prepulseCompare}
-\end{figure}
-
-\subsection{Dark count rate (DCR)}
+\subsection{Dark count rate}
 \label{sec:dcr}
-The dark noise mainly comes from the spontaneous thermionic electrons emitted from the photocathode~\cite{KM3NetTesting}, which generates a pulse signal similar to a PE. The DCR equals the following equation
+The dark noise mainly comes from the spontaneous thermionic electrons emitted from the photocathode~\cite{KM3NetTesting}, which generates a pulse signal similar to a PE. The dark count rate (DCR) equals the following equation
 
 \begin{equation}
     \mathrm{DCR/kHz} = \frac{N_{\mathrm{noise}}}{N_{\mathrm{trig}}}\frac{1}{T_{\mathrm{DCR}}/\mathrm{ns}}\times 10^{6}
@@ -240,11 +244,11 @@ in which $N_{\mathrm{noise}}$ is the noise number in the interval of $[-200,-150
     \label{fig:DCRCompare}
 \end{figure}
 
-\subsection{Relative photon detection efficiency (PDE)}
+\subsection{Relative photon detection efficiency}
 \label{sec:PDE}
-The DCR is omitted in the PDE calculation due to the small ratio of dark noise. To measure PDE, the intensity of light and light allocation ratio of each laser-splitter channel need to be calibrated. For example, JUNO fixed one reference PMT to calibrate the light intensity and other reference PMTs are circulated through all channels to calibrate the light allocation ratio~\cite{Wonsak_2021}. A new method is designed to reduce the number of reference PMT to 1 PMT and could combine all test runs to do the calibration in this work.
+The intensity of light and light allocation ratio of each laser-splitter channel need to be calibrated. For example, JUNO fixed one reference PMT to calibrate the light intensity and other reference PMTs are circulated through all channels to calibrate the light allocation ratio~\cite{Wonsak_2021}. A new method is designed to reduce the number of reference PMT to 1 PMT and could combine all test runs to do the calibration in this work.
 
-Note $n,j,k$ ($n=0,...,N-1, j=0,...,J-1, k=0,...,K-1$) is the indicator of the test runs, the channels of the splitter and the PMTs. The intensity of light is $I_n$, light allocation ratio is $\alpha_j$ and PDE is $\eta_k$. Assume $\alpha_j$s are stable among different test runs. $N_t$ is the total number of waveforms. The photon numbers in each waveform obey Poisson distribution $\pi(p_{njk})$, in which $p_{njk}=I_n\alpha_j\eta_k$. The trigger rate of nth run, kth PMT in jth channel is
+Note $n,j,k$ ($n=0,...,N-1, j=0,...,J-1, k=0,...,K-1$) is the indicator of the test runs, the channels of the splitter and the PMTs. The intensity of light is $I_n$, light allocation ratio is $\alpha_j$ and PDE is $\eta_k$. Assume $\alpha_j$s are stable among different test runs. $N_t$ is the total number of waveforms. The DCR is omitted in the relative PDE calculation due to the small ratio of dark noise. The photon numbers in each waveform obey Poisson distribution $\pi(p_{njk})$, in which $p_{njk}=I_n\alpha_j\eta_k$. The trigger rate of nth run, kth PMT in jth channel is
 
 \begin{equation}
     \label{equ:pderate}
@@ -262,14 +266,14 @@ The relationship between $R_{i}$ and parameters is
     \label{equ:linkfunction}
     R_{i}=1-e^{-e^{\mathrm{log}(I_0\alpha_0\eta_0)+\mathrm{log}(I_n^0)+\mathrm{log}(\alpha_j^0)+\mathrm{log}(\eta_k^0)}}
 \end{equation}
-The trigger number $N_{{\mathrm{trig}_{i}}}$ of kth PMT in nth run with jth splitter obey Binomial distribution $B(R_{i},N_{t_{i}})$, in which $N_{t_{i}}$ is total number of waveforms. To fit the parameters, a likelihood is constructed as follows
+The trigger number $N_{{\mathrm{trig}_{i}}}$ of kth PMT in nth run with jth splitter obey Binomial distribution $B(R_{i},N_{t_{i}})$, in which $N_{t_{i}}$ is total number of waveforms. The likelihood is constructed as follows
 
 \begin{equation}
     \label{equ:likelihood}
     \mathcal{L}=\prod_{i}{R_{i}^{N_{\mathrm{trig}_{i}}}(1-R_{i})^{N_{t_{i}}-N_{\mathrm{trig}_{i}}}}
 \end{equation}
 
-The relationship in Equ.~\eqref{equ:linkfunction} matches the general linear model (GLM) of Binomial exponential family distribution with Cloglog link function~\cite{glm}. The GLM is used to maximize the likelihood in Equ.~\eqref{equ:likelihood} and calculate the best value of $\mathrm{log}(\eta_k^0)$ and $\mathrm{log}(\alpha_k^0)$, which is the natural logarithm of relative PDEs and splitter ratios. The mean of relative PDE is about $1.71$, which is obviously higher than the reference PMT shown in Fig.~\ref{fig:DCRCompare}.
+The relationship in Equ.~\eqref{equ:linkfunction} matches the general linear model (GLM) of Binomial exponential family distribution with Cloglog link function~\cite{glm}. The GLM is used to maximize the likelihood in Equ.~\eqref{equ:likelihood} to acquire the best value of $\mathrm{log}(\eta_k^0)$ and $\mathrm{log}(\alpha_k^0)$, which is the natural logarithm of relative PDEs and splitter ratios. The mean of relative PDE is about $1.71$, which is obviously higher than the reference PMT shown in Fig.~\ref{fig:DCRCompare}.
 
 The mean and standard deviation of parameters of 9 MCP-PMTs are summarized in Table~\ref{tab:summary}.
 \begin{table}
