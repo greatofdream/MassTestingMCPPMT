@@ -1,13 +1,14 @@
 \section{Energy resolution boost}
 \label{Result}
-Assume the number of expected photons $N$ on a PMT obeys Poisson distribution $\pi()$, in which $\mu_N$ is proportional to energy $E$ of an event ($N=k\eta E$) and $k$ is a factor related to light yield and light transportation. The PDE of PMT is $\eta$ and the single PE charge distribution is described using Gaussian distribution $G(\mu_C,\sigma_C^2)$. The output charge distribution $C$ is a hierarchical model and the expectation and variance are $E[C]=\mu_N\mu_C$ and $Var[C]=\mu_C^2\mu_N+\mu_N\sigma_C^2$.
+Assume the PE counts $N$ on a PMT with PDE $\eta$ for an event with visible energy $E$ obeys Poisson distribution $\pi(\lambda_N=K\eta E)$, in which $K$ is a factor related to light yield and light transportation. The output total charge $\sum{Q}$ is a compound Poisson random variable with the expectation $\mathrm{E}[\sum{Q}]=\lambda_N\mathrm{E}[Q]$ and variance $\mathrm{Var}[\sum{Q}]=\mathrm{E}^2[Q]\lambda_N+\lambda_N\mathrm{Var}[Q]$.
 
-To be convenience, $N$ is estimated as $\hat{N}=\frac{C}{\mu_C}$ and $E$ is estimated as $\hat{E}=\frac{\hat{N}}{k}$. The reconstructed energy resolution is 
+The energy $E$ is estimated as $\hat{E}=\frac{\sum{Q}}{K\eta\mathrm{E}[Q]}$ with its resolution being
+
 \begin{equation}
-    \frac{\sqrt{Var[\hat{E}]}}{E[\hat{E}]}=\frac{\sqrt{\mu_c^2\mu_N+\mu_N\sigma_c^2}}{\mu_N\mu_c}=\frac{\sqrt{1+(\frac{\sigma_c}{\mu_c})^2}}{\sqrt{\mu_N}}=\frac{\sqrt{1+(\frac{\sigma_c}{\mu_c})^2}}{\sqrt{k\eta E}}
+    \frac{\sqrt{\mathrm{Var}[\hat{E}]}}{\mathrm{E}[\hat{E}]}=\frac{\sqrt{\mathrm{E}^2[Q]\lambda_N+\lambda_N\mathrm{Var}[Q]}}{\lambda_N\mathrm{E}[Q]}=\frac{\sqrt{1+\frac{\mathrm{Var}[Q]}{\mathrm{E}^2[Q]}}}{\sqrt{K\eta E}}.
 \end{equation}
 
-The energy resolution is dominated by the term $\eta$ and $\frac{\sigma_c}{\mu_c}$, which is estimated as \emph{sample resolutions} $\nu$. Resolution factor $\nu_{E}=\frac{\sqrt{1+(\frac{\sigma_c}{\mu_c})^2}}{\sqrt{\eta}}$ is proportional to the energy resolution and expectation $\nu_{E}$ of reference PMT and MCP-PMTs are as shown in Fig.~\ref{fig:EnergyResolution}. Although there exists a long tail in the charge distribution of MCP-PMT, the boost of relative PDE of MCP-PMTs leads to a better $\nu_{E}$ with about 0.1 boosts. The advanced waveform analysis method which models the charge distribution and counts PEs may eliminate the impact of long tail effect and gives a better energy resolution.
+The PMT specific factors are $\eta$ (proportional to relative PDE $\eta^0$) and $\frac{\mathrm{Var}[Q]}{\mathrm{E}^2[Q]}$ (estimated by sample resolutions $\nu^2$ in sec.~\ref{sec:noisegain}). The \emph{figure of merit} $M_{E}\equiv\sqrt{({1+\nu^2})/{\eta^0}}$ of the reference and 9 MCP PMTs are as shown in Fig.~\ref{fig:EnergyResolution}. Despite the long tail in the charge distribution, the boost of PDE of MCP-PMTs leads to a 10\% better $M_{E}$. We are developing an advanced waveform analysis method to model the charge distribution and count PEs that may eliminate the long-tail degradation on energy resolution.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\MF\textwidth]{figures/result/resolution.pdf}

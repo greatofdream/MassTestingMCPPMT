@@ -1,3 +1,24 @@
 \section{Summary}
 \label{Summary}
-The characteristics of 9 MCP-PMTs are measured in this work, which can be used for simulation and further research. A new calibration method for PDE is developed and the expected relative PDE of the new type 8-inch MCP-PMT is significantly high and is about 1.7 times higher than the reference PMT. Although the long tail in the charge distribution worsen \emph{sample resolution}, the ability for boosting energy resolution is promising.
+\begin{table}
+    \centering
+    \caption{charge and time characteristic of 9 MCP-PMTs}
+    \label{tab:summary}
+    \begin{tabular}{c| r @{$\pm$} l}
+        Parameter&\multicolumn{2}{c}{$\mu\pm\sigma$}\\
+        \hline
+        $\frac{\overline{Q}}{Q_0}$&1.8&0.1\\
+        $\nu_0$&0.25&0.02\\
+        $\nu$&0.69&0.03\\
+        TTS/ns&1.68&0.09\\
+        DCR/kHz&4.5&1.3\\
+        $\tau_{\mathrm{ser}}$/ns&7.2&1.0\\
+        $\sigma_{\mathrm{ser}}$/ns&1.62&0.06\\
+        relative PDE&1.71&0.06\\
+        $R_{\mathrm{pre}}$&$6\times10^{-5}$&$1.3\times10^{-4}$\\
+        $R_{\mathrm{after}}$&0.012&0.006\\
+        \hline
+    \end{tabular}
+\end{table}
+
+The characteristics of 9 MCP-PMTs are summarized in Table~\ref{tab:summary}, which can be served as inputs to detector simulation and data analysis. A new calibration method based on regression gives the average relative PDE of the MCP-PMT to be about 1.7 times the reference PMT. The long tail in the charge distribution is countered by the high PDE, resulting in an overall boost in energy resolution. We conclude that the new 8-inch GDB-6082 MCP-PMT from NNVT is suitable for the upcoming JNE.
