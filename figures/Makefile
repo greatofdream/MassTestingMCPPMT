@@ -21,9 +21,9 @@ method/triggerwave.pdf: $(filedir)/docscript/trigger723_101077_4.pdf
 method/triggerpeakpos.pdf: $(filedir)/ExResult/720/600ns/h5/trigger.h5.pdf
 	cp $^ $@
 method/triggercharge.pdf: $(filedir)/ExResult/786/600ns/chargeSelect.h5.pdf
-	inkscape --without-gui --export-filename $@ --pdf-page=30 $^
+	inkscape --without-gui --export-filename $@ --pdf-page=40 $^
 method/triggerpeak.pdf: $(filedir)/ExResult/786/600ns/chargeSelect.h5.pdf
-	inkscape --without-gui --export-filename $@ --pdf-page=32 $^
+	inkscape --without-gui --export-filename $@ --pdf-page=42 $^
 method/triggerFWHM.pdf: $(filedir)/ExResult/786/600ns/chargeSelect.h5.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=35 $^
 method/triggerTTS.pdf: $(filedir)/ExResult/800/600ns/chargeSelect.h5.pdf
@@ -43,11 +43,13 @@ method/triggerSER2d.pdf: $(filedir)/ExResult/786/600ns/serMerge.h5.pdf
 method/triggerAfterpulseSchema.pdf: $(filedir)/docscript/afterpulse720_2.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=2 $^
 method/triggerAfterpulse1d.pdf: $(filedir)/ExPMT/PM2106-9145/laser.h5.pdf
-	inkscape --without-gui --export-filename $@ --pdf-page=11 $^
+	inkscape --without-gui --export-filename $@ --pdf-page=16 $^
 method/triggerAfterpulse2d.pdf: $(filedir)/ExPMT/PM2106-9145/laser.h5.pdf
-	inkscape --without-gui --export-filename $@ --pdf-page=2 $^
+	inkscape --without-gui --export-filename $@ --pdf-page=11 $^
+method/triggerafterpulseCharge.pdf: $(filedir)/ExPMT/PM2106-9145/laser.h5.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=19 $^
 result/gainres.pdf: $(filedir)/ExPMT/PMTSummary.pdf
-	inkscape --without-gui --export-filename $@ --pdf-page=4 $^
+	inkscape --without-gui --export-filename $@ --pdf-page=17 $^
 result/PV.pdf: $(filedir)/ExPMT/PMTSummary.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=6 $^
 result/FWHM.pdf: $(filedir)/ExPMT/PMTSummary.pdf
@@ -60,7 +62,9 @@ result/tausigma.pdf: $(filedir)/ExPMT/PMTSummary.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=12 $^
 result/afterpulse.pdf: $(filedir)/ExPMT/PMTSummary.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=13 $^
-result/resolution.pdf: $(filedir)/ExPMT/PMTSummary.pdf
+result/afterpulseQ.pdf: $(filedir)/ExPMT/PMTSummary.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=14 $^
+result/resolution.pdf: $(filedir)/ExPMT/PMTSummary.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=16 $^
 result/compare.pdf: $(filedir)/ExPMT/PMTSummary.pdf
 	cp $^ $@
