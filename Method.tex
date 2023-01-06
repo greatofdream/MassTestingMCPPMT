@@ -184,7 +184,7 @@ We use 5 gaussians $\sum_{i=1}^{5}{A_if_i^{\mathrm{AP}}(t;t_i,\sigma_i^2)}$ to m
     \begin{threeparttable}
         \begin{tabular}{c|c|c|c|c|c}
             \hline
-            &1st group&2nd group&3rd group&4-th group&5-th group\\
+            &1st group&2nd group&3rd group&4th group&5th group\\
             \hline
             $t_i$/ns&310$\pm$8&435$\pm$27&593$\pm$24&1201$\pm$41&1725$\pm$25\\
             $A_i/N_{\mathrm{hit}}$(/1E3)&1.2$\pm$0.7&0.3$\pm$0.2&0.3$\pm$0.3&0.8$\pm$0.6&1.5$\pm$0.6\\
@@ -195,7 +195,7 @@ We use 5 gaussians $\sum_{i=1}^{5}{A_if_i^{\mathrm{AP}}(t;t_i,\sigma_i^2)}$ to m
         \end{tabular}
         \begin{tablenotes}
             \footnotesize
-            \item[1] The charge parameters of 2nd group inherit from 1st group.
+            \item[1] The charge parameters of the 2nd group inherit from the 1st group.
         \end{tablenotes}
     \end{threeparttable}
 \end{table}
@@ -229,14 +229,14 @@ The mean charge in each time bin shown as the black line in Fig.~\ref{fig:afterp
  %For example, JUNO fixed one reference PMT to calibrate the light intensity and other reference PMTs are circulated through all channels to calibrate the light allocation ratio~\cite{Wonsak_2021}.
 A regression method is developed to combine the light-source calibration and PDE measurements simultaneously with 1 reference PMT. Note $I_n$ to be the light intensity of the $n$th run, $\alpha_j$ to be the light allocation ratio of the $j$th splitter channel (out of 4) assumed to be stable across runs, $\eta_k$ to be the PDE of the $k$th PMT (out of 1 reference dynode and 9 MCP PMTs). The PE counts in each waveform obey Poisson distribution $\pi(I_n\alpha_j\eta_k)$.
 
-For convenience, the reference PMT is set to be the 0-th. Note $\alpha_j^0\equiv\alpha_j/{\alpha_0}$, $\eta_k^0\equiv\eta_k/{\eta_0}$, $I_n^0\equiv I_n\alpha_0\eta_0$.  The trigger rate $R_{njk}$ of the $k$-th PMT at the $j$-th channel in the $n$-th run is
+For convenience, the reference PMT is set to be the 0th. Note $\alpha_j^0\equiv\alpha_j/{\alpha_0}$, $\eta_k^0\equiv\eta_k/{\eta_0}$, $I_n^0\equiv I_n\alpha_0\eta_0$.  The trigger rate $R_{njk}$ of the $k$th PMT at the $j$th channel in the $n$th run is
 
 \begin{equation}
     \label{equ:linkfunction}
     R_{njk}=1-\exp\left(-I_n\alpha_j\eta_k\right)=1-\exp\left(-e^{\log{I_n^0}+\log{\alpha_j^0}+\log{\eta_k^0}}\right).
 \end{equation}
 
-The trigger number $N^{\mathrm{trig}}_{njk}$ of the $k$-th PMT in the $n$-th run with the $j$-th splitter obey Binomial distribution $B(N^{\mathrm{trig}}_{njk};R_{njk},N^t_{njk})$, in which $N^t_{njk}$ is total number of waveforms by the laser trigger. The likelihood is therefore
+The trigger number $N^{\mathrm{trig}}_{njk}$ of the $k$th PMT in the $n$th run with the $j$th splitter obey Binomial distribution $B(N^{\mathrm{trig}}_{njk};R_{njk},N^t_{njk})$, in which $N^t_{njk}$ is total number of waveforms by the laser trigger. The likelihood is therefore
 
 \begin{equation}
     \label{equ:likelihood}
