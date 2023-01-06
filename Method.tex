@@ -227,7 +227,7 @@ The mean charge in each time bin shown as the black line in Fig.~\ref{fig:afterp
 \subsection{Relative photon detection efficiency}
 \label{sec:PDE}
  %For example, JUNO fixed one reference PMT to calibrate the light intensity and other reference PMTs are circulated through all channels to calibrate the light allocation ratio~\cite{Wonsak_2021}.
-A regression method is developed to combine the light-source calibration and PDE measurements simultaneously with 1 reference PMT. Note $I_n$ to be the light intensity of the $n$-th run, $\alpha_j$ to be the light allocation ratio of the $j$-th splitter channel (out of 4) assumed to be stable across runs, $\eta_k$ to be the PDE of the $k$-th PMT (out of 1 reference dynode and 9 MCP PMTs). The PE counts in each waveform obey Poisson distribution $\pi(I_n\alpha_j\eta_k)$.
+A regression method is developed to combine the light-source calibration and PDE measurements simultaneously with 1 reference PMT. Note $I_n$ to be the light intensity of the $n$th run, $\alpha_j$ to be the light allocation ratio of the $j$th splitter channel (out of 4) assumed to be stable across runs, $\eta_k$ to be the PDE of the $k$th PMT (out of 1 reference dynode and 9 MCP PMTs). The PE counts in each waveform obey Poisson distribution $\pi(I_n\alpha_j\eta_k)$.
 
 For convenience, the reference PMT is set to be the 0-th. Note $\alpha_j^0\equiv\alpha_j/{\alpha_0}$, $\eta_k^0\equiv\eta_k/{\eta_0}$, $I_n^0\equiv I_n\alpha_0\eta_0$.  The trigger rate $R_{njk}$ of the $k$-th PMT at the $j$-th channel in the $n$-th run is
 
