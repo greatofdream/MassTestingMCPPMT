@@ -22,7 +22,7 @@ The baseline not being zero, we estimated it from the sidebands $[-200\,\mathrm{
 
 To further reduce the dark noises, a gaussian $f(t;t_0,\sigma_{t0}^2)$ is fitted to the distribution of $t_p-t_{\mathrm{trig}}$ of pulses whose $V_p$ exceeds \SI{5}{ADC} over all the waveforms. We define the new candidate window, which is about \SI{30}{ns} long, as $[t_0-5\sigma_{t0}, t_0+5\sigma_{t0}]$ to calculate new $t_p$ and $V_p$ by repeating the above procedures. With such a candidate window we shall carry out all the analysis in the following sections except pre/after-pulses.
 
-\subsection{Peak and charge spectra}
+\subsection{charge spectrum}
 \label{sec:noisepeak}
 
 Considering the rise and fall time distributions, the charge $Q$ of a pulse is the summation of the baseline-subtracted voltages in a time window $[-10, 75]$\,ns relative to $t_p$ as illustrated in the pink region of Fig.~\ref{fig:triggertime}. The input impedance being \SI{50}{\Omega}~\cite{CAENV1751}, the charge in the unit of Coulomb is $Q/\SI{50}{\Omega}$.
@@ -30,8 +30,8 @@ Considering the rise and fall time distributions, the charge $Q$ of a pulse is t
 Such $Q$ in Fig.~\ref{fig:triggercharge} represents the charge of a single PE with negligible multi-PE contributions due to the low occupancy. A long tail is evident in the single-PE charge distribution, which is also reported by JUNO collaboration~\cite{JUNOMassTesting}. Zhang~et~al.~\cite{JUNOLongtail} proposed a phenomenological parameterization without dedicated consideration of the multiplication process of the PEs. The physical model and solution of the long tail will be discussed in our future publications.
 
 To describe the peak shape of the $Q$ distribution, a gaussian function $f(Q;Q_0,\sigma^2_{Q_0})$ is fitted to the interval $[0.65Q_0, 1.35Q_0]$ via the modified least-square (MLS) method~\cite{Cowan1998StatisticalDA} as the red line in Fig.~\ref{fig:triggercharge}. To remove the influence of the pedestal and describe the long tail~\cite{JUNOLongtail}, pulses with $V_p>\SI{3}{ADC}$ and $Q>0.25Q_0$ are selected to calculate mean $\overline{Q}$ and sample variance $s^2_{C}$ of $Q$. $\overline{Q}$ is larger than $Q_0$.
-
-The $V_p$ distribution with \SI{1}{ADC} bin width in Fig.~\ref{fig:triggerpeak} illustrates \SI{3}{ADC} and 0.25$Q_0$ threshold are complementary to exclude some noises with small $V_p$ but large $Q$.
+% The $V_p$ distribution with \SI{1}{ADC} bin width in Fig.~\ref{fig:triggerpeak} 
+Fig.~\ref{fig:triggercharge} illustrates \SI{3}{ADC} and 0.25$Q_0$ threshold are complementary to exclude some noises with small $V_p$ but large $Q$.
 
 \begin{figure}[!htbp]
     \centering
@@ -41,11 +41,16 @@ The $V_p$ distribution with \SI{1}{ADC} bin width in Fig.~\ref{fig:triggerpeak} 
         \label{fig:triggercharge}
     \end{subfigure}
     \begin{subfigure}[b]{\SF\textwidth}
-        \includegraphics[width=\textwidth]{figures/method/triggerpeak.pdf}
-        \caption{}%PM
-        \label{fig:triggerpeak}
+        % \includegraphics[width=\textwidth]{figures/method/triggerpeak.pdf}
+        % \caption{}%PM
+        % \label{fig:triggerpeak}
+        \includegraphics[width=\textwidth]{figures/result/gainres.pdf}
+        \caption{}
+        \label{fig:totalchargeCompare}
     \end{subfigure}
-    \caption{(a) The long-tailed single-PE charge distribution of an MCP-PMT. The entries around zero are waveforms with no signal. The vertical blue dashed line is the pedestal cut. The orange histogram is the selected waveforms with peak-height cut ($V_p>\SI{3}{ADC}$) in (b). The pink and green areas are respectively the fit intervals for the peak and vally parameters. (b) Peak-height distribution of an MCP-PMT before~(blue) and after~(orange) charge cut in (a). The vertical green dashed line is the peak-height cut.}
+    \caption{(a) The long-tailed single-PE charge distribution of an MCP-PMT. The entries around zero are waveforms with no signal. The vertical blue dashed line is the pedestal cut. The orange histogram is the selected waveforms with peak-height cut ($V_p>\SI{3}{ADC}$). The pink and green areas are respectively the fit intervals for the peak and vally parameters.% (b) Peak-height distribution of an MCP-PMT before~(blue) and after~(orange) charge cut in (a). The vertical green dashed line is the peak-height cut.
+    (b) The charge and resolution ratios showing the effect of long tail. Geen and red crosses represent the reference PMT and MCP-PMTs.
+    }
 \end{figure}
 
 \subsection{Gain and single PE resolution}
