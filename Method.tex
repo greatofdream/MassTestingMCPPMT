@@ -1,10 +1,10 @@
 \section{Characterization method and results}
 \label{Method}
-% The setup of the experiment and preanalysis are discussed in sec.~\ref{sec:laserstage}. Analysis method and results of parameters are introduced in the following sections.
+% The setup of the experiment and preanalysis are discussed in Section~\ref{sec:laserstage}. Analysis method and results of parameters are introduced in the following sections.
 \subsection{Setup and preanalysis}
 \label{sec:laserstage}
 
-To obtain single PE events, the laser intensity is adjusted to the level of $1/20$ occupancy. The window size $T_{\mathrm{wave}}$ is \SI{10400}{ns} to include all the possible after-pulses (sec.~\ref{sec:afterpulse}). The rising edge of trigger waveform from the laser system is linearly interpolated to get the half-height time $t_{\mathrm{trig}}$ at about \SI{200}{ns} as shown in Fig.~\ref{fig:triggertime}.
+To obtain single PE events, the laser intensity is adjusted to the level of $1/20$ occupancy. The window size $T_{\mathrm{wave}}$ is \SI{10400}{ns} to include all the possible after-pulses (Section~\ref{sec:afterpulse}). The rising edge of trigger waveform from the laser system is linearly interpolated to get the half-height time $t_{\mathrm{trig}}$ at about \SI{200}{ns} as shown in Fig.~\ref{fig:triggertime}.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\LF\textwidth]{figures/method/triggerwave.pdf}
@@ -13,7 +13,7 @@ To obtain single PE events, the laser intensity is adjusted to the level of $1/2
 \end{figure}
 
 
-In the preanalysis, we select a preliminary window $[t_{\mathrm{trig}},600\,\mathrm{ns}]$ where dark noises (\SI{\sim 10}{kHz} in sec.~\ref{sec:dcr}) and laser pulses are expected to contribute 0.004 and 0.05 counts on average. The peak time $t_p$ is the position of minimum in each window as shown in Fig.~\ref{fig:triggertime}.
+In the preanalysis, we select a preliminary window $[t_{\mathrm{trig}},600\,\mathrm{ns}]$ where dark noises (\SI{\sim 10}{kHz} in Section~\ref{sec:dcr}) and laser pulses are expected to contribute 0.004 and 0.05 counts on average. The peak time $t_p$ is the position of minimum in each window as shown in Fig.~\ref{fig:triggertime}.
 %Because the maximum pulse is selected in each waveform, the expected charge distribution is the distribution of $\max(C_n)$ ($n=1,...,N$), in which $C_n$ is the charge of the nth PE and $N$ is the number of PE in a waveform.
 
 
@@ -61,7 +61,7 @@ The gain of the main peak and the entire sample are respectively ${Q_0}/{\SI{50}
 The gain of main peak of 9 MCP-PMTs are in the scale of 1E7. $\nu_0$ and $\nu$ of 9 MCP-PMTs are $0.25\pm0.02$ and $0.69\pm0.03$. The 2d distribution of $\overline{Q}/{Q_0}$ and $\nu/{\nu_0}$ in Fig.~\ref{fig:totalchargeCompare} shows $\overline{Q}$ is about 1.8 times $Q_0$ for the MCP-PMTs. The long tail worsens the relative resolution from $\nu_0=0.25$ to $\nu=0.69$, compared to 0.37 of the reference PMT.
 
 \subsection{Peak-to-valley ratio}
-A parabolic function is fitted to the valley based on MLS in the interval $[-0.15Q_0, 0.25Q_0]$ relative to the least-counted bin of the histogram between the pedestal and the main peak as shown in Fig.~\ref{fig:triggercharge}. The \emph{valley count} $N_v$ is defined as the minimum of the parabola and \emph{peak count} $N_p$ is the maximum of the Gaussian described in sec.~\ref{sec:noisepeak}. The peak-to-valley ratio~(P/V) ${N_p}/{N_v}$ shows the ability to discriminate between electronic noises and a PE signal. The average P/V of MCP-PMTs is about 5.8, significantly higher than that (about 2.4) of the reference PMT.
+A parabolic function is fitted to the valley based on MLS in the interval $[-0.15Q_0, 0.25Q_0]$ relative to the least-counted bin of the histogram between the pedestal and the main peak as shown in Fig.~\ref{fig:triggercharge}. The \emph{valley count} $N_v$ is defined as the minimum of the parabola and \emph{peak count} $N_p$ is the maximum of the Gaussian described in Section~\ref{sec:noisepeak}. The peak-to-valley ratio~(P/V) ${N_p}/{N_v}$ shows the ability to discriminate between electronic noises and a PE signal. The average P/V of MCP-PMTs is about 5.8, significantly higher than that (about 2.4) of the reference PMT.
 
 \subsection{Single electron response}
 As shown in Fig.~\ref{fig:triggertime}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ ($t^{10}_f$, $t^{50}_f$, $t^{90}_f$) are the times of interpolated 10\%, 50\%, and 90\% $V_p$ in the rising (falling) edge. The rise time, fall time and full width at half maximum~(FWHM) are defined as $t_r = t^{90}_r - t^{10}_r$, $t_f = t^{10}_f - t^{90}_f$ and $\mathrm{FWHM} = t^{50}_f - t^{50}_r$. Averages and standard deviations of rise time, fall time and FWHM are $3.71\pm0.15$\,ns, $15.6\pm1.8$\,ns and $9.07\pm0.63$\,ns for 9 MCP-PMTs.
@@ -107,7 +107,7 @@ Delayed pulses are searched in the interval $[t_0+20\,\mathrm{ns},t_0+80\,\mathr
         \caption{}%PM
         \label{fig:triggerTTlatepulse}
     \end{subfigure}
-    \caption{(a) Double-pulse example. The first pulse falls in the candidate window defined in sec.~\ref{sec:laserstage}. (b) The green and blue histograms are respectively the main and delayed pulse distributions. The filled histograms are waveforms containing the main and delayed pulses simultaneously.}
+    \caption{(a) Double-pulse example. The first pulse falls in the candidate window defined in Section~\ref{sec:laserstage}. (b) The green and blue histograms are respectively the main and delayed pulse distributions. The filled histograms are waveforms containing the main and delayed pulses simultaneously.}
 \end{figure}
 
 The main and early components are modeled with Gaussians $N_1f_1^N(t;\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ and $N_2f_2^N(t;\mu_K,\sigma_K^2)$, the subscript $K$ standing for PEs with high kinetic energies. Considering the exponential distribution of kinetic energies of secondary electrons~\cite{Furman,SecondElectron}, $f^\mathrm{Exp}(t;\tau_S)$ is suitable to model the delayed component and precise model will be discussed in our future works.  We artificially add a constant $b_S$ and a translation of $\mu_{TT} + 3\sigma_{TT}$ to fit the data. As shown in Fig.~\ref{fig:triggerTTSLog}, the \SI{0.5}{ns}-binned histogram of $\mathrm{TT}$ is fitted by
