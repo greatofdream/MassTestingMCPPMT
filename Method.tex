@@ -1,3 +1,4 @@
+\sisetup{separate-uncertainty}
 \section{Methods and results}
 \label{Method}
 % The setup of the experiment and preanalysis are discussed in Section~\ref{sec:laserstage}. Analysis method and results of parameters are introduced in the following sections.
@@ -22,7 +23,7 @@ The baseline not being zero, we estimate it from the sidebands $[-200\,\mathrm{n
 
 Over all the waveform samples, a gaussian $f(t;t_0,\sigma_{t0}^2)$ is fitted to the distribution of $t_p-t_{\mathrm{trig}}$ of pulses whose $V_p$ exceeds \SI{5}{ADC}. We define a new candidate window, which is about \SI{30}{ns} long, as $[t_0-5\sigma_{t0}, t_0+5\sigma_{t0}]$ to calculate new $t_p$ and $V_p$ by repeating the above procedures.  With such a candidate window the dark counts reduced by 10, we shall carry out all the analysis in the following sections except pre/after-pulses.
 
-\subsection{Charge spectrum}
+\subsection{Single-PE charge spectrum and resolution}
 \label{sec:noisepeak}
 
 Considering the rise and fall time distributions, the charge $Q$ of a pulse is the summation of the baseline-subtracted voltages in a time window $[\SI{-10}{ns}, \SI{75}{ns}]$ relative to $t_p$ as illustrated in the pink region of Fig.~\ref{fig:triggertime}. The input impedance being \SI{50}{\Omega}~\cite{CAENV1751}, the charge in the unit of Coulomb is $Q/\SI{50}{\Omega}$.
@@ -52,12 +53,7 @@ The two cuts are complementary to exclude some noises with small $V_p$ but large
     }
 \end{figure}
 
-\subsection{Gain and single PE resolution}
-\label{sec:noisegain}
-
-The gain of the main peak and the entire sample are respectively ${Q_0}/{\SI{50}{\Omega}}/e$ and ${\overline{Q}}/{\SI{50}{\Omega}}/e$, $e$ being the charge of an electron. The relative \emph{peak} and \emph{sample resolutions} $\nu_0$ and $\nu$ are defined as ${\sigma_{Q_0}}/{Q_0}$ and ${\sqrt{s^2_{Q}}}/{\overline{Q}}$.
-
-The gain of main peak of 9 MCP-PMTs are in the scale of 1E7. $\nu_0$ and $\nu$ of 9 MCP-PMTs are $0.25\pm0.02$ and $0.69\pm0.03$. The 2d distribution of $\overline{Q}/{Q_0}$ and $\nu/{\nu_0}$ in Fig.~\ref{fig:totalchargeCompare} shows $\overline{Q}$ is about 1.8 times $Q_0$ for the MCP-PMTs. The long tail worsens the relative resolution from $\nu_0=0.25$ to $\nu=0.69$, compared to 0.37 of the reference PMT.
+The gains of the main peak and the entire sample are ${Q_0}/({\SI{50}{\Omega}} e) \approx \num{e7}$ and ${\overline{Q}}/(\SI{50}{\Omega} e)$, $e$ being the charge of an electron. The relative \emph{peak} and \emph{sample resolutions} $\nu_0$ and $\nu$ are defined as ${\sigma_{Q_0}}/{Q_0}$ and ${\sqrt{s^2_{Q}}}/{\overline{Q}}$.  Shown in Fig.~\ref{fig:totalchargeCompare}, $\overline{Q}$ is about 1.8 times $Q_0$ for the MCP-PMTs, in agreement with Zhang~et~al.~\cite{JUNOLongtail}. The long tail worsens the resolution of MCP-PMTs from $\nu_0=\num{0.25 \pm 0.02}$ to $\nu=\num{0.69 \pm 0.03}$, but is less pronounced for the reference dynode PMT.
 
 \subsection{Peak-to-valley ratio}
 A parabolic function is fitted to the valley based on MLS in the interval $[-0.15Q_0, 0.25Q_0]$ relative to the least-counted bin of the histogram between the pedestal and the main peak as shown in Fig.~\ref{fig:triggercharge}. The \emph{valley count} $N_v$ is defined as the minimum of the parabola and \emph{peak count} $N_p$ is the maximum of the Gaussian described in Section~\ref{sec:noisepeak}. The peak-to-valley ratio~(P/V) ${N_p}/{N_v}$ shows the ability to discriminate between electronic noises and a PE signal. The average P/V of MCP-PMTs is about 5.8, significantly higher than that (about 2.4) of the reference PMT.
