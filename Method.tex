@@ -25,13 +25,13 @@ Over all the waveform samples, a gaussian $f(t;t_0,\sigma_{t0}^2)$ is fitted to 
 \subsection{Charge spectrum}
 \label{sec:noisepeak}
 
-Considering the rise and fall time distributions, the charge $Q$ of a pulse is the summation of the baseline-subtracted voltages in a time window $[-10, 75]$\,ns relative to $t_p$ as illustrated in the pink region of Fig.~\ref{fig:triggertime}. The input impedance being \SI{50}{\Omega}~\cite{CAENV1751}, the charge in the unit of Coulomb is $Q/\SI{50}{\Omega}$.
+Considering the rise and fall time distributions, the charge $Q$ of a pulse is the summation of the baseline-subtracted voltages in a time window $[\SI{-10}{ns}, \SI{75}{ns}]$ relative to $t_p$ as illustrated in the pink region of Fig.~\ref{fig:triggertime}. The input impedance being \SI{50}{\Omega}~\cite{CAENV1751}, the charge in the unit of Coulomb is $Q/\SI{50}{\Omega}$.
 
-Such $Q$ in Fig.~\ref{fig:triggercharge} represents the charge of a single PE with negligible multi-PE contributions due to the low occupancy. A long tail is evident in the single-PE charge distribution, which is also reported by JUNO collaboration~\cite{JUNOMassTesting}. Zhang~et~al.~\cite{JUNOLongtail} proposed a phenomenological parameterization without dedicated consideration of the multiplication process of the PEs. The physical model and solution of the long tail will be discussed in our future publications.
+Such $Q$ in Fig.~\ref{fig:triggercharge} represents the charge of a single PE with negligible multi-PE contributions due to the low occupancy. A long tail is evident in the single-PE charge distribution, which is also found in the NNVT 20-inch MCP-PMTs by the JUNO collaboration~\cite{JUNOMassTesting}. Zhang~et~al.~\cite{JUNOLongtail} proposed a phenomenological parameterization without dedicated consideration of the multiplication process of the PEs. The physical model and solution of the long tail will be discussed in our future publications.
 
-To describe the peak shape of the $Q$ distribution, a gaussian function $f(Q;Q_0,\sigma^2_{Q_0})$ is fitted to the interval $[0.65Q_0, 1.35Q_0]$ via the modified least-square (MLS) method~\cite{Cowan1998StatisticalDA} as the red line in Fig.~\ref{fig:triggercharge}. To remove the influence of the pedestal and describe the long tail~\cite{JUNOLongtail}, pulses with $V_p>\SI{3}{ADC}$ and $Q>0.25Q_0$ are selected to calculate mean $\overline{Q}$ and sample variance $s^2_{C}$ of $Q$.
+To describe the peak shape of the $Q$ distribution, a gaussian function $f(Q;Q_0,\sigma^2_{Q_0})$ is fitted to the interval $[0.65Q_0, 1.35Q_0]$ via the modified least-square (MLS)~\cite{Cowan1998StatisticalDA} as the red line in Fig.~\ref{fig:triggercharge}. To remove the influence of the pedestal and describe the long tail~\cite{JUNOLongtail}, pulses with $V_p>\SI{3}{ADC}$ and $Q>0.25Q_0$ are selected to calculate the mean $\overline{Q}$ and sample variance $s^2_{Q}$ of $Q$.
 % The $V_p$ distribution with \SI{1}{ADC} bin width in Fig.~\ref{fig:triggerpeak} 
-Fig.~\ref{fig:triggercharge} illustrates \SI{3}{ADC} and 0.25$Q_0$ threshold are complementary to exclude some noises with small $V_p$ but large $Q$.
+The two cuts are complementary to exclude some noises with small $V_p$ but large $Q$~(Fig.~\ref{fig:triggercharge}).
 
 \begin{figure}[!htbp]
     \centering
@@ -48,15 +48,14 @@ Fig.~\ref{fig:triggercharge} illustrates \SI{3}{ADC} and 0.25$Q_0$ threshold are
         \caption{}
         \label{fig:totalchargeCompare}
     \end{subfigure}
-    \caption{(a) The long-tailed single-PE charge distribution of an MCP-PMT. The entries around zero are waveforms with no signal. The vertical blue dashed line is the pedestal cut. The orange histogram is the selected waveforms with peak-height cut ($V_p>\SI{3}{ADC}$). The pink and green areas are respectively the fit intervals for the peak and vally parameters.% (b) Peak-height distribution of an MCP-PMT before~(blue) and after~(orange) charge cut in (a). The vertical green dashed line is the peak-height cut.
-    (b) The charge and resolution ratios showing the effect of long tail. Geen and red crosses represent the reference PMT and MCP-PMTs.
+    \caption{(\subref{fig:triggercharge}) The long-tailed single-PE charge distribution of an MCP-PMT. The entries around zero are waveforms with no signal. The vertical blue dashed line is the pedestal cut. The orange histogram is the selected waveforms with peak-height cut ($V_p>\SI{3}{ADC}$). The pink and green areas are respectively the fit intervals for the peak and vally parameters. (\subref{fig:totalchargeCompare}) The charge and resolution ratios showing the effect of long tail. Geen and red crosses represent the reference and MCP PMTs.
     }
 \end{figure}
 
 \subsection{Gain and single PE resolution}
 \label{sec:noisegain}
 
-The gain of the main peak and the entire sample are respectively ${Q_0}/{\SI{50}{\Omega}}/e$ and ${\overline{Q}}/{\SI{50}{\Omega}}/e$, $e$ being the charge of an electron. The relative \emph{peak} and \emph{sample resolutions} $\nu_0$ and $\nu$ are defined as ${\sigma_{Q_0}}/{Q_0}$ and ${\sqrt{s^2_{C}}}/{\overline{Q}}$.
+The gain of the main peak and the entire sample are respectively ${Q_0}/{\SI{50}{\Omega}}/e$ and ${\overline{Q}}/{\SI{50}{\Omega}}/e$, $e$ being the charge of an electron. The relative \emph{peak} and \emph{sample resolutions} $\nu_0$ and $\nu$ are defined as ${\sigma_{Q_0}}/{Q_0}$ and ${\sqrt{s^2_{Q}}}/{\overline{Q}}$.
 
 The gain of main peak of 9 MCP-PMTs are in the scale of 1E7. $\nu_0$ and $\nu$ of 9 MCP-PMTs are $0.25\pm0.02$ and $0.69\pm0.03$. The 2d distribution of $\overline{Q}/{Q_0}$ and $\nu/{\nu_0}$ in Fig.~\ref{fig:totalchargeCompare} shows $\overline{Q}$ is about 1.8 times $Q_0$ for the MCP-PMTs. The long tail worsens the relative resolution from $\nu_0=0.25$ to $\nu=0.69$, compared to 0.37 of the reference PMT.
 
