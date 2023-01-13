@@ -58,13 +58,13 @@ Assume PMTs are moved for $J$ times, the PDE $Q_j$ of test PMT can be calculated
 \begin{equation}
     \frac{Q_k}{Q_0} = \frac{R_{njk}R_{mJK}}{R_{mj0}R_{nJK}}
 \end{equation}
-variance of $R$ is Equ~\eqref{equ:variance}, the relative variance of $\frac{Q_k}{Q_0}$ is $\sum_{i=jk,j0,JK,JK}{\frac{1-p_k}{N_tp_k}}$, in which $N_t$ is number of total events for some run. To get the PDE, a estimator is constructed as 
+variance of $R$ is Eq.~\eqref{equ:variance}, the relative variance of $\frac{Q_k}{Q_0}$ is $\sum_{i=jk,j0,JK,JK}{\frac{1-p_k}{N_tp_k}}$, in which $N_t$ is number of total events for some run. To get the PDE, a estimator is constructed as 
 \begin{equation}
     \hat{\frac{Q_k}{Q_0}}=\frac{1}{N}\sum_j{\frac{R_{njk}R_{mJK}}{R_{mj0}R_{nJK}}}
 \end{equation}
 The relative variance of $\hat{\frac{Q_k}{Q_0}}$ can be estimated as $\frac{1}{J^2}\sum_k{\frac{1-p_k}{N_tp_k}}$. To be convenience, $p_k$s are close and note $\sigma^2=\frac{1-p_k}{N_tp_k}$, relative variance is $\frac{\sigma^2}{K}$
 
-As for WLS method, the expected value and variance of $log(\hat{\frac{Q_k}{Q_0}})$ is estimated using Equ~\eqref{equ:solution} and relative variance of $\hat{\frac{Q_k}{Q_0}}$ is estimated as $U=B\Sigma B^T=(D^T\Sigma D)^{-1}$.
+As for WLS method, the expected value and variance of $log(\hat{\frac{Q_k}{Q_0}})$ is estimated using Eq.~\eqref{equ:solution} and relative variance of $\hat{\frac{Q_k}{Q_0}}$ is estimated as $U=B\Sigma B^T=(D^T\Sigma D)^{-1}$.
 \begin{equation}
     D^TD=\begin{pmatrix}
         (K+1)I_{(N,N)} &[1,\dots,1]^T&B_m^TA_m\\
