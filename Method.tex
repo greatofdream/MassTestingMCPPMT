@@ -134,7 +134,7 @@ in which $H$ is the heaviside function to limit the definition domain of the del
 
 \subsection{Dark count rate}
 \label{sec:dcr}
-The dark noise mimicking PEs mainly comes from the spontaneous thermionic electrons emitted from the photocathode~\cite{KM3NetTesting}. The dark count rate (DCR) is ${N_{\mathrm{noise}}}/({N_{\mathrm{hit}}T_{\mathrm{DCR}}})$, in which $N_{\mathrm{noise}}$ is the noise count in the interval of $[\SI{-300}{ns},\SI{-150}{ns}]$ relative to the main pulse with $T_{\mathrm{DCR}}=\SI{150}{ns}$ and $N_{\mathrm{hit}}$ is the number of waveforms with main pulses. The DCR of 9 MCP-PMTs is $5.3\pm\SI{1.7}{kHz}$ at room temperature.
+The dark noise mimicking PEs mainly comes from the spontaneous thermionic electrons emitted from the photocathode~\cite{KM3NetTesting}. The dark count rate (DCR) is ${N^{\mathrm{noise}}}/({N^{\mathrm{hit}}T_{\mathrm{DCR}}})$, in which $N^{\mathrm{noise}}$ is the noise count in the interval of $[\SI{-300}{ns},\SI{-150}{ns}]$ relative to the main pulse with $T_{\mathrm{DCR}}=\SI{150}{ns}$ and $N^{\mathrm{hit}}$ is the number of waveforms with main pulses. The DCR of 9 MCP-PMTs is $5.3\pm\SI{1.7}{kHz}$ at room temperature.
 
 \subsection{Pre-pulse and after-pulse}
 \label{sec:afterpulse}
@@ -153,10 +153,10 @@ The pre-pulses and after-pulses are searched from \SI{10}{ns} before and \SI{200
 The ratios of pre-pulses $R_{\mathrm{pre}}$ and after-pulses $R_{\mathrm{after}}$ are calculated in the time interval [\SI{-100}{ns},\SI{-10}{ns}] ($T_{\mathrm{pre}}=90$\,ns) and [\SI{200}{ns},\SI{9800}{ns}] ($T_{\mathrm{after}}=9600$\,ns) relative to the main pulses respectively as the following equations
 
 \begin{align}
-    R_{\mathrm{pre}} = \frac{N_{\mathrm{pre}}}{N_\mathrm{hit}} - \mathrm{DCR}\cdot T_{\mathrm{pre}}\\
-    R_{\mathrm{after}} = \frac{N_{\mathrm{after}}}{N_\mathrm{hit}} - \mathrm{DCR}\cdot T_{\mathrm{after}}
+    R_{\mathrm{pre}} = \frac{N^{\mathrm{pre}}}{N^\mathrm{hit}} - \mathrm{DCR}\cdot T_{\mathrm{pre}}\\
+    R_{\mathrm{after}} = \frac{N^{\mathrm{after}}}{N^\mathrm{hit}} - \mathrm{DCR}\cdot T_{\mathrm{after}}
 \end{align}
-in which $N_{\mathrm{pre}}$ and $N_{\mathrm{after}}$ are the number of pre-pulses and after-pulses.  The small $R_{\mathrm{pre}}$ ($3\times10^{-5}\pm1.2\times10^{-4}$) is dominated by DCR at our low-occupancy setup, and $R_{\mathrm{after}}$ of 9 MCP-PMTs is $0.009\pm0.006$.
+in which $N^{\mathrm{pre}}$ and $N^{\mathrm{after}}$ are the number of pre-pulses and after-pulses.  The small $R_{\mathrm{pre}}$ ($3\times10^{-5}\pm1.2\times10^{-4}$) is dominated by DCR at our low-occupancy setup, and $R_{\mathrm{after}}$ of 9 MCP-PMTs is $0.009\pm0.006$.
 
 \begin{figure}[!htbp]
     \centering
@@ -188,7 +188,7 @@ We use five Gaussians $\sum_{i=1}^{5}{A_if_i^{\mathrm{AP}}(t;t_i,\sigma_i^2)}$ t
             &1st group&2nd group&3rd group&4th group&5th group\\
             \hline
             $t_i$/ns&310$\pm$8&435$\pm$27&593$\pm$24&1201$\pm$41&1725$\pm$25\\
-            $A_i/N_{\mathrm{hit}}$(/1E3)&1.2$\pm$0.7&0.3$\pm$0.2&0.3$\pm$0.3&0.8$\pm$0.6&1.5$\pm$0.6\\
+            $A_i/N^{\mathrm{hit}}$(/1E3)&1.2$\pm$0.7&0.3$\pm$0.2&0.3$\pm$0.3&0.8$\pm$0.6&1.5$\pm$0.6\\
             $\sigma_i$/ns&15$\pm$6&40$\pm$16 &32$\pm$12&50$\pm$26&68$\pm$23\\
             $Q_i/Q_0$&32$\pm$3&32$\pm$3\tnote{1}&20$\pm$3&17$\pm$3&14$\pm$1\\
             $\sigma_{Q_i}/Q_0$&12$\pm$1&12$\pm$1\tnote{1}&21$\pm$7&9$\pm$1&8$\pm$1\\
