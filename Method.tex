@@ -115,7 +115,7 @@ The main and early components are modeled with Gaussians $N_1f_1^N(t;\mu_{\mathr
         &+b_SH(\mu_{\mathrm{TT}}+3\sigma_{\mathrm{TT}})+N_Sf^{\mathrm{Exp}}\left(t-(\mu_{\mathrm{TT}}+3\sigma_{\mathrm{TT}});\frac{1}{\tau_S}\right)
     \end{aligned}
 \end{equation}
-in which $H$ is the heaviside function to limit the definition domain of the delayed component, and $B$ is the constant dark noise rate. The early and exponential components can be omitted in a rough simulation due to their small ratios in the 9 MCP-PMTs: $N_2/N_1 = \num{0.042\pm0.013}$, $N_S/N_1 = \num{0.014\pm0.002}$ and $2b_S\sigma_{\mathrm{TT}}/N_1 l= \num{0.00028\pm0.00005}$.  $\sigma_K$, $\tau_S$ and $\mu_{\mathrm{TT}}-\mu_K$ are fitted to be $\SI{1.4 \pm 0.3}{ns}$, $\SI{1.1\pm 0.1}{ns}$ and $\SI{3.2\pm 0.2}{ns}$. TTS ($\SI{1.74\pm0.05}{ns}$) is defined as FWHM$=2\sqrt{2\ln 2}\sigma_{\mathrm{TT}}$~\cite{HAMAMATSUManual} representing the timing resolution. The charge and TT seem to have some correlation in Fig.~\ref{fig:triggerTTS2d}, the long tail evident in charge distribution.
+in which $H$ is the Heaviside function to limit the definition domain of the delayed component, and $B$ is the constant dark noise rate. The early and exponential components can be omitted in a rough simulation due to their small ratios in the 9 MCP-PMTs: $N_2/N_1 = \num{0.042\pm0.013}$, $N_S/N_1 = \num{0.014\pm0.002}$ and $2b_S\sigma_{\mathrm{TT}}/N_1 l= \num{0.00028\pm0.00005}$.  $\sigma_K$, $\tau_S$ and $\mu_{\mathrm{TT}}-\mu_K$ are fitted to be $\SI{1.4 \pm 0.3}{ns}$, $\SI{1.1\pm 0.1}{ns}$ and $\SI{3.2\pm 0.2}{ns}$. TTS ($\SI{1.74\pm0.05}{ns}$) is defined as FWHM$=2\sqrt{2\ln 2}\sigma_{\mathrm{TT}}$~\cite{HAMAMATSUManual} representing the timing resolution. The charge and TT seem to have some correlation in Fig.~\ref{fig:triggerTTS2d}, the long tail evident in charge distribution.
 
 \begin{figure}[!htbp]
     \centering
@@ -134,13 +134,13 @@ in which $H$ is the heaviside function to limit the definition domain of the del
 
 \subsection{Dark count rate}
 \label{sec:dcr}
-The dark noise mimicking PEs mainly comes from the spontaneous thermionic electrons emitted from the photocathode~\cite{KM3NetTesting}. The dark count rate (DCR) is ${N_{\mathrm{noise}}}/({N_{\mathrm{hit}}T_{\mathrm{DCR}}})$, in which $N_{\mathrm{noise}}$ is the noise count in the interval of $[\SI{-300}{ns},\SI{-150}{ns}]$ relative to the main pulse with $T_{\mathrm{DCR}}=\SI{150}{ns}$ and $N_{\mathrm{hit}}$ is the number of waveforms with main pulses. The DCR of 9 MCP-PMTs is $5.3\pm\SI{1.7}{kHz}$ at room temperature.
+The dark noise mimicking PEs mainly comes from the spontaneous thermionic electrons emitted from the photocathode~\cite{KM3NetTesting}. The dark count rate (DCR) is ${N^{\mathrm{noise}}}/({N^{\mathrm{hit}}T_{\mathrm{DCR}}})$, in which $N^{\mathrm{noise}}$ is the noise count in the interval of $[\SI{-300}{ns},\SI{-150}{ns}]$ relative to the main pulse with $T_{\mathrm{DCR}}=\SI{150}{ns}$ and $N^{\mathrm{hit}}$ is the number of waveforms with main pulses. The DCR of 9 MCP-PMTs is $5.3\pm\SI{1.7}{kHz}$ at room temperature.
 
 \subsection{Pre-pulse and after-pulse}
 \label{sec:afterpulse}
 Generated from photons hitting the MCP or the first dynode directly rather than the photocathode, \emph{pre-pulses} appear about tens of nanoseconds earlier with smaller amplitudes~\cite{JUNOMassTesting}.
 
-Ions such as \ce{H^+}, \ce{He^+} and \ce{O^+} produced from gaseous impurities in the vacuum blub by the PEs drift back to the photocathode, generate new electrons and further \emph{after-pulses}~\cite{JUNOMassTesting,Coates_1973}. The delay times of after-pulses are proportional to the square root of the mass-to-charge ratios of the ions~\cite{XENON1TTesting,Coates_1973,afterpulseTime}. %Considering electric field and $\frac{M}{Z}$ of ions, the travel time is in the scale of \si{us}.
+Ions such as \ce{H^+}, \ce{He^+} and \ce{O^+} produced from gaseous impurities in the vacuum bulb by the PEs drift back to the photocathode, generate new electrons and further \emph{after-pulses}~\cite{JUNOMassTesting,Coates_1973}. The delay times of after-pulses are proportional to the square root of the mass-to-charge ratios of the ions~\cite{XENON1TTesting,Coates_1973,afterpulseTime}. %Considering electric field and $\frac{M}{Z}$ of ions, the travel time is in the scale of \si{us}.
 \begin{figure}
     \centering
     \includegraphics[width=\LF\textwidth]{figures/method/triggerAfterpulseSchema.pdf}
@@ -153,10 +153,10 @@ The pre-pulses and after-pulses are searched from \SI{10}{ns} before and \SI{200
 The ratios of pre-pulses $R_{\mathrm{pre}}$ and after-pulses $R_{\mathrm{after}}$ are calculated in the time interval [\SI{-100}{ns},\SI{-10}{ns}] ($T_{\mathrm{pre}}=90$\,ns) and [\SI{200}{ns},\SI{9800}{ns}] ($T_{\mathrm{after}}=9600$\,ns) relative to the main pulses respectively as the following equations
 
 \begin{align}
-    R_{\mathrm{pre}} = \frac{N_{\mathrm{pre}}}{N_\mathrm{hit}} - \mathrm{DCR}\cdot T_{\mathrm{pre}}\\
-    R_{\mathrm{after}} = \frac{N_{\mathrm{after}}}{N_\mathrm{hit}} - \mathrm{DCR}\cdot T_{\mathrm{after}}
+    R_{\mathrm{pre}} = \frac{N^{\mathrm{pre}}}{N^\mathrm{hit}} - \mathrm{DCR}\cdot T_{\mathrm{pre}}\\
+    R_{\mathrm{after}} = \frac{N^{\mathrm{after}}}{N^\mathrm{hit}} - \mathrm{DCR}\cdot T_{\mathrm{after}}
 \end{align}
-in which $N_{\mathrm{pre}}$ and $N_{\mathrm{after}}$ are the number of pre-pulses and after-pulses.  The small $R_{\mathrm{pre}}$ ($3\times10^{-5}\pm1.2\times10^{-4}$) is dominated by DCR at our low-occupancy setup, and $R_{\mathrm{after}}$ of 9 MCP-PMTs is $0.009\pm0.006$.
+in which $N^{\mathrm{pre}}$ and $N^{\mathrm{after}}$ are the number of pre-pulses and after-pulses.  The small $R_{\mathrm{pre}}$ ($3\times10^{-5}\pm1.2\times10^{-4}$) is dominated by DCR at our low-occupancy setup, and $R_{\mathrm{after}}$ of 9 MCP-PMTs is $0.009\pm0.006$.
 
 \begin{figure}[!htbp]
     \centering
@@ -170,13 +170,13 @@ in which $N_{\mathrm{pre}}$ and $N_{\mathrm{after}}$ are the number of pre-pulse
         \caption{}
         \label{fig:afterpulse2d}
     \end{subfigure}
-    \caption{(a) An example of time distributions of pre-pulses (orange) and after-pulses (blue) for an MCP-PMT, the green line being the Gaussian fits. The blank area around the \SI{0}{ns} is the main pulses not shown in this figure. (b) Charge versus time distribution of pre-pulses and after-pulses. The bright horizontal band at about 100\,$\mathrm{ADC}\cdot \mathrm{ns}$ mainly contains dark noise. The black line is the mean charge in each bin.}
+    \caption{(a) An example of time distributions of pre-pulses (orange) and after-pulses (blue) for an MCP-PMT, the green line being the Gaussian fits. The blank area around the \SI{0}{ns} is the main pulses not shown in this figure. (b) Charge versus time distribution of pre-pulses and after-pulses. The bright horizontal band at about 100\,$\mathrm{ADC}\cdot \mathrm{ns}$ mainly contains dark noise. The black line is the mean charge of pre/after-pulses in each time bin.}
 \end{figure}
 % waveform analysis
 
-The distribution of the delay time from $t_r^{10}$ of the main to after-pulse in Fig.~\ref{fig:afterpulse1d} indicates five characteristic peaks or structures at around \SI{300}{ns}, \SI{400}{ns}, \SI{600}{ns}, \SI{1200}{ns} and \SI{1700}{ns}, ratio being about $1:\sqrt{2}:\sqrt{4}:\sqrt{16}:\sqrt{32}$. These groups may originate from \ce{H^+}, \ce{H_2^+}, \ce{He^{+}}, \ce{CH_4^+}, and \ce{N_2^+} or \ce{O_2^+}. XENON1T~\cite{XENON1TTesting} and XMASS~\cite{Abe_2020} gave the same assumptions for the first peak. Similar works by JUNO~\cite{Zhao:2022gks} and KM3NeT~\cite{KM3NetTesting} claimed the first peak to be \ce{H_2^{+}}.
+The distribution of the delay time from $t_r^{10}$ of the main to after-pulse in Fig.~\ref{fig:afterpulse1d} indicates five typical peaks or structures at around \SI{300}{ns}, \SI{400}{ns}, \SI{600}{ns}, \SI{1200}{ns} and \SI{1700}{ns}, time ratio being about $1:\sqrt{2}:\sqrt{4}:\sqrt{16}:\sqrt{32}$. These groups may originate from \ce{H^+}, \ce{H_2^+}, \ce{He^{+}}, \ce{CH_4^+}, and \ce{N_2^+} or \ce{O_2^+}. XENON1T~\cite{XENON1TTesting} and XMASS~\cite{Abe_2020} gave the same assumptions for the first peak. Similar works by JUNO~\cite{Zhao:2022gks} and KM3NeT~\cite{KM3NetTesting} claimed the first peak to be \ce{H_2^{+}}.
 
-We use five Gaussians $\sum_{i=1}^{5}{A_if_i^{\mathrm{AP}}(t;t_i,\sigma_i^2)}$ to model the five groups after substracting DCR, in which $A_i$, $t_i$, and $\sigma_i$ are the amplitudes, times, width of each after-pulse group (Table.~\ref{tab:afterpulse}). The amplitudes of the groups vary greatly for different MCP-PMTs in Fig.~\ref{fig:afterpulsePeak}. Besides, we suggest the unexplained slow undulation in the time interval $[\SI{2000}{ns},\SI{7000}{ns}]$ in Fig.~\ref{fig:afterpulse1d} contributing about half of the after-pulses on average is modeled with a uniform distribution with single PE charge distribution.
+We use five Gaussians $\sum_{i=1}^{5}{A_if_i^{\mathrm{AP}}(t;t_i,\sigma_i^2)}$ to model the five groups after subtracting DCR, in which $A_i$, $t_i$, and $\sigma_i$ are the amplitudes, times, width of each after-pulse group (Table.~\ref{tab:afterpulse}). The amplitudes of the groups vary greatly for different MCP-PMTs in Fig.~\ref{fig:afterpulsePeak}. Besides, we suggest roughly modeling the time and charge distribution of unexplained slow undulating structures contributing about half of the after-pulses on average in the time interval $[\SI{2000}{ns},\SI{7000}{ns}]$, as shown in Fig.~\ref{fig:afterpulse1d}, with the uniform time and the single PE charge distribution.
 
 \begin{table}
     \centering
@@ -188,7 +188,7 @@ We use five Gaussians $\sum_{i=1}^{5}{A_if_i^{\mathrm{AP}}(t;t_i,\sigma_i^2)}$ t
             &1st group&2nd group&3rd group&4th group&5th group\\
             \hline
             $t_i$/ns&310$\pm$8&435$\pm$27&593$\pm$24&1201$\pm$41&1725$\pm$25\\
-            $A_i/N_{\mathrm{hit}}$(/1E3)&1.2$\pm$0.7&0.3$\pm$0.2&0.3$\pm$0.3&0.8$\pm$0.6&1.5$\pm$0.6\\
+            $A_i/N^{\mathrm{hit}}$(/1E3)&1.2$\pm$0.7&0.3$\pm$0.2&0.3$\pm$0.3&0.8$\pm$0.6&1.5$\pm$0.6\\
             $\sigma_i$/ns&15$\pm$6&40$\pm$16 &32$\pm$12&50$\pm$26&68$\pm$23\\
             $Q_i/Q_0$&32$\pm$3&32$\pm$3\tnote{1}&20$\pm$3&17$\pm$3&14$\pm$1\\
             $\sigma_{Q_i}/Q_0$&12$\pm$1&12$\pm$1\tnote{1}&21$\pm$7&9$\pm$1&8$\pm$1\\
@@ -216,7 +216,8 @@ We use five Gaussians $\sum_{i=1}^{5}{A_if_i^{\mathrm{AP}}(t;t_i,\sigma_i^2)}$ t
     \caption{(a) Time and relative amplitudes of after-pulse groups of 9 MCP-PMTs. (a) Time and mean charge of after-pulse groups of 6 MCP-PMTs.}
 \end{figure}
 
-The mean charge in each time bin shown as the black line in Fig.~\ref{fig:afterpulse2d} indicates that the after-pulse groups contain large charge signals. The charge distributions in $[t_i-3\sigma_i,t_i+3\sigma_i]$ scaled to the same dark noise count for each after-pulse group except for the 2nd one due to overlap with 1st group is shown in Fig.~\ref{fig:afterpulsecharge}, and we suggest using the same charge parameters with the 1st group for the 2nd group. The low charge area is consistent with dark noise, and the large charge events contributed from after-pulses are fitted with a Gaussian $f^{AP_Q}_i(Q;Q_i,\sigma_{Q_i}^2)$, in which $Q_i$ and $\sigma_{Q_i}$ are the charge and spread of each after-pulse group (Table.~\ref{tab:afterpulse}). The mean charge of each group without the 2nd group of six high statistics PMTs in Fig.~\ref{fig:afterpulseQ} shows a decreased relationship between charge and time. The charge distribution of 3rd low statistics group cannot be fitted well and therefore $\sigma_{Q_3}$s are large. 
+%The mean charge in each time bin shown as the black line. 
+The after-pulse groups contain large charge signals, as shown in Fig.~\ref{fig:afterpulse2d}. The charge distributions in $[t_i-3\sigma_i,t_i+3\sigma_i]$ of each after-pulse group except for the 2nd one are scaled to the same dark noise count in Fig.~\ref{fig:afterpulsecharge}. We suggest using the same charge parameters with the 1st group for the 2nd group due to overlap with the 1st. The low charge area is consistent with dark noise, and the large charge events contributed from after-pulses are fitted with a Gaussian $f^{AP_Q}_i(Q;Q_i,\sigma_{Q_i}^2)$, in which $Q_i$ and $\sigma_{Q_i}$ are the charge and spread of each after-pulse group (Table.~\ref{tab:afterpulse}). The mean charge of each group without the 2nd one of six high statistics PMTs in Fig.~\ref{fig:afterpulseQ} shows a negative correlation between charge and delay time. The charge distribution of 3rd low statistics group cannot be fitted well and therefore $\sigma_{Q_3}$s are large. 
 
 \begin{figure}[!htbp]
     \centering
