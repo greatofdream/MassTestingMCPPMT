@@ -57,9 +57,11 @@ The two cuts are complementary to exclude some noises with small $V_p$ but large
 The gains of the main peak and the entire sample are ${Q_0}/({\SI{50}{\Omega}} e) \approx \num{e7}$ and ${\overline{Q}}/(\SI{50}{\Omega} e)$, $e$ being the charge of an electron. The relative \emph{peak} and \emph{sample resolutions} $\nu_0$ and $\nu$ are defined as ${\sigma_{Q_0}}/{Q_0}$ and ${\sqrt{s^2_{Q}}}/{\overline{Q}}$.  Shown in Fig.~\ref{fig:totalchargeCompare}, $\overline{Q}$ is about 1.8 times $Q_0$ for the MCP-PMTs, in agreement with Zhang~et~al.~\cite{JUNOLongtail}. The long tail worsens the resolution of MCP-PMTs from $\nu_0=\num{0.25 \pm 0.02}$ to $\nu=\num{0.69 \pm 0.03}$, but is less pronounced for the reference dynode PMT.
 
 \subsection{Peak-to-valley ratio}
+\label{sec:PV}
 A parabolic function is fitted to the valley based on MLS in the interval $[-0.15Q_0, 0.25Q_0]$ relative to the least-counted bin of the histogram between the pedestal and the main peak, as shown in Fig.~\ref{fig:triggercharge}. The \emph{valley count} $N_v$ is defined as the minimum of the parabola and \emph{peak count} $N_p$ is the maximum of the Gaussian described in Section~\ref{sec:noisepeak}. The peak-to-valley ratio~(P/V) ${N_p}/{N_v}$ shows the ability to discriminate between electronic noises and a PE signal. The average P/V of MCP-PMTs is about 5.8, significantly higher than that (about 2.4) of the reference PMT.
 
 \subsection{Single electron response}
+\label{sec:SER}
 As shown in Fig.~\ref{fig:triggertime}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ ($t^{10}_f$, $t^{50}_f$, $t^{90}_f$) are the times of interpolated 10\%, 50\%, and 90\% $V_p$ in the rising (falling) edge. We define the rise time $t_r = t^{90}_r - t^{10}_r$, fall time $t_f = t^{10}_f - t^{90}_f$ and full width at half maximum $\mathrm{FWHM} = t^{50}_f - t^{50}_r$ to describe the shape of \emph{single electron response}~(SER).  They are measured to be $t_r = \SI{3.71\pm0.15}{ns}$, $t_f = \SI{15.6\pm1.8}{ns}$ and $\mathrm{FWHM} = \SI{9.07\pm0.63}{ns}$ for the 9 MCP-PMTs.
 
 % \begin{figure}
@@ -78,6 +80,7 @@ To get a smooth SER, we select signals with $V_p>\SI{3}{ADC}$, $Q \in [0.5Q_0, 1
 , in which $\mu_{\mathrm{SER}}$ is the time offset of the pulse, $\sigma_{\mathrm{SER}}$ and $\tau_{\mathrm{SER}}$ model the shape of SER. They are measured to be $\tau_{\mathrm{SER}} = \SI{7.2\pm1.0}{ns}$ and $\sigma_{\mathrm{SER}} = \SI{1.62\pm0.06}{ns}$ for the 9 MCP-PMTs.
 
 \subsection{Transit time spread}
+\label{sec:TTS}
 The PEs from the photocathode drift to the MCP, as shown in Fig.~\ref{fig:mcpelectron}. The drifting electric field and the PE trajectory are simulated by a simplified model consisting of a cathode at \SI{0}{V}, a focusing electrode at \SI{480}{V} and an MCP at \SI{528}{V}. The PEs from the top of the photocathode with \SI{0}{eV} and \SI{3}{eV} kinetic energies have drift times of about \SI{21}{ns} and \SI{18}{ns}, respectively. A PE entering an MCP channel is multiplied to be an observable pulse, while that hitting the surface of the MCP gets scattered inelastically into several secondary electrons or elastically into one single electron~\cite{Furman}. The scattered electrons drift in the electric field until entering the MCP channels finally to give delayed pulses~\cite{KM3NetTesting}. Multiple secondary electrons with different kinetic energies may cause two or more pulses due to different drift times, as shown in Fig.~\ref{fig:triggerTT2pulse}.
 
 \begin{figure}[!htbp]
@@ -245,4 +248,4 @@ The number of hit waveforms $N^{\mathrm{hit}}_{njk}$ of the $k$th PMT in the $n$
     \mathcal{L}=\prod_{njk}{R_{njk}^{N^\mathrm{hit}_{njk}}(1-R_{njk})^{N^t_{njk}-N^{\mathrm{hit}}_{njk}}}.
 \end{equation}
 
-Eqs.~\eqref{equ:linkfunction} and \eqref{equ:likelihood} defines a \emph{Binomial regression} with \emph{complenmentary log-log} link function~\cite{glm}, with $\log{\eta_k^0}$, $\log{\alpha_j^0}$ and $\log{I_n^0}$ as parameters. The relative PDEs $\eta_k^0$ of MCP-PMTs are calculated from the regression results to be about $1.71$, significantly higher than the reference PMT.  We could attribute the PDE to the improvements on both quentum and collection efficiencies of the MCP-PMTs.
+Eqs.~\eqref{equ:linkfunction} and \eqref{equ:likelihood} defines a \emph{Binomial regression} with \emph{complementary log-log} link function~\cite{glm}, with $\log{\eta_k^0}$, $\log{\alpha_j^0}$ and $\log{I_n^0}$ as parameters. The relative PDEs $\eta_k^0$ of MCP-PMTs are calculated from the regression results to be about $1.71$, significantly higher than the reference PMT.  We could attribute the PDE to the improvements on both quantum and collection efficiencies of the MCP-PMTs. 

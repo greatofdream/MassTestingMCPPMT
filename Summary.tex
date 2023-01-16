@@ -2,15 +2,27 @@
 \label{Summary}
 \begin{table}
     \centering
-    \caption{Summary of important parameters of 9 MCP-PMTs}
+    \caption{Summary of important parameters of the MCP-PMTs}
     \label{tab:summary}
-    \begin{tabular}{|c|c|c|c|c|c|}
+    \begin{tabularx}{\textwidth}{c|r @{$\pm$} l |c|X}
         \hline
-        $\overline{Q}/Q_0$&$\nu_0$&$\nu$&TTS/ns&DCR/kHz&relative PDE\\
+        Parameters&\multicolumn{2}{c}{$\mu\pm\sigma$}\vline&JNE criteria&Notes\\
         \hline
-        1.8$\pm$0.1&0.25$\pm$0.02&0.69$\pm$0.03&1.74$\pm$0.05&5.3$\pm$1.7&1.71$\pm$0.06\\
+        $\overline{Q}/Q_0$&1.8&0.1&&Ratio of the main-peak gain and the entire-sample gain in Section~\ref{sec:noisepeak}\\
+        $\nu_0$&0.25&0.02&&The relative peak resolution in Section~\ref{sec:noisepeak}\\
+        $\nu$&0.69&0.03&&The relative sample resolution in Section~\ref{sec:noisepeak}\\
+        P/V&&&$>5$&The peak-to-valley ratio in Section~\ref{sec:PV}\\
+        $t_r$/ns&&&$<4$&The rising time in Section~\ref{sec:SER}\\
+        $t_f$/ns&&&$<20$&The falling time in Section~\ref{sec:SER}\\
+        $\sigma_{\mathrm{SER}}$/ns&&&&The SER shape parameter in Section~\ref{sec:SER}\\
+        $\tau_{\mathrm{SER}}$/ns&&&&The SER shape parameter in Section~\ref{sec:SER}\\
+        TTS/ns&1.74&0.05&$<1.8$&Transit time spread in Section~\ref{sec:TTS}\\
+        DCR/kHz&5.3&1.7&$<5$&Dark count rate in Section~\ref{sec:dcr}\\
+        $R_{\mathrm{pre}}$&&&$<0.001$&The ratios of pre-pulses in Section~\ref{sec:afterpulse}\\
+        $R_{\mathrm{after}}$&&&$<0.048$&The ratios of after-pulses in Section~\ref{sec:afterpulse}\\
+        $\eta^0$&1.71&0.06&$>1.6$&The relative PDE in Section~\ref{sec:PDE}\\
         \hline
-    \end{tabular}
+    \end{tabularx}
 \end{table}
 
 The characteristics of the nine MCP-PMTs are summarized in Table~\ref{tab:summary}, which can be served as inputs to detector simulation and data analysis. A new calibration method based on regression gives the average relative PDE of the MCP-PMT to be about 1.7 times the reference PMT. The long tail in the charge distribution is countered by the high PDE, resulting in an overall boost in energy resolution. We conclude that the new 8-inch GDB-6082 MCP-PMT from NNVT is suitable for the upcoming JNE.
