@@ -6,11 +6,11 @@
 \subsection{Preanalysis}
 \label{sec:laserstage}
 
-The laser intensity is adjusted to the level of $1/20$ occupancy to obtain single PE events. The window size $T_{\mathrm{wave}}$ is \SI{10400}{ns} to include all the possible after-pulses (see Section~\ref{sec:afterpulse}). The rising edge of the trigger waveform from the laser system is linearly interpolated to get the half-height time $t_{\mathrm{trig}}$ at about \SI{200}{ns}, as shown in Fig.~\ref{fig:triggertime}.
+The laser intensity is adjusted to the level of $1/20$ occupancy to obtain single PE events. The window size $T_{\mathrm{wave}}$ is \SI{10400}{ns} to include all the possible after-pulses (see Section~\ref{sec:afterpulse}). The rising edge of the trigger waveform from the laser system is linearly interpolated to get the half-height time $t_{\mathrm{trig}}$ at about \SI{250}{ns}, as shown in Fig.~\ref{fig:triggertime}.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\LF\textwidth]{figures/method/triggerwave.pdf}
-    \caption{An example of PMT and trigger signals. The orange line is the trigger waveform, with its high and low voltages indicated by two black horizontal dashed lines. The green cross is the interpolated trigger time $t_{\mathrm{trig}}$. The solid blue line is the PMT waveform with a PE pulse. The horizontal violet dotted line is the voltage threshold for calculating the baseline shown by the blue horizontal dashed line. The black horizontal dash lines intersect 10\%, 50\% and 90\% of (downward) rising and falling edges. The red and yellow vertical dashed lines are for the 10\% rising edge and the pulse peak respectively.}
+    \caption{An example of PMT and trigger signals. The orange line is the trigger waveform, with its high and low voltages indicated by two black horizontal dashed lines. The green cross is the interpolated trigger time $t_{\mathrm{trig}}$. The solid blue line is the PMT waveform with a PE pulse. The horizontal violet dotted line is the voltage threshold for calculating the baseline shown by the blue horizontal dashed line. The black horizontal dash lines intersect 10\%, 50\% and 90\% of (downward) rising and falling edges. The rise and fall times are the interval length between 10\% and 90\% of rising and falling edges respectively. The red and yellow vertical dashed lines are for the 10\% rising edge and the pulse peak.}
     \label{fig:triggertime}
 \end{figure}
 
