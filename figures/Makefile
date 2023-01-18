@@ -20,8 +20,8 @@ method/triggerwave.pdf: $(filedir)/docscript/trigger723_101077_4.pdf
 	cp $^ $@
 method/triggerpeakpos.pdf: $(filedir)/ExResult/720/600ns/h5/trigger.h5.pdf
 	cp $^ $@
-method/triggercharge.pdf: $(filedir)/ExResult/786/600ns/chargeSelect.h5.pdf
-	inkscape --without-gui --export-filename $@ --pdf-page=40 $^
+method/triggercharge.pdf: $(filedir)/docscript/chargeSelect.pdf
+	inkscape --without-gui --export-filename $@ --pdf-page=2 $^
 method/triggerpeak.pdf: $(filedir)/ExResult/786/600ns/chargeSelect.h5.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=42 $^
 method/triggerFWHM.pdf: $(filedir)/ExResult/786/600ns/chargeSelect.h5.pdf
