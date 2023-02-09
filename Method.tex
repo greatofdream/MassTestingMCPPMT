@@ -22,7 +22,7 @@ In the preanalysis, we select a preliminary window $[t_{\mathrm{trig}},600\,\mat
 The nonzero baseline is estimated from the sidebands $[-200\,\mathrm{ns},-10\,\mathrm{ns}]$ and $[100\,\mathrm{ns},200\,\mathrm{ns}]$ relative to $t_p$. % padding
 To remove potential additional pulses in the sidebands, as the horizontal violet dotted line in Fig.~\ref{fig:triggertime} we define a voltage threshold from a rough estimation of white noise and cut off additional \SI{10}{ns} around each over-threshold time interval. The baseline $\mu_b$ is estimated as the average of the residual sidebands. The peak height $V_p$ of a pulse is the difference between $\mu_b$ and the minimum voltage.
 
-Over all the waveform samples, a Gaussian $f(t;t_0,\sigma_{t0}^2)$ is fitted to the distribution of $t_p-t_{\mathrm{trig}}$ of pulses whose $V_p$ exceeds \SI{5}{ADC}. We define a new candidate window, about \SI{30}{ns} long, as $[t_0-5\sigma_{t0}, t_0+5\sigma_{t0}]$ to calculate new $t_p$ and $V_p$ by repeating the above procedures.  With such a candidate window the dark counts reduced by 10, we shall conduct the charge and time characterization of the single PE in the following sections.
+Over all the waveform samples, a Gaussian $f(t;t_0,\sigma_{t0}^2)$ is fitted to the distribution of $t_p-t_{\mathrm{trig}}$ of pulses whose $V_p$ exceeds \SI{5}{ADC}. We define a new candidate window, about \SI{30}{ns} long, as $[t_0-5\sigma_{t0}, t_0+5\sigma_{t0}]$ to calculate new $t_p$ and $V_p$ by repeating the above procedures.  With such a candidate window the dark counts reduced by 10, we shall conduct the charge and time characterization of the single PE pulse (main pulse) in the following sections.
 
 \subsection{Single-PE charge spectrum and resolution}
 \label{sec:noisepeak}
@@ -32,9 +32,9 @@ the summation of the baseline-subtracted voltages in a time window $[\SI{-10}{ns
 
 Such $Q$ in Fig.~\ref{fig:triggercharge} represents the charge of a single PE with negligible multi-PE contributions due to the low occupancy. A long tail is evident in the single-PE charge distribution, also found in the NNVT 20-inch MCP-PMTs by the JUNO collaboration~\cite{JUNOMassTesting}. Zhang~et~al.~\cite{JUNOLongtail} proposed a phenomenological parameterization without dedicated consideration of the multiplication process of the PEs. Our future publications will discuss the physical model and solution of the long tail.
 
-To describe the peak shape of the $Q$ distribution, a Gaussian function $f(Q;Q_0,\sigma^2_{Q_0})$ is fitted to the interval $[0.65Q_0, 1.35Q_0]$ via the modified least-square (MLS)~\cite{Cowan1998StatisticalDA} as the red line in Fig.~\ref{fig:triggercharge}. To remove the influence of the pedestal and describe the long tail~\cite{JUNOLongtail}, pulses with $V_p>\SI{3}{ADC}$ and $Q>0.25Q_0$ are selected to calculate the mean $\overline{Q}$ and sample variance $s^2_{Q}$ of $Q$.
+To describe the peak shape of the $Q$ distribution, a Gaussian function $N^{\mathrm{1e}}f(Q;Q_0,\sigma^2_{Q_0})$ is fitted to the interval $[0.65Q_0, 1.35Q_0]$ via the modified least-square (MLS)~\cite{Cowan1998StatisticalDA} as the red line in Fig.~\ref{fig:triggercharge}. The mean $\overline{Q}$ and sample variance $s^2_{Q}$ of $Q$ of $N^{\mathrm{hit}}$ selected main pulses, with $V_p>\SI{3}{ADC}$ and $Q>0.25Q_0$, remove the influence of the pedestal and describe the long tail~\cite{JUNOLongtail}.
 % The $V_p$ distribution with \SI{1}{ADC} bin width in Fig.~\ref{fig:triggerpeak} 
-The two cuts are complementary to exclude some noises with small $V_p$ but large $Q$~(Fig.~\ref{fig:triggercharge}).
+The two cuts are complementary to exclude some noises with small $V_p$ but large $Q$~(Fig.~\ref{fig:triggercharge}). Besides, the Gaussian component ratio $N^{\mathrm{1e}}/N^{\mathrm{hit}}$ ($0.59\pm0.02$ for the nine MCP-PMTs) of charge distribution reflects the significance of long tail.
 
 \begin{figure}[!htbp]
     \centering
@@ -59,11 +59,11 @@ The gains of the main peak and the entire sample are ${Q_0}/({\SI{50}{\Omega}} e
 
 \subsection{Peak-to-valley ratio}
 \label{sec:PV}
-A parabolic function is fitted to the valley based on MLS in the interval $[-0.15Q_0, 0.25Q_0]$ relative to the least-counted bin of the histogram between the pedestal and the main peak, as shown in Fig.~\ref{fig:triggercharge}. The \emph{valley count} $N_v$ is defined as the minimum of the parabola and \emph{peak count} $N_p$ is the maximum of the Gaussian described in Section~\ref{sec:noisepeak}. The peak-to-valley ratio~(P/V) ${N_p}/{N_v}$ shows the ability to discriminate between electronic noises and a PE signal. The average P/V of MCP-PMTs is about 5.8, significantly higher than that (about 2.4) of the reference PMT.
+A parabolic function is fitted to the valley based on MLS in the interval $[-0.15Q_0, 0.25Q_0]$ relative to the least-counted bin of the histogram between the pedestal and the main peak, as shown in Fig.~\ref{fig:triggercharge}. The \emph{valley count} $N_v$ is defined as the minimum of the parabola and \emph{peak count} $N_p$ is the maximum of the Gaussian described in Section~\ref{sec:noisepeak}. The peak-to-valley ratio~(P/V) ${N_p}/{N_v}$ shows the ability to discriminate between electronic noises and a PE signal. The average P/V of MCP-PMTs is about 5.9, significantly higher than that (about 2.4) of the reference PMT.
 
 \subsection{Single electron response}
 \label{sec:SER}
-As shown in Fig.~\ref{fig:triggertime}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ ($t^{10}_f$, $t^{50}_f$, $t^{90}_f$) are the times of interpolated 10\%, 50\%, and 90\% $V_p$ in the rising (falling) edge. We define the rise time $t_r = t^{90}_r - t^{10}_r$, fall time $t_f = t^{10}_f - t^{90}_f$ and full width at half maximum $\mathrm{FWHM} = t^{50}_f - t^{50}_r$ to describe the shape of \emph{single electron response}~(SER).  They are measured to be $t_r = \SI{3.71\pm0.15}{ns}$, $t_f = \SI{15.6\pm1.8}{ns}$ and $\mathrm{FWHM} = \SI{9.07\pm0.63}{ns}$ for the 9 MCP-PMTs.
+As shown in Fig.~\ref{fig:triggertime}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ ($t^{10}_f$, $t^{50}_f$, $t^{90}_f$) are the times of interpolated 10\%, 50\%, and 90\% $V_p$ in the rising (falling) edge. We define the rise time $t_r = t^{90}_r - t^{10}_r$, fall time $t_f = t^{10}_f - t^{90}_f$ and full width at half maximum $\mathrm{FWHM} = t^{50}_f - t^{50}_r$ to describe the shape of \emph{single electron response}~(SER).  They are measured to be $t_r = \SI{3.72\pm0.15}{ns}$, $t_f = \SI{15.6\pm1.8}{ns}$ and $\mathrm{FWHM} = \SI{9.07\pm0.63}{ns}$ for the 9 MCP-PMTs.
 
 % \begin{figure}
 %     \centering
@@ -79,7 +79,7 @@ As shown in Fig.~\ref{fig:triggertime}, $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ ($t^{
 % \end{figure}
 To get a smooth SER, signals with $V_p>\SI{3}{ADC}$, $Q \in [0.5Q_0, 1000\mathrm{ADC\cdot ns}]$ and $\mathrm{FWHM} \in [2\,\mathrm{ns}, 15\,\mathrm{ns}]$ are selecteed to exclude the noise and large pulses. %padding
 An \emph{exGaussian} distribution $f^N(t;\mu_{\mathrm{SER}},\sigma_\mathrm{SER}^2)\otimes f^{\mathrm{Exp}}(t;1/\tau_\mathrm{SER})$~\cite{Luo:2022xrd} is used to fit the SER% as shown in Fig.~\ref{fig:triggerser}
-, in which $\mu_{\mathrm{SER}}$ is the time offset of the pulse, $\sigma_{\mathrm{SER}}$ and $\tau_{\mathrm{SER}}$ model the shape of SER. They are measured to be $\tau_{\mathrm{SER}} = \SI{7.2\pm1.0}{ns}$ and $\sigma_{\mathrm{SER}} = \SI{1.62\pm0.06}{ns}$ for the 9 MCP-PMTs.
+, in which $\mu_{\mathrm{SER}}$ is the time offset of the pulse, $\sigma_{\mathrm{SER}}$ and $\tau_{\mathrm{SER}}$ model the shape of SER. They are measured to be $\tau_{\mathrm{SER}} = \SI{7.2\pm1.1}{ns}$ and $\sigma_{\mathrm{SER}} = \SI{1.63\pm0.06}{ns}$ for the 9 MCP-PMTs.
 
 \subsection{Transit time spread}
 \label{sec:TTS}
@@ -121,7 +121,7 @@ $N_1f_1^N(t;\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ and $N_2f_2^N(t;\mu_K,\si
         &+b_SH(\mu_{\mathrm{TT}}+3\sigma_{\mathrm{TT}})+N_Sf^{\mathrm{Exp}}\left(t-(\mu_{\mathrm{TT}}+3\sigma_{\mathrm{TT}});\frac{1}{\tau_S}\right)
     \end{aligned}
 \end{equation}
-in which $H$ is the Heaviside function to limit the definition domain of the delayed component, and $B$ is the constant dark noise rate. The early and exponential components can be omitted in a rough simulation due to their small ratios in the 9 MCP-PMTs: $N_2/N_1 = \num{0.042\pm0.013}$, $N_S/N_1 = \num{0.014\pm0.002}$ and $2b_S\sigma_{\mathrm{TT}}/N_1 = \num{0.00028\pm0.00005}$.  $\sigma_K$, $\tau_S$ and $\mu_{\mathrm{TT}}-\mu_K$ are fitted to be $\SI{1.4 \pm 0.3}{ns}$, $\SI{1.1\pm 0.1}{ns}$ and $\SI{3.2\pm 0.2}{ns}$. TTS ($\SI{1.74\pm0.05}{ns}$) is defined as FWHM$=2\sqrt{2\ln 2}\sigma_{\mathrm{TT}}$~\cite{HAMAMATSUManual} representing the timing resolution. The charge and TT seem to have some correlation in Fig.~\ref{fig:triggerTTS2d}, the long tail evident in charge distribution.
+in which $H$ is the Heaviside function to limit the definition domain of the delayed component, and $B$ is the constant dark noise rate. The early and exponential components can be omitted in a rough simulation due to their small ratios in the 9 MCP-PMTs: $N_2/N_1 = \num{0.042\pm0.013}$, $N_S/N_1 = \num{0.014\pm0.002}$ and $2b_S\sigma_{\mathrm{TT}}/N_1 = \num{0.00028\pm0.00005}$.  $\sigma_K$, $\tau_S$ and $\mu_{\mathrm{TT}}-\mu_K$ are fitted to be $\SI{1.4 \pm 0.3}{ns}$, $\SI{1.1\pm 0.1}{ns}$ and $\SI{3.2\pm 0.2}{ns}$. TTS ($\SI{1.73\pm0.08}{ns}$) is defined as FWHM$=2\sqrt{2\ln 2}\sigma_{\mathrm{TT}}$~\cite{HAMAMATSUManual} representing the timing resolution. The charge and TT seem to have some correlation in Fig.~\ref{fig:triggerTTS2d}, the long tail evident in charge distribution.
 
 \begin{figure}[!htbp]
     \centering
@@ -140,7 +140,7 @@ in which $H$ is the Heaviside function to limit the definition domain of the del
 
 \subsection{Dark count rate}
 \label{sec:dcr}
-The dark noise mimicking PEs mainly comes from the spontaneous thermionic electrons emitted from the photocathode~\cite{KM3NetTesting}. The dark count rate (DCR) is ${N^{\mathrm{noise}}}/({N^{\mathrm{hit}}T_{\mathrm{DCR}}})$, in which $N^{\mathrm{noise}}$ is the noise count in the interval of $[\SI{-300}{ns},\SI{-150}{ns}]$ relative to the main pulse with $T_{\mathrm{DCR}}=\SI{150}{ns}$ and $N^{\mathrm{hit}}$ is the number of waveforms with main pulses. The DCR of 9 MCP-PMTs is $5.3\pm\SI{1.7}{kHz}$ at room temperature.
+The dark noise mimicking PEs mainly comes from the spontaneous thermionic electrons emitted from the photocathode~\cite{KM3NetTesting}. The dark count rate (DCR) is ${N^{\mathrm{noise}}}/({N^{\mathrm{hit}}T_{\mathrm{DCR}}})$, in which $N^{\mathrm{noise}}$ is the noise count in the interval of $[\SI{-300}{ns},\SI{-150}{ns}]$ relative to the main pulse with $T_{\mathrm{DCR}}=\SI{150}{ns}$ and $N^{\mathrm{hit}}$ is the number of waveforms with main pulses. The DCR of 9 MCP-PMTs is $5.8\pm\SI{1.6}{kHz}$ at room temperature.
 
 \subsection{Pre-pulse and after-pulse}
 \label{sec:afterpulse}
