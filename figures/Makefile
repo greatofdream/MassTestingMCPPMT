@@ -43,11 +43,11 @@ method/triggerSER2d.pdf: $(filedir)/ExResult/786/600ns/serMerge.h5.pdf
 method/triggerAfterpulseSchema.pdf: $(filedir)/docscript/afterpulse720_2.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=2 $^
 method/triggerAfterpulse1d.pdf: $(filedir)/ExPMT/PM2106-9145/laser.h5.pdf
-	inkscape --without-gui --export-filename $@ --pdf-page=16 $^
+	inkscape --without-gui --export-filename $@ --pdf-page=27 $^
 method/triggerAfterpulse2d.pdf: $(filedir)/ExPMT/PM2106-9145/laser.h5.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=11 $^
 method/triggerafterpulseCharge.pdf: $(filedir)/ExPMT/PM2106-9145/laser.h5.pdf
-	inkscape --without-gui --export-filename $@ --pdf-page=19 $^
+	inkscape --without-gui --export-filename $@ --pdf-page=30 $^
 result/gainres.pdf: $(filedir)/ExPMT/PMTSummary.pdf
 	inkscape --without-gui --export-filename $@ --pdf-page=17 $^
 result/PV.pdf: $(filedir)/ExPMT/PMTSummary.pdf

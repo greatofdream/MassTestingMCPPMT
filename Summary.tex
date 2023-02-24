@@ -1,28 +1,31 @@
 \section{Summary}
 \label{Summary}
-\begin{table}
-    \centering
-    \caption{Summary of important parameters of the MCP-PMTs}
-    \label{tab:summary}
-    \begin{tabularx}{\textwidth}{c|r @{$\pm$} l |c|X}
+% \begin{table}
+%     \centering
+    % \caption{Summary of important parameters of the MCP-PMTs}
+    % \label{tab:summary}
+    \begin{xltabular}{\textwidth}{c|r @{$\pm$} l |c|X|c}
+        \caption{Summary of important parameters of the MCP-PMTs}
+        \label{tab:summary}\\
         \hline
-        Parameters&\multicolumn{2}{c}{$\mu\pm\sigma$}\vline&JNE criteria&Notes\\
+        Parameters&\multicolumn{2}{c}{$\mu\pm\sigma$}\vline&JNE criteria&Notes&Section\\
         \hline
-        $\frac{\overline{Q}}{Q_0}$&1.8&0.1&&Ratio of the main-peak gain and the entire-sample gain in Section~\ref{sec:noisepeak}\\
-        $\nu_0=\frac{\sigma_{Q_0}}{Q_0}$&0.25&0.02&&The relative peak resolution in Section~\ref{sec:noisepeak}\\
-        $\nu=\frac{\sqrt{s^2_{Q}}}{\overline{Q}}$&0.69&0.03&&The relative sample resolution in Section~\ref{sec:noisepeak}\\
-        P/V&&&$>5$&The peak-to-valley ratio in Section~\ref{sec:PV}\\
-        $t_r$/ns&&&$<4$&The rising time in Section~\ref{sec:SER}\\
-        $t_f$/ns&&&$<20$&The falling time in Section~\ref{sec:SER}\\
-        $\sigma_{\mathrm{SER}}$/ns&&&&The standard deviations of the normal distribution for single electron response in Section~\ref{sec:SER}\\
-        $\tau_{\mathrm{SER}}$/ns&&&&The exponential decay parameter for single electron response in Section~\ref{sec:SER}\\
-        TTS/ns&1.74&0.05&$<1.8$&Transit time spread (FWHM of TT distribution) in Section~\ref{sec:TTS}\\
-        DCR/kHz&5.3&1.7&$<5$&Dark count rate in Section~\ref{sec:dcr}\\
-        $P_{\mathrm{pre}}$&&&$<0.001$&The probability of pre-pulses in Section~\ref{sec:afterpulse}\\
-        $P_{\mathrm{after}}$&&&$<0.048$&The probability of after-pulses in Section~\ref{sec:afterpulse}\\
-        $\epsilon^0$&1.71&0.06&$>1.6$&The relative PDE in Section~\ref{sec:PDE}\\
+        $\frac{\overline{Q}}{Q_0}$&1.8&0.1&&Ratio of the main-peak gain and the entire-sample gain&\ref{sec:noisepeak}\\
+        $\nu_0=\frac{\sigma_{Q_0}}{Q_0}$&0.25&0.02&&The relative peak resolution&\ref{sec:noisepeak}\\
+        $\nu=\frac{\sqrt{s^2_{Q}}}{\overline{Q}}$&0.69&0.03&&The relative sample resolution&\ref{sec:noisepeak}\\
+        $\frac{N^{\mathrm{1e}}}{N^{\mathrm{hit}}}$&0.59&0.02&&The Gaussian component ratio&\ref{sec:noisepeak}\\
+        P/V&5.9&1.4&$>5$&The peak-to-valley ratio&\ref{sec:PV}\\
+        $t_r$/ns&3.71&0.15&$<4$&The rising time&\ref{sec:SER}\\
+        $t_f$/ns&15.6&1.8&$<20$&The falling time&\ref{sec:SER}\\
+        $\sigma_{\mathrm{SER}}$/ns&1.63&0.06&&The standard deviations of the normal distribution for single electron response&\ref{sec:SER}\\
+        $\tau_{\mathrm{SER}}$/ns&7.2&1.1&&The exponential decay parameter for single electron response&\ref{sec:SER}\\
+        TTS/ns&1.73&0.08&$<1.8$&Transit time spread (FWHM of TT distribution)&\ref{sec:TTS}\\
+        DCR/kHz&5.8&1.6&$\sim 5$&Dark count rate&\ref{sec:dcr}\\
+        $P_{\mathrm{pre}}$&1E-6&6E-6&$<0.001$&The probability of pre-pulses&\ref{sec:afterpulse}\\
+        $P_{\mathrm{after}}$&0.009&0.005&$<0.048$&The probability of after-pulses&\ref{sec:afterpulse}\\
+        $\epsilon^0$&1.71&0.06&$>1.6$&The relative PDE&\ref{sec:PDE}\\
         \hline
-    \end{tabularx}
-\end{table}
+    \end{xltabular}
+% \end{table}
 
 The characteristics of the nine MCP-PMTs discussed are summarized in Table~\ref{tab:summary}, which can be served as inputs to detector simulation and data analysis. A new calibration method based on regression in this study gives the average relative PDE of the MCP-PMT to be about 1.7 times the reference PMT. The long tail in the charge distribution is countered by the high PDE, resulting in an overall boost in energy resolution. We conclude that the new 8-inch GDB-6082 MCP-PMT from NNVT is suitable for the upcoming JNE.
