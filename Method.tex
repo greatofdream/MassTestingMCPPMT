@@ -15,14 +15,14 @@ The laser intensity is adjusted to the level of $1/20$ occupancy to obtain singl
 \end{figure}
 
 
-In the preanalysis, we select a preliminary window $[t_{\mathrm{trig}},600\,\mathrm{ns}]$ where dark noises (\SI{\sim 10}{kHz} in Section~\ref{sec:dcr}) and laser pulses are expected to contribute 0.004 and 0.05 counts on average. The peak time $t_p$ is the minimum position in each window, as shown in Fig.~\ref{fig:triggertime}.
+In the preanalysis, we select a preliminary window $[t_{\mathrm{trig}},600\,\mathrm{ns}]$ where dark noises (\SI{< 10}{kHz} in Section~\ref{sec:dcr}) and laser pulses are expected to contribute 0.004 and 0.05 counts on average. The peak time $t_p$ is the minimum position in each window, as shown in Fig.~\ref{fig:triggertime}.
 %Because the maximum pulse is selected in each waveform, the expected charge distribution is the distribution of $\max(C_n)$ ($n=1,...,N$), in which $C_n$ is the charge of the nth PE and $N$ is the number of PE in a waveform.
 
 
 The nonzero baseline is estimated from the sidebands $[-200\,\mathrm{ns},-10\,\mathrm{ns}]$ and $[100\,\mathrm{ns},200\,\mathrm{ns}]$ relative to $t_p$. % padding
-To remove potential additional pulses in the sidebands, we define a voltage threshold from a rough estimation of white noise as the horizontal violet dotted line in Fig.~\ref{fig:triggertime} and cut off additional \SI{10}{ns} around each over-threshold time interval. The baseline $\mu_b$ is estimated as the average of the residual sidebands. The peak height $V_p$ of a pulse is the difference between $\mu_b$ and the minimum voltage.
+To remove potential additional pulses in the sidebands, we define a voltage threshold from a rough estimation of white noise as the horizontal violet dotted line in Fig.~\ref{fig:triggertime} and cut off additional \SI{10}{ns} around each over-threshold time interval. The baseline $\mu_b$ is estimated as the average of the residual sidebands. The peak height $V_p$ of a pulse is the difference between $\mu_b$ and the minimum voltage at \(t_p\).
 
-Over all the waveform samples, a Gaussian $f(t;t_0,\sigma_{t0}^2)$ is fitted to the distribution of $t_p-t_{\mathrm{trig}}$ of pulses whose $V_p$ exceeds \SI{5}{ADC}. We define a new candidate window, about \SI{30}{ns} long, as $[t_0-5\sigma_{t0}, t_0+5\sigma_{t0}]$ to calculate new $t_p$ and $V_p$ by repeating the above procedures.  The shrinked time window reduces the dark counts by 10, with which we shall conduct the charge and time characterization of the single PE in the following sections.
+Over all the waveform samples, a Gaussian $f(t;t_0,\sigma_{t0}^2)$ is fitted to the distribution of $t_p-t_{\mathrm{trig}}$ of pulses whose $V_p$ exceeds \SI{5}{ADC}. We define a new candidate window, about \SI{30}{ns} long, as $[t_0-5\sigma_{t0}, t_0+5\sigma_{t0}]$ to calculate new $t_p$ and $V_p$ by repeating the above procedures.  The contracted time window reduces the dark counts by 10, with which we shall conduct the charge and time characterization of the single PE in the following sections.
 
 \subsection{Single-PE charge spectrum and resolution}
 \label{sec:noisepeak}
@@ -49,7 +49,7 @@ To describe the peak shape of the $Q$ distribution, a Gaussian function $N^{\mat
         \caption{}
         \label{fig:totalchargeCompare}
     \end{subfigure}
-    \caption{(\subref{fig:triggercharge}) The long-tailed single-PE charge distribution of an MCP-PMT. The entries around zero are waveforms with no signal. The vertical blue dashed line is the pedestal cut. The orange histogram is the selected waveforms with peak-height cut ($V_p>\SI{3}{ADC}$). The pink and green areas are the fit intervals for the peak and valley parameters. A Gaussian function $f(Q;Q_0,\sigma^2_{Q_0})$ is fitted to the peak of single-PE charge distribution. Mean $\overline{Q}$ and sample variance $s_Q^2$ of selected charge reflect the long-tailed information. (\subref{fig:totalchargeCompare}) The charge and resolution ratios show the effect of the long tail. The point and crosses represent the reference and MCP PMTs, respectively.
+    \caption{(\subref{fig:triggercharge}) The long-tailed single-PE charge distribution of an MCP-PMT. The entries around zero are waveforms with no signal. The vertical blue dashed line is the pedestal cut. The orange histogram is the selected waveforms with peak-height cut ($V_p>\SI{3}{ADC}$). The pink and green areas are the fit intervals for the peak and valley parameters. A Gaussian function $f(Q;Q_0,\sigma^2_{Q_0})$ is fitted to the peak of single-PE charge distribution. Mean $\overline{Q}$ and sample variance $s_Q^2$ of selected charge reflect the long-tailed information. (\subref{fig:totalchargeCompare}) The charge and resolution ratios show the effect of the long tail. The point and crosses represent the reference and MCP-PMTs, respectively.
     }
 \end{figure}
 
@@ -75,13 +75,13 @@ We define $t^{10}_r$, $t^{50}_r$, $t^{90}_r$ ($t^{10}_f$, $t^{50}_f$, $t^{90}_f$
     % \end{subfigure}
     % \caption{(a)  (b) $\tau$ versus $\sigma$ of 9 MCP-PMTs.}
 % \end{figure}
-To get a smooth SER, signals with $V_p>\SI{3}{ADC}$, $Q \in [0.5Q_0, 1000\mathrm{ADC\cdot ns}]$ and $\mathrm{FWHM} \in [2\,\mathrm{ns}, 15\,\mathrm{ns}]$ are selecteed to exclude the noise and large pulses. %padding
+To get a smooth SER, signals with $V_p>\SI{3}{ADC}$, $Q \in [0.5Q_0, 1000\mathrm{ADC\cdot ns}]$ and $\mathrm{FWHM} \in [2\,\mathrm{ns}, 15\,\mathrm{ns}]$ are selected to exclude the noise and large pulses. %padding
 An \emph{exGaussian} distribution $f^N(t;\mu_{\mathrm{SER}},\sigma_\mathrm{SER}^2)\otimes f^{\mathrm{Exp}}(t;1/\tau_\mathrm{SER})$~\cite{Luo:2022xrd} is used to fit the SER% as shown in Fig.~\ref{fig:triggerser}
 , in which $\mu_{\mathrm{SER}}$ is the pulse location, $\sigma_{\mathrm{SER}}$ and $\tau_{\mathrm{SER}}$ model its shape. They are measured to be $\tau_{\mathrm{SER}} = \SI{7.2\pm1.1}{ns}$ and $\sigma_{\mathrm{SER}} = \SI{1.62\pm0.06}{ns}$ for the nine MCP-PMTs.
 
 \subsection{Transit time spread}
 \label{sec:TTS}
-As shown in Fig.~\ref{fig:mcpelectron}, the PEs from the photocathode drift to the MCP. The drifting electric field and the PE trajectory are simulated by a simplified model consisting of a cathode at \SI{0}{V}, a focusing electrode at \SI{480}{V} and an MCP at \SI{528}{V}. The PEs from the top of the photocathode with \SI{0}{eV} and \SI{3}{eV} kinetic energies have drift times of about \SI{21}{ns} and \SI{18}{ns}, respectively. A PE entering an MCP channel is multiplied to be an observable pulse, while that hitting the surface of the MCP gets scattered inelastically into several secondary electrons or elastically into one single electron~\cite{Furman}. The scattered electrons drift in the electric field until finally entering the MCP channels to give delayed pulses~\cite{KM3NetTesting}. Multiple secondary electrons with different kinetic energies may cause two or more pulses with different drift times, as shown in Fig.~\ref{fig:triggerTT2pulse}.
+As shown in Fig.~\ref{fig:mcpelectron}, the PEs from the photocathode drift to the MCP. Using a model of a cathode at \SI{0}{V}, a focusing electrode at \SI{480}{V} and an MCP at \SI{528}{V} to simulate the electric field and the PE trajectory, we find the PEs from the top of the photocathode with \SI{0}{eV} and \SI{3}{eV} kinetic energies have drift times of about \SI{21}{ns} and \SI{18}{ns} respectively. A PE entering an MCP channel is multiplied to be an observable pulse, while that hitting the surface of the MCP gets scattered inelastically into several secondary electrons or elastically into one single electron~\cite{Furman}. The scattered electrons drift in the electric field until finally entering the MCP channels to give delayed pulses~\cite{KM3NetTesting}. Multiple secondary electrons with different kinetic energies may cause two or more pulses with different drift times, one example shown in Fig.~\ref{fig:triggerTT2pulse}.
 
 \begin{figure}[!htbp]
     \centering
@@ -109,8 +109,8 @@ Delayed pulses are searched in the interval $[t_0+20\,\mathrm{ns},t_0+80\,\mathr
     \caption{(a) Double-pulse example. The first pulse falls in the candidate window defined in Section~\ref{sec:laserstage}. (b) The green and blue histograms are the main and delayed pulse distributions, respectively. The filled histograms are waveforms containing the main and delayed pulses simultaneously.}
 \end{figure}
 
-The main and early components are modeled with Gaussian functions % padding
-$N_1f_1^N(t;\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ and $N_2f_2^N(t;\mu_K,\sigma_K^2)$, with the subscript $K$ standing for high-kinetic-energy PEs. Considering the exponential distribution of kinetic energies of secondary electrons~\cite{Furman,SecondElectron}, $f^\mathrm{Exp}(t;1/\tau_S)$ is suitable to model the delayed component.  We add a constant $b_S$ and a translation of $\mu_{TT} + 3\sigma_{TT}$ to fit the data. As shown in Fig.~\ref{fig:triggerTTSLog}, the \SI{0.5}{ns}-binned $\mathrm{TT}$ histogram with selection criteria in Section~\ref{sec:noisepeak} is fitted by
+In Fig.~\ref{fig:triggerTTSLog}, the main and early components are modeled with Gaussian functions % padding
+$N_1f_1^N(t;\mu_{\mathrm{TT}},\sigma_{\mathrm{TT}}^2)$ and $N_2f_2^N(t;\mu_K,\sigma_K^2)$, with the subscript $K$ standing for high-kinetic-energy PEs. Considering the exponential distribution of kinetic energies of secondary electrons~\cite{Furman,SecondElectron}, $f^\mathrm{Exp}(t;1/\tau_S)$ is suitable to model the delayed component.  We add a constant $b_S$ and a translation of $\mu_{TT} + 3\sigma_{TT}$ to fit the data. The \SI{0.5}{ns}-binned $\mathrm{TT}$ histogram with selection criteria in Section~\ref{sec:noisepeak} is fitted by
 
 \begin{equation}
     \begin{aligned}
@@ -171,9 +171,10 @@ The probability $P_{\mathrm{after}}$ of after-pulses is $N^{\mathrm{after}}/N^\m
 \end{figure}
 % waveform analysis
 
-The distribution of the delay time from $t_r^{10}$ of the main to after-pulse in Fig.~\ref{fig:afterpulse1d} indicates five structures at around \SI{300}{ns}, \SI{400}{ns}, \SI{600}{ns}, \SI{1200}{ns} and \SI{1700}{ns}, time ratio being about $1:\sqrt{2}:\sqrt{4}:\sqrt{16}:\sqrt{32}$. These structures may originate from \ce{H^+}, \ce{H_2^+}, \ce{He^{+}}, \ce{CH_4^+}, and \ce{N_2^+} or \ce{O_2^+}. XENON1T~\cite{XENON1TTesting} and XMASS~\cite{Abe_2020} gave the same assumptions for the first peak. Similar works by JUNO~\cite{Zhao:2022gks} and KM3NeT~\cite{KM3NetTesting} claimed the first peak to be \ce{H_2^{+}}.
+The distribution of the delay time from $t_r^{10}$ of the main to after-pulse in Fig.~\ref{fig:afterpulse1d} indicates five structures at around \SI{300}{ns}, \SI{400}{ns}, \SI{600}{ns}, \SI{1200}{ns} and \SI{1700}{ns}, time ratio being about $1:\sqrt{2}:\sqrt{4}:\sqrt{16}:\sqrt{32}$. These structures may originate from \ce{H^+}, \ce{H_2^+}, \ce{He^{+}}, \ce{CH_4^+}, and \ce{N_2^+} or \ce{O_2^+}. XENON1T~\cite{XENON1TTesting} and XMASS~\cite{Abe_2020} gave the same assumptions for the first peak. But similar works by JUNO~\cite{Zhao:2022gks} and KM3NeT~\cite{KM3NetTesting} assigned the first peak to \ce{H_2^{+}}.
 
-We use five Gaussians $\sum_{i=1}^{5}{A_if_i^{\mathrm{AP}}(t;t_i,\sigma_i^2)}$ to model the five structures after subtracting DCR, in which $A_i$, $t_i$, and $\sigma_i$ are the amplitudes, times, width of each after-pulse group (Table.~\ref{tab:afterpulse}). The amplitudes of the groups vary greatly for different MCP-PMTs.  A slow undulating structure contributes about half of the after-pulses on average in $[\SI{2000}{ns},\SI{7000}{ns}]$ as shown in Fig.~\ref{fig:afterpulse1d}, whose origin we are unable to identify.
+We use five Gaussians with DCR ($\sum_{i=1}^{5}{A_if_i^{\mathrm{AP}}(t;t_i,\sigma_i^2)} + \mathrm{DCR}\cdot N^{\mathrm{hit}}$) to model the five structures, in which $A_i$, $t_i$, and $\sigma_i$ are the amplitudes, times, width of each after-pulse structure (Table.~\ref{tab:afterpulse}). %The $A_i$s vary greatly for different MCP-PMTs.
+A slow undulating structure contributes about half of the after-pulses on average in $[\SI{2000}{ns},\SI{7000}{ns}]$ as shown in Fig.~\ref{fig:afterpulse1d}, whose origin we are unable to identify.
 
 \begin{table}
     \centering
@@ -193,7 +194,7 @@ We use five Gaussians $\sum_{i=1}^{5}{A_if_i^{\mathrm{AP}}(t;t_i,\sigma_i^2)}$ t
         \end{tabular}
         \begin{tablenotes}
             \footnotesize
-            \item[*] cannot be fitted due to the interference with \ce{H+}.
+            \item[*] The charge of the 2nd structure cannot be fitted due to the interference with \ce{H+}.
         \end{tablenotes}
     \end{threeparttable}
 \end{table}
@@ -214,19 +215,19 @@ We use five Gaussians $\sum_{i=1}^{5}{A_if_i^{\mathrm{AP}}(t;t_i,\sigma_i^2)}$ t
 % \end{figure}
 
 %The mean charge in each time bin shown as the black line. 
-The after-pulse groups contain large charge signals, as shown in Fig.~\ref{fig:afterpulse2d}. The charge distributions in $[t_i-3\sigma_i,t_i+3\sigma_i]$ of each after-pulse are scaled to the same dark noise count in Fig.~\ref{fig:afterpulsecharge}.  Charge distribution of the second structure~(\ce{H2+}) is hard to fit due to the interference with the first one~(\ce{H+}).  We fit each charge distribution with a Gaussian $f^{\rm APQ}_i(Q;Q_i,\sigma_{Q_i}^2)$, in which $Q_i$ and $\sigma_{Q_i}$ are the charge and spread of each after-pulse group (Table.~\ref{tab:afterpulse}). Because the 3rd-group charge distribution is dominated by charge less than 700\,ADC$\cdot$ns as shown in Fig.~\ref{fig:afterpulse2d} and Fig.~\ref{fig:afterpulsecharge}, $\sigma_{Q_3}$ from fitting on low-statistic entries contains large uncertainty and maybe unreliable. For six PMTs with larger data sizes, the mean charge of each after-pulse shows a negative correlation between charge and delay time.
+The after-pulses contain large charge signals, as shown in Fig.~\ref{fig:afterpulse2d}. The charge distributions in $[t_i-3\sigma_i,t_i+3\sigma_i]$ of each after-pulse are scaled to the same dark noise count in Fig.~\ref{fig:afterpulsecharge}.  Charge distribution of the second structure~(\ce{H2+}) is hard to fit due to the interference with the first one~(\ce{H+}).  We fit each charge distribution with a Gaussian $f^{\rm APQ}_i(Q;Q_i,\sigma_{Q_i}^2)$, in which $Q_i$ and $\sigma_{Q_i}$ are the charge and spread of each after-pulse (Table.~\ref{tab:afterpulse}). Because the 3rd-structure charge distribution is dominated by charge less than 700\,ADC$\cdot$ns as shown in Fig.~\ref{fig:afterpulse2d} and Fig.~\ref{fig:afterpulsecharge}, $\sigma_{Q_3}$ from fitting on low-statistic entries contains large uncertainty and maybe unreliable. From the six PMTs with higher occupancies, the mean charge of each after-pulse shows a negative correlation between charge and delay time.
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/method/triggerafterpulseCharge.pdf}
-    \caption{The charge distribution of after-pulse groups of an example MCP-PMT. The blue histogram is the distribution of dark noise. The violet points are the peaks of fit curves.}
+    \caption{The charge distribution of after-pulse structures of an example MCP-PMT. The blue histogram is the distribution of dark noise. The violet points are the peaks of fit curves.}
     \label{fig:afterpulsecharge}
 \end{figure}
 
 \subsection{Relative photon detection efficiency}
 \label{sec:PDE}
  %For example, JUNO fixed one reference PMT to calibrate the light intensity and other reference PMTs are circulated through all channels to calibrate the light allocation ratio~\cite{Wonsak_2021}.
-A regression method is developed to combine the light-source calibration and PDE measurements simultaneously. Let $I_n$ denote the light intensity of the $n$th run, $\alpha_j$ the light allocation ratio of the $j$th splitter channel (out of four and assumed to be stable across runs), and $\epsilon_k$ the PDE of the $k$th PMT (out of one reference dynode and nine MCP PMTs). The PE counts in each waveform follow Poisson distribution $\pi(I_n\alpha_j\epsilon_k)$.
+A regression method is developed to combine the light-source calibration and PDE measurements simultaneously. Let $I_n$ denote the light intensity of the $n$th run, $\alpha_j$ the light allocation ratio of the $j$th splitter channel (out of four and assumed to be stable across runs), and $\epsilon_k$ the PDE of the $k$th PMT (out of one reference dynode and nine MCP-PMTs). The PE counts in each waveform follow Poisson distribution $\pi(I_n\alpha_j\epsilon_k)$.
 
 For convenience, the index of the reference PMT is set to 0. Let $\alpha_j^0\equiv\alpha_j/{\alpha_0}$, $\epsilon_k^0\equiv\epsilon_k/{\epsilon_0}$, $I_n^0\equiv I_n\alpha_0\epsilon_0$.  The hit rate $R_{njk}$ of the $k$th PMT at the $j$th channel in the $n$th run is
 
